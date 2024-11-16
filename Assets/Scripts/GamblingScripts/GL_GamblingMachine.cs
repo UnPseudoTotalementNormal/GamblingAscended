@@ -12,6 +12,7 @@ namespace GamblingScripts
         public Dictionary<int, Action> StatesActions { get; protected set; }
         public Dictionary<int, Action> StatesCheckSwitch { get; protected set; }
         public Dictionary<int, Action> StatesSwitchAction { get; protected set; }
+        [field:SerializeField] public Transform ScreenTransform { get; protected set; }
         [field:SerializeField] public float PlayMoneyCost { get; protected set; }
         public event Action PlayMachineEvent;
 
