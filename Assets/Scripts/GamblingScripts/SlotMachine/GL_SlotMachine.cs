@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Breezorio.Ghosts;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class GL_SlotMachine : GL_BaseGamblingMachine
@@ -40,7 +41,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         StatesSwitchAction = new Dictionary<int, Action>
         {
             {(int) SlotMachineState.None, SM_None_SwitchAction},
-            {(int) SlotMachineState.Spinning, () => {}},
+            {(int) SlotMachineState.Spinning, SM_Spinning_SwitchAction},
             {(int) SlotMachineState.Result, SM_Result_SwitchAction},
         };
     }
@@ -76,7 +77,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     {
         foreach (Transform imagesRow in _imagesRows)
         {
-            
+            Transform testImage = imagesRow.GetChild(0);
+            GL_SlotMachineImage resultImage = _resultImages.PickRandom();
+            testImage.GetComponent<Image>().sprite = resultImage.ObjectSprite;
         }
         (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.Result);
     }
