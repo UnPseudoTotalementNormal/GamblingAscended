@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Breezorio.Ghosts;
+using GamblingScripts.SlotMachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,7 +10,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 {
     [Header("Slot Machine Specific")] 
     [SerializeField] private List<GL_SlotMachineImage> _resultImages;
-    [SerializeField] private List<Transform> _imagesRows;
+    [SerializeField] private List<GL_SlotMachineImageRow> _imagesRows;
     
     [Header("Spinning State")]
     [SerializeField] private float _spinningDuration = 1f;
@@ -75,9 +76,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     
     private void OnFinishSpinning()
     {
-        foreach (Transform imagesRow in _imagesRows)
+        foreach (GL_SlotMachineImageRow imagesRow in _imagesRows)
         {
-            Transform testImage = imagesRow.GetChild(0);
+            Transform testImage = imagesRow.transform.GetChild(0);
             GL_SlotMachineImage resultImage = _resultImages.PickRandom();
             testImage.GetComponent<Image>().sprite = resultImage.ObjectSprite;
         }
