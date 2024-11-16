@@ -62,7 +62,6 @@ namespace Timer
         public void StopTimer()
         {
             _timerHost.PauseTimer();
-            Object.Destroy(_timerHost.gameObject);
         }
 
         /// <summary>

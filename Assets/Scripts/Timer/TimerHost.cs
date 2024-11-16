@@ -44,7 +44,7 @@ namespace Timer
             }
             
             _timerEndCallback();
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 }
