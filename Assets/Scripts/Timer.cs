@@ -18,6 +18,17 @@ namespace Timer
             StartTimer(duration);
         }
 
+        /// <summary>
+        /// Begins a new timer with the specified duration and callback.
+        /// </summary>
+        /// <param name="duration">The duration of the timer in seconds.</param>
+        /// <param name="callback">The callback to invoke when the timer ends.</param>
+        /// <returns>A new Timer instance.</returns>
+        public static Timer NewTimer(float duration, Action callback)
+        {
+            return new Timer(duration, callback);
+        }
+
         private void StartTimer(float duration)
         {
             _timerHost = new GameObject("Timer (duration: " + duration + ")").AddComponent<TimerHost>();

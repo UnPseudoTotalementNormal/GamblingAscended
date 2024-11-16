@@ -8,9 +8,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 {
     [Header("Slot Machine Specific")] 
     [SerializeField] private List<GL_SlotMachineImage> _resultImages;
-    [SerializeField] private Transform _leftImagesRow;
-    [SerializeField] private Transform _middleImagesRow;
-    [SerializeField] private Transform _rightImagesRow;
+    [SerializeField] private List<Transform> _imagesRows;
     
     public enum SlotMachineState 
     {
@@ -89,6 +87,11 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     private void SM_None_SwitchAction()
     {
         ResetSlotMachine();
+    }
+
+    private void SM_Result_SwitchAction()
+    {
+        Timer.Timer.NewTimer(2f, () => (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.None));
     }
 
     #endregion
