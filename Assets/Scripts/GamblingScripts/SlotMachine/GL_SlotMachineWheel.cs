@@ -45,7 +45,7 @@ namespace GamblingScripts.SlotMachine
         public void StopRolling()
         {
             _isRolling = false;
-            _wheelPivot.localEulerAngles = new Vector3(0, 0, Mathf.Round(_wheelPivot.localEulerAngles.z / 45) * 45);
+            _wheelPivot.localEulerAngles = new Vector3(0, 0, (Mathf.Round(_wheelPivot.localEulerAngles.z / 45 ) + 1) * 45);
             Debug.Log(GetResultImage().Name);
         }
         

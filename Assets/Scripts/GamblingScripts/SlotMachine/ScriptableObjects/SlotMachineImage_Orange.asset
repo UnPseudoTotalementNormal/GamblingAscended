@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlotMachineImage_Orange
   m_EditorClassIdentifier: 
   Name: Orange
-  ObjectSprite: {fileID: 21300000, guid: 89a5d9de5cca9e046939f053e7bdc4ea, type: 3}
+  ObjectSprite: {fileID: 21300000, guid: 13658aca4aca0d349a137d96f5409447, type: 3}
   ValuesOnAmount:
     _serializedList:
     - Key: 1

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: SlotMachineImage_Cherry
   m_EditorClassIdentifier: 
   Name: Cherry
-  ObjectSprite: {fileID: 21300000, guid: 89a5d9de5cca9e046939f053e7bdc4ea, type: 3}
+  ObjectSprite: {fileID: 21300000, guid: 48b3c145051b5f3498f52f1e63e1c9e2, type: 3}
   ValuesOnAmount:
     _serializedList:
     - Key: 1
