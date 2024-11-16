@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,14 +9,33 @@ namespace GamblingScripts.SlotMachine
         private GL_SlotMachineWheel _slotMachineWheel;
 
         private GL_SlotMachineImage _slotMachineImage;
+        private Transform _switchPoint;
 
         private SpriteRenderer _spriteRenderer;
 
-        public void Init(GL_SlotMachineWheel wheel)
+        private bool _shouldSwitch = true;
+
+        public void Init(GL_SlotMachineWheel wheel, Transform switchPoint)
         {
             _slotMachineWheel = wheel;
+            _switchPoint = switchPoint;
             _spriteRenderer = GetComponent<SpriteRenderer>();
             RandomizeImage();
+        }
+
+        private void Update()
+        {
+            if (Vector3.Distance(transform.position, _switchPoint.position) < 0.2f)
+            {
+                if (!_shouldSwitch) return;
+                
+                RandomizeImage();
+                _shouldSwitch = false;
+            }
+            else
+            {
+                _shouldSwitch = true;
+            }
         }
 
         private void RandomizeImage()

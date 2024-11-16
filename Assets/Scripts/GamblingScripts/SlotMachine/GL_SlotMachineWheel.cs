@@ -12,6 +12,7 @@ namespace GamblingScripts.SlotMachine
         [SerializeField] private Transform _wheelPivot;
         [SerializeField] private Transform _imageHolder;
         [SerializeField] private Transform _resultPoint;
+        [SerializeField] private Transform _switchPoint;
         [SerializeField] private List<GL_SlotMachineImage> _possibleResultImages;
         [SerializeField] private float _spinningSpeed;
 
@@ -25,7 +26,7 @@ namespace GamblingScripts.SlotMachine
             _transform = GetComponent<Transform>();
             foreach (Transform image in _imageHolder)
             {
-                image.GetComponent<GL_SlotMachineWheelImage>().Init(this);
+                image.GetComponent<GL_SlotMachineWheelImage>().Init(this, _switchPoint);
             }
         }
         
@@ -45,8 +46,7 @@ namespace GamblingScripts.SlotMachine
         public void StopRolling()
         {
             _isRolling = false;
-            _wheelPivot.localEulerAngles = new Vector3(0, 0, (Mathf.Round(_wheelPivot.localEulerAngles.z / 45 ) + 1) * 45);
-            Debug.Log(GetResultImage().Name);
+            _wheelPivot.localEulerAngles = new Vector3(0, 0, (Mathf.Floor(_wheelPivot.localEulerAngles.z / 45 )) * 45);
         }
         
         public GL_SlotMachineImage GetResultImage()
