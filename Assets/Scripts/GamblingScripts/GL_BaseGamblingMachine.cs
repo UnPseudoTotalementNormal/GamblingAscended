@@ -1,8 +1,5 @@
-using System;
-using System.Collections.Generic;
 using Breezorio.Ghosts;
 using GamblingScripts;
-using UnityEngine;
 
 public class GL_BaseGamblingMachine : GL_GamblingMachine
 {
@@ -18,6 +15,7 @@ public class GL_BaseGamblingMachine : GL_GamblingMachine
 
     protected override void Update()
     {
-        
+        (this as GL_IStateMachine).DoAction();
+        (this as GL_IStateMachine).DoCheckSwitch();
     }
 }
