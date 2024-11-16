@@ -4,13 +4,14 @@ using System.Linq;
 using Breezorio.Ghosts;
 using GamblingScripts.SlotMachine;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 
 public class GL_SlotMachine : GL_BaseGamblingMachine
 {
     [Header("Slot Machine Specific")] 
-    [SerializeField] private List<GL_SlotMachineImageRow> _imagesRows;
+    [SerializeField] private List<GL_SlotMachineWheel> _slotWheels;
     
     [Header("Spinning State")]
     [SerializeField] private float _spinningDuration = 1f;
@@ -77,7 +78,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 
     private void StartSpinning()
     {
-        foreach (GL_SlotMachineImageRow imagesRow in _imagesRows)
+        foreach (GL_SlotMachineWheel imagesRow in _slotWheels)
         {
             imagesRow.StartRolling();
         }
@@ -90,9 +91,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     
     private void OnFinishSpinningARow()
     {
-        _imagesRows.First(imagesRow => imagesRow.IsRolling).StopRolling();
+        _slotWheels.First(imagesRow => imagesRow.IsRolling).StopRolling();
         
-        bool hasARowLeft = _imagesRows.Any(imagesRow => imagesRow.IsRolling);
+        bool hasARowLeft = _slotWheels.Any(imagesRow => imagesRow.IsRolling);
         if (hasARowLeft)
         {
             Timer.Timer.NewTimer(_finishSpinningRowDuration, OnFinishSpinningARow);
