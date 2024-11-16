@@ -10,6 +10,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     [SerializeField] private List<GL_SlotMachineImage> _resultImages;
     [SerializeField] private List<Transform> _imagesRows;
     
+    [Header("Spinning State")]
+    [SerializeField] private float _spinningDuration = 1f;
+    
     public enum SlotMachineState 
     {
         None,
@@ -38,7 +41,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         {
             {(int) SlotMachineState.None, SM_None_SwitchAction},
             {(int) SlotMachineState.Spinning, () => {}},
-            {(int) SlotMachineState.Result, () => {}},
+            {(int) SlotMachineState.Result, SM_Result_SwitchAction},
         };
     }
     
@@ -47,16 +50,35 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         base.Start();
         Play();
     }
+    
+    public override bool TryPlay()
+    {
+        bool canPlay = base.TryPlay();
+        if (!canPlay) return false;
+
+        if (CurrentState != (int)SlotMachineState.None) canPlay = false;
+
+        return canPlay;
+    }
 
     public override void Play()
     {
         base.Play();
-        
+        (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.Spinning);
     }
     
     private void ResetSlotMachine()
     {
         
+    }
+    
+    private void OnFinishSpinning()
+    {
+        foreach (Transform imagesRow in _imagesRows)
+        {
+            
+        }
+        (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.Result);
     }
 
     #region SM_Actions
@@ -87,6 +109,11 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     private void SM_None_SwitchAction()
     {
         ResetSlotMachine();
+    }
+
+    private void SM_Spinning_SwitchAction()
+    {
+        Timer.Timer.NewTimer(_spinningDuration, OnFinishSpinning);
     }
 
     private void SM_Result_SwitchAction()
