@@ -26,7 +26,21 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         {
             {(int) SlotMachineState.None, () => {}},
             {(int) SlotMachineState.Spinning, SM_Spinning_Action},
-            {(int) SlotMachineState.Result, () => {}}
+            {(int) SlotMachineState.Result, SM_Result_Action},
+        };
+        
+        StatesCheckSwitch = new Dictionary<int, Action>
+        {
+            {(int) SlotMachineState.None, () => {}},
+            {(int) SlotMachineState.Spinning, () => {}},
+            {(int) SlotMachineState.Result, SM_Result_CheckSwitch},
+        };
+
+        StatesSwitchAction = new Dictionary<int, Action>
+        {
+            {(int) SlotMachineState.None, SM_None_SwitchAction},
+            {(int) SlotMachineState.Spinning, () => {}},
+            {(int) SlotMachineState.Result, () => {}},
         };
     }
     
@@ -39,6 +53,11 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     public override void Play()
     {
         base.Play();
+        
+    }
+    
+    private void ResetSlotMachine()
+    {
         
     }
 
@@ -56,11 +75,20 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     
     #endregion
 
-    #region SM_CheckSwitch
+    #region SM_CheckSwitchs
 
     private void SM_Result_CheckSwitch()
     {
         
+    }
+
+    #endregion
+
+    #region SM_SwitchActions
+
+    private void SM_None_SwitchAction()
+    {
+        ResetSlotMachine();
     }
 
     #endregion
