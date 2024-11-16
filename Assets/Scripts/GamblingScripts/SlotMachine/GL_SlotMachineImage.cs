@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using AYellowpaper.SerializedCollections;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewSlotMachineImage", menuName = "Gambling/SlotMachine/Slot Machine Image")]
@@ -8,5 +9,6 @@ public class GL_SlotMachineImage : ScriptableObject
     public Sprite ObjectSprite;
 
     [Header("Gambling values")] 
-    public Dictionary<int, float> ValuesOnAmount;
+    [SerializedDictionary("Image Amount", "Value Amount")]
+    public SerializedDictionary<int, float> ValuesOnAmount;
 }

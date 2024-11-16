@@ -14,5 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Seven
   ObjectSprite: {fileID: 21300000, guid: 89a5d9de5cca9e046939f053e7bdc4ea, type: 3}
-  ValueOnDouble: 75
-  ValueOnTriple: 150
+  ValuesOnAmount:
+    _serializedList:
+    - Key: 1
+      Value: 0
+    - Key: 2
+      Value: 75
+    - Key: 3
+      Value: 150
