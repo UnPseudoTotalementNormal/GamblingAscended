@@ -1,9 +1,12 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GamblingScripts.SlotMachine
 {
     public class GL_SlotMachineImageRow : MonoBehaviour
     {
+        [SerializeField] private List<GL_SlotMachineImage> _possibleResultImages;
+        
         private GL_SlotMachineImage _resultImage;
 
         private bool _isRolling = false;

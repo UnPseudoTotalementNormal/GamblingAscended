@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Breezorio.Ghosts;
 using GamblingScripts.SlotMachine;
 using UnityEngine;
@@ -9,11 +10,11 @@ using UnityEngine.UI;
 public class GL_SlotMachine : GL_BaseGamblingMachine
 {
     [Header("Slot Machine Specific")] 
-    [SerializeField] private List<GL_SlotMachineImage> _resultImages;
     [SerializeField] private List<GL_SlotMachineImageRow> _imagesRows;
     
     [Header("Spinning State")]
     [SerializeField] private float _spinningDuration = 1f;
+    [SerializeField] private float _finishSpinningRowDuration = 0.5f;
     
     public enum SlotMachineState 
     {
@@ -73,16 +74,32 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     {
         
     }
-    
-    private void OnFinishSpinning()
+
+    private void StartSpinning()
     {
         foreach (GL_SlotMachineImageRow imagesRow in _imagesRows)
         {
-            Transform testImage = imagesRow.transform.GetChild(0);
-            GL_SlotMachineImage resultImage = _resultImages.PickRandom();
-            testImage.GetComponent<Image>().sprite = resultImage.ObjectSprite;
+            imagesRow.StartRolling();
         }
+    }
+
+    private void OnFinishSpinning()
+    {
         (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.Result);
+    }
+    
+    private void OnFinishSpinningARow()
+    {
+        _imagesRows.First(imagesRow => imagesRow.IsRolling).StopRolling();
+        
+        bool hasARowLeft = _imagesRows.Any(imagesRow => imagesRow.IsRolling);
+        if (hasARowLeft)
+        {
+            Timer.Timer.NewTimer(_finishSpinningRowDuration, OnFinishSpinningARow);
+            return;
+        }
+
+        OnFinishSpinning();
     }
 
     #region SM_Actions
@@ -117,7 +134,8 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 
     private void SM_Spinning_SwitchAction()
     {
-        Timer.Timer.NewTimer(_spinningDuration, OnFinishSpinning);
+        StartSpinning();
+        Timer.Timer.NewTimer(_spinningDuration, OnFinishSpinningARow);
     }
 
     private void SM_Result_SwitchAction()

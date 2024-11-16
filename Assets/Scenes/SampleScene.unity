@@ -491,6 +491,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb541fb6174c43ec9d408cf72e4ecec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _possibleResultImages:
+  - {fileID: 11400000, guid: f47a52bb1d4e8934cb964d499e6a8f8c, type: 2}
 --- !u!1 &771438198
 GameObject:
   m_ObjectHideFlags: 0
@@ -833,13 +835,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <ScreenTransform>k__BackingField: {fileID: 1279364615}
   <PlayMoneyCost>k__BackingField: 5
-  _resultImages:
-  - {fileID: 11400000, guid: f47a52bb1d4e8934cb964d499e6a8f8c, type: 2}
   _imagesRows:
   - {fileID: 628356421}
   - {fileID: 1339396852}
   - {fileID: 1816619768}
   _spinningDuration: 1
+  _finishSpinningRowDuration: 0.5
 --- !u!1001 &1279364614
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1073,6 +1074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb541fb6174c43ec9d408cf72e4ecec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _possibleResultImages:
+  - {fileID: 11400000, guid: f47a52bb1d4e8934cb964d499e6a8f8c, type: 2}
 --- !u!1 &1816619766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1122,6 +1125,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb541fb6174c43ec9d408cf72e4ecec5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _possibleResultImages:
+  - {fileID: 11400000, guid: f47a52bb1d4e8934cb964d499e6a8f8c, type: 2}
 --- !u!1 &1837806719
 GameObject:
   m_ObjectHideFlags: 0
