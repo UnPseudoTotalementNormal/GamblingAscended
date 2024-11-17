@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 431f986edd0e41858a88cdb8cbef4bec, type: 3}
-  m_Name: InsertingMoney
+  m_Name: PlayMachine
   m_EditorClassIdentifier: 
-  param1Description: Money inserted amount
+  param1Description: Machine cost

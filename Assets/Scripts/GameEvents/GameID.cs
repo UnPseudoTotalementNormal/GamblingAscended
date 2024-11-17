@@ -25,7 +25,7 @@ namespace GameEvents
             _Ids.Remove(_id);
         }
 
-        public static int GetObjectID(GameObject gameObject)
+        public static int GetGameID(GameObject gameObject)
         {
             return gameObject.GetComponentInParent<GameID>().GetID();
         }

@@ -702,6 +702,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1161833791}
+  - component: {fileID: 1161833795}
   - component: {fileID: 1161833794}
   - component: {fileID: 1161833793}
   - component: {fileID: 1161833792}
@@ -740,6 +741,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039c083a226047e8baec1031176b94cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyInsertedEvent: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
+  _playMachineEvent: {fileID: 11400000, guid: af2bcc642b8ba924ea7479755e3b377d, type: 2}
 --- !u!114 &1161833793
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -752,6 +755,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 383db4f937db4d109d62021a175e5d8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _moneyInsertedEvent: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
 --- !u!114 &1161833794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -764,14 +768,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42b69be448bccd441b01dd8c2f727922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <ScreenTransform>k__BackingField: {fileID: 0}
   <PlayMoneyCost>k__BackingField: 5
+  <PlayMachineEvent>k__BackingField: {fileID: 11400000, guid: af2bcc642b8ba924ea7479755e3b377d, type: 2}
   _slotWheels:
   - {fileID: 1009897889}
   - {fileID: 1031157908}
   - {fileID: 727778699}
   _spinningDuration: 1
   _finishSpinningRowDuration: 0.5
+--- !u!114 &1161833795
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1161833790}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42c8d01284c449068cf8fad28713ab77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1223489603
 PrefabInstance:
   m_ObjectHideFlags: 0
