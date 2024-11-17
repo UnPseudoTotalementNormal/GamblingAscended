@@ -14,6 +14,8 @@ namespace GameEvents
         public void RemoveListener(Action<int[]> action) => Action -= action;
         
         public void Invoke(params int[] id) => Action?.Invoke(id);
+        
+        public void ClearListeners() => Action = null;
     }
     
     public class GameEvent<T> : ScriptableObject, IGameEvent
@@ -28,6 +30,8 @@ namespace GameEvents
         public void RemoveListener(Action<int[], T> action) => Action -= action;
         
         public void Invoke(T value, params int[] id) => Action?.Invoke(id, value);
+        
+        public void ClearListeners() => Action = null;
     }
     
     public class GameEvent<T1, T2> : ScriptableObject, IGameEvent
@@ -43,5 +47,7 @@ namespace GameEvents
         public void RemoveListener(Action<int[], T1, T2> action) => Action -= action;
         
         public void Invoke(T1 value1, T2 value2, params int[] id) => Action?.Invoke(id, value1, value2);
+        
+        public void ClearListeners() => Action = null;
     }
 }
