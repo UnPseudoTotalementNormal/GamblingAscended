@@ -16,7 +16,7 @@ public class GameEventCleaner : MonoBehaviour
         DontDestroyOnLoad(gameObject);
         _ = LoadGameEvents();
     }
-
+    
     private async Task LoadGameEvents()
     {
         AsyncOperationHandle<IList<IGameEvent>> handle = Addressables.LoadAssetsAsync<IGameEvent>("GameEvent", null);
@@ -26,12 +26,27 @@ public class GameEventCleaner : MonoBehaviour
             _gameEvents = handle.Result.ToList();
         }
     }
+
+    [ContextMenu("LoadAndClearListeners")]
+    private async Task LoadAndClearListeners()
+    {
+        Debug.Log("Loading GameEvents");
+        await LoadGameEvents();
+        Debug.Log("GameEvents loaded");
+        ClearAllListeners();
+        Debug.Log("GameEvents cleared");
+    }
     
-    private void OnDestroy()
+    private void ClearAllListeners()
     {
         foreach (IGameEvent gameEvent in _gameEvents)
         {
             gameEvent.ClearListeners();
         }
+    }
+    
+    private void OnDestroy()
+    {
+        ClearAllListeners();
     }
 }
