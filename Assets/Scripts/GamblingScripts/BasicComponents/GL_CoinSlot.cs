@@ -1,4 +1,5 @@
 using System;
+using GameEvents;
 using UnityEngine;
 
 namespace GamblingScripts.BasicComponents
@@ -8,10 +9,13 @@ namespace GamblingScripts.BasicComponents
         private GL_CoinHolder _coinHolder;
         
         public event Action<float> CoinInsertedEvent;
+        
+        [SerializeField] private GameEvent<float> _moneyInsertedEvent;
 
         public void InsertCoin(float value)
         {
             CoinInsertedEvent?.Invoke(value);
+            _moneyInsertedEvent.Invoke(value, gameObject.GetGameID());
         }
     }
 }

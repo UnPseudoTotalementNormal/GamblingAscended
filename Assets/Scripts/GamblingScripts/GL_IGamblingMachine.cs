@@ -1,10 +1,13 @@
 using System;
+using GamblingScripts.BasicComponents;
+using GameEvents;
 using UnityEngine;
 
 public interface GL_IGamblingMachine
 {
-    public Transform ScreenTransform { get; }
-    public event Action PlayMachineEvent;
+    public GameEvent<float> PlayMachineEvent { get; }
+    
+    public GL_CoinHolder CoinHolder { get; }
     
     public float PlayMoneyCost { get; }
 

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Default Local Group
+  m_EditorClassIdentifier: 
+  m_GroupName: Default Local Group
+  m_GUID: ae3f6a963e004ad4b9ffdbd59196b85e
+  m_SerializeEntries:
+  - m_GUID: 7774df23b5d1c324392d7839ed964b28
+    m_Address: Assets/GameEvents/Gambling/InsertingMoney.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: af2bcc642b8ba924ea7479755e3b377d
+    m_Address: Assets/GameEvents/Gambling/PlayMachine.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 59bf2ecf388784745bcb2c12ccb03ea8, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 279fb0f956726b1438cf29ec102fec83, type: 2}
+    - {fileID: 11400000, guid: bae2a2976b79cd44bb4602323222abad, type: 2}
