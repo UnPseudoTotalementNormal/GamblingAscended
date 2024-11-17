@@ -1,4 +1,5 @@
 using System;
+using GameEvents.GameEventDefs;
 using UnityEngine;
 
 namespace GamblingScripts.BasicComponents
@@ -7,16 +8,13 @@ namespace GamblingScripts.BasicComponents
     {
         public float MoneyInserted { get; private set; } = 0;
 
+        private GameEvent<float> _moneyInsertedEvent;
+        
         private void Start()
         {
             if (TryGetComponent(out GL_GamblingMachine _gamblingMachine))
             {
                 _gamblingMachine.PlayMachineEvent += () => RemoveMoney(_gamblingMachine.PlayMoneyCost);
-            }
-
-            if (TryGetComponent(out GL_CoinSlot _coinSlot))
-            {
-                _coinSlot.CoinInsertedEvent += AddMoney;
             }
         }
 

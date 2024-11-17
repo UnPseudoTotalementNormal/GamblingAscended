@@ -1,5 +1,5 @@
 
-namespace GameEvent
+namespace GameEvents
 {
     public interface IGameEvent
     {

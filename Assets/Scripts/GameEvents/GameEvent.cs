@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace GameEvent
+namespace GameEvents
 {
     [CreateAssetMenu(fileName = "GameEvent", menuName = "GameEvents/GameEvent", order = 0)]
     public class GameEvent : ScriptableObject, IGameEvent
