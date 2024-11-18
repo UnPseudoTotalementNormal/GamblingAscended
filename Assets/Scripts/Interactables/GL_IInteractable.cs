@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Interactables
 {
     public interface GL_IInteractable
@@ -6,6 +8,6 @@ namespace Interactables
 
         public void OnExit();
 
-        public void OnInteract();
+        public void OnInteract(GameObject sender);
     }
 }

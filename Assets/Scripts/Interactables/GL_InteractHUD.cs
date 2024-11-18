@@ -1,5 +1,6 @@
 using System;
 using GameEvents;
+using Interactables;
 using TMPro;
 using UnityEngine;
 
@@ -19,6 +20,12 @@ public class GL_InteractHUD : MonoBehaviour
     private void OnInteractEnter(int[] ids, GameObject interactObject)
     {
         _textFeedback.gameObject.SetActive(true);
+        if (!interactObject.TryGetComponent(out GL_IInteractableDescription interactableDescription))
+        {
+            return;
+        }
+        
+        _textFeedback.text = $"Appuie sur \"E\" {interactableDescription.InteractionDescription}";
     }
     
     private void OnInteractExit(int[] ids, GameObject interactObject)

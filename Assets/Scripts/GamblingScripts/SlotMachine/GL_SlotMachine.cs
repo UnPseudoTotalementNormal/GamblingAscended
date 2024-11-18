@@ -19,7 +19,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     [SerializeField] private float _finishSpinningRowDuration = 0.5f;
 
     [Header("GameEvents")] 
-    [SerializeField] private GameEvent _slotMachinePullLeverEvent;
+    [SerializeField] private GameEvent<GameObject> _slotMachineTryPullLeverEvent;
     
     public enum SlotMachineState 
     {
@@ -52,10 +52,10 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
             {(int) SlotMachineState.Result, SM_Result_SwitchAction},
         };
         
-        _slotMachinePullLeverEvent.AddListener(OnPullLever);
+        _slotMachineTryPullLeverEvent.AddListener(OnPullLever);
     }
 
-    private void OnPullLever(int[] ids)
+    private void OnPullLever(int[] ids, GameObject sender)
     {
         if (gameObject.HasGameID(ids))
         {

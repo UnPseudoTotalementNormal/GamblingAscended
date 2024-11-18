@@ -27,8 +27,14 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5e339e7d543d2174092d6b0b73daea44
+    m_Address: Assets/GameEvents/Gambling/TryInsertMoney.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7774df23b5d1c324392d7839ed964b28
-    m_Address: Assets/GameEvents/Gambling/InsertingMoney.asset
+    m_Address: Assets/GameEvents/Gambling/InsertedMoney.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

@@ -8,7 +8,7 @@ namespace Interactables
     {
         [field:SerializeField] public GameEvent<GameObject> InteractPointerEnterEvent { get; private set; }
         [field:SerializeField] public GameEvent<GameObject> InteractPointerExitEvent { get; private set; }
-        [field:SerializeField] public GameEvent InteractionEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameObject> InteractionEvent { get; private set; }
         
 
         public void OnEnter()
@@ -21,9 +21,9 @@ namespace Interactables
             InteractPointerExitEvent.Invoke(gameObject, gameObject.GetGameID());
         }
 
-        public void OnInteract()
+        public void OnInteract(GameObject sender)
         {
-            InteractionEvent.Invoke(gameObject.GetGameID());
+            InteractionEvent.Invoke(sender, gameObject.GetGameID());
         }
     }
 }

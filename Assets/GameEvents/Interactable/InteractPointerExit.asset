@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e82fabb5b83248bcbbf9219d5109db9e, type: 3}
   m_Name: InteractPointerExit
   m_EditorClassIdentifier: 
-  param1Description: 
+  param1Description: interactable object

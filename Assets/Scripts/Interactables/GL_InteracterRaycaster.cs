@@ -7,6 +7,7 @@ namespace Interactables
     public class GL_InteracterRaycaster : MonoBehaviour
     {
         private Transform _transform;
+        private GameObject _owner;
 
         [SerializeField] private GameEvent _interactInputEvent;
 
@@ -19,6 +20,7 @@ namespace Interactables
         private void Awake()
         {
             _transform = GetComponent<Transform>();
+            _owner = gameObject;
             
             _interactInputEvent.AddListener(TryInteract);
         }
@@ -43,7 +45,7 @@ namespace Interactables
                 _isOnInteractable = false;
             }
         }
-
+        
         private void OldInteractableExit()
         {
             if (_oldInteractable == default) return;
@@ -72,7 +74,7 @@ namespace Interactables
                 return;
             }
             
-            _currentInteractable.OnInteract();
+            _currentInteractable.OnInteract(_owner);
         }
         
         private bool TryGetInteractable(out GL_IInteractable interactable)

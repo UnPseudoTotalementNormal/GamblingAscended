@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82fabb5b83248bcbbf9219d5109db9e, type: 3}
-  m_Name: SM_TryPullLever
+  m_Script: {fileID: 11500000, guid: 431f986edd0e41858a88cdb8cbef4bec, type: 3}
+  m_Name: InsertedMoney
   m_EditorClassIdentifier: 
-  param1Description: sender
+  param1Description: Money inserted amount
