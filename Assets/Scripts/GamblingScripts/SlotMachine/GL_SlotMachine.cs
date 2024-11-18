@@ -66,7 +66,6 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     protected override void Start()
     {
         base.Start();
-        Play();
     }
     
     public override bool TryPlay()

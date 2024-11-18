@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: ae3f6a963e004ad4b9ffdbd59196b85e
   m_SerializeEntries:
+  - m_GUID: 2c519a52159591940b4ff9d20b3bbe6e
+    m_Address: Assets/GameEvents/Gambling/SM_PullLever.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0
@@ -28,7 +34,7 @@ MonoBehaviour:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 812e4c34b9bd30c46b9cac4a21a6cb57
-    m_Address: Assets/GameEvents/Gambling/SlotMachinePullLever.asset
+    m_Address: Assets/GameEvents/Gambling/SM_TryPullLever.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
