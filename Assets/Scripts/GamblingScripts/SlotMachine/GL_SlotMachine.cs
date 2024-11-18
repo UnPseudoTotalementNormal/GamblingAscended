@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Breezorio.Ghosts;
 using GamblingScripts.SlotMachine;
+using GameEvents;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -16,6 +17,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     [Header("Spinning State")]
     [SerializeField] private float _spinningDuration = 1f;
     [SerializeField] private float _finishSpinningRowDuration = 0.5f;
+
+    [Header("GameEvents")] 
+    [SerializeField] private GameEvent<GameObject> _slotMachineTryPullLeverEvent;
     
     public enum SlotMachineState 
     {
@@ -47,20 +51,33 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
             {(int) SlotMachineState.Spinning, SM_Spinning_SwitchAction},
             {(int) SlotMachineState.Result, SM_Result_SwitchAction},
         };
+        
+        _slotMachineTryPullLeverEvent.AddListener(OnPullLever);
     }
-    
+
+    private void OnPullLever(int[] ids, GameObject sender)
+    {
+        if (gameObject.HasGameID(ids))
+        {
+            TryPlay();
+        }
+    }
+
     protected override void Start()
     {
         base.Start();
-        Play();
     }
     
     public override bool TryPlay()
     {
-        bool canPlay = base.TryPlay();
-        if (!canPlay) return false;
+        bool canPlay = true;
 
-        if (CurrentState != (int)SlotMachineState.None) canPlay = false;
+        if (CurrentState != (int)SlotMachineState.None)
+        {
+            return canPlay = false;
+        }
+        
+        canPlay = base.TryPlay();
 
         return canPlay;
     }
@@ -141,7 +158,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 
     private void SM_Result_SwitchAction()
     {
-        Timer.Timer.NewTimer(2f, () => (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.None));
+        Timer.Timer.NewTimer(0.5f, () => (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.None));
     }
 
     #endregion

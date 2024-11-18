@@ -34,15 +34,21 @@ public class GameEventCleaner : MonoBehaviour
         await LoadGameEvents();
         Debug.Log("GameEvents loaded");
         ClearAllListeners();
-        Debug.Log("GameEvents cleared");
     }
     
     private void ClearAllListeners()
     {
+        if (_gameEvents == null)
+        {
+            _ = LoadAndClearListeners();
+            return;
+        }
+        int count = _gameEvents.Count;
         foreach (IGameEvent gameEvent in _gameEvents)
         {
             gameEvent.ClearListeners();
         }
+        Debug.Log($"{count} GameEvents cleared");
     }
     
     private void OnDestroy()

@@ -9,7 +9,8 @@ namespace GamblingScripts.BasicComponents
         private GL_CoinHolder _coinHolder;
         
         public event Action<float> CoinInsertedEvent;
-        
+
+        [SerializeField] private GameEvent<GameObject> _tryInsertMoneyEvent;
         [SerializeField] private GameEvent<float> _moneyInsertedEvent;
 
         public void InsertCoin(float value)
