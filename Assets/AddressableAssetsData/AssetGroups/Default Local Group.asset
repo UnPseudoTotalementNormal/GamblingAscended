@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: ae3f6a963e004ad4b9ffdbd59196b85e
   m_SerializeEntries:
+  - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
+    m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7774df23b5d1c324392d7839ed964b28
     m_Address: Assets/GameEvents/Gambling/InsertingMoney.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 812e4c34b9bd30c46b9cac4a21a6cb57
+    m_Address: Assets/GameEvents/Gambling/SlotMachinePullLever.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a0c22d88e1fb758459720d3947b7032f
+    m_Address: Assets/GameEvents/Interactable/Interaction.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
@@ -29,6 +47,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b09f5cff72b79d44baeafcd4be3552b8
     m_Address: Assets/GameEvents/Input/MouseMove.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ba8a662a625a9ce488a13a6e44e56281
+    m_Address: Assets/GameEvents/Interactable/InteractPointerEnter.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

@@ -29,5 +29,10 @@ namespace GameEvents
         {
             return gameObject.GetComponentInParent<GameID>().GetID();
         }
+
+        public static void CleanIds()
+        {
+            _Ids = new List<int>();
+        }
     }
 }
