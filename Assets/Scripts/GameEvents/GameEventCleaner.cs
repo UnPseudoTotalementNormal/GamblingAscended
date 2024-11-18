@@ -38,6 +38,11 @@ public class GameEventCleaner : MonoBehaviour
     
     private void ClearAllListeners()
     {
+        if (_gameEvents == null)
+        {
+            _ = LoadAndClearListeners();
+            return;
+        }
         int count = _gameEvents.Count;
         foreach (IGameEvent gameEvent in _gameEvents)
         {
