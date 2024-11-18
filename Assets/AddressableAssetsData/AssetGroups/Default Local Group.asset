@@ -15,14 +15,14 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: ae3f6a963e004ad4b9ffdbd59196b85e
   m_SerializeEntries:
-  - m_GUID: 2c519a52159591940b4ff9d20b3bbe6e
-    m_Address: Assets/GameEvents/Gambling/SM_PullLever.asset
+  - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
+    m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
-    m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
+  - m_GUID: 3c7c4e181661abb45ae89516f5dbfec4
+    m_Address: Assets/GameEvents/Input/InteractInputStarted.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
@@ -52,7 +52,7 @@ MonoBehaviour:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b09f5cff72b79d44baeafcd4be3552b8
-    m_Address: Assets/GameEvents/Input/MouseMove.asset
+    m_Address: Assets/GameEvents/Input/MouseMoveInput.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

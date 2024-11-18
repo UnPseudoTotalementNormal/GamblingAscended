@@ -8,29 +8,84 @@ namespace Interactables
     {
         private Transform _transform;
 
+        [SerializeField] private GameEvent _interactInputEvent;
+
         [SerializeField] private float _raycastLength;
+
+        private GL_IInteractable _currentInteractable;
+        private GL_IInteractable _oldInteractable;
+        private bool _isOnInteractable;
 
         private void Awake()
         {
             _transform = GetComponent<Transform>();
+            
+            _interactInputEvent.AddListener(TryInteract);
         }
 
         private void Update()
         {
-            if (Input.GetKeyDown(KeyCode.A))
+            if (CheckInteract())
             {
-                TryInteract();
+                if (_currentInteractable == _oldInteractable && _isOnInteractable == true) return;
+                
+                OldInteractableExit();
+                
+                _currentInteractable?.OnEnter();
+                _oldInteractable = _currentInteractable;
+                _isOnInteractable = true;
+            }
+            else
+            {
+                if (_isOnInteractable == false) return;
+                
+                OldInteractableExit();
+                _isOnInteractable = false;
             }
         }
 
-        private void TryInteract()
+        private void OldInteractableExit()
+        {
+            if (_oldInteractable == default) return;
+            
+            _oldInteractable?.OnExit();
+            _oldInteractable = default;
+        }
+
+        private bool CheckInteract()
+        {
+            if (!TryGetInteractable(out GL_IInteractable interactable))
+            {
+                _currentInteractable = default;
+                return false;
+            }
+
+            _currentInteractable = interactable;
+
+            return true;
+        }
+
+        private void TryInteract(int[] ids)
+        {
+            if (_currentInteractable == null && !TryGetInteractable(out _currentInteractable))
+            {
+                return;
+            }
+            
+            _currentInteractable.OnInteract();
+        }
+        
+        private bool TryGetInteractable(out GL_IInteractable interactable)
         {
             Ray ray = new Ray(_transform.position, _transform.forward);
-            if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastLength)) return;
+            if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastLength))
+            {
+                interactable = default;
+                return false;
+            }
             
-            if (!hitInfo.collider.TryGetComponent<GL_IInteractable>(out GL_IInteractable interactable)) return;
-            
-            interactable.OnInteract();
+            return hitInfo.collider.TryGetComponent<GL_IInteractable>(out interactable);
         }
+
     }
 }
