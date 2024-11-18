@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b09f5cff72b79d44baeafcd4be3552b8
+    m_Address: Assets/GameEvents/Input/MouseMove.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 59bf2ecf388784745bcb2c12ccb03ea8, type: 2}
   m_SchemaSet:
