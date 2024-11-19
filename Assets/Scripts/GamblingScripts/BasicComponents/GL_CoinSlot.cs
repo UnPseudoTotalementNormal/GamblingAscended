@@ -16,8 +16,10 @@ namespace GamblingScripts.BasicComponents
             var gameEventFloat = new GameEventFloat()
             {
                 Value = value,
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject,
             };
-            _moneyInsertedEvent.Invoke(gameEventFloat, gameObject.GetGameID());
+            _moneyInsertedEvent.Invoke(gameEventFloat);
         }
     }
 }

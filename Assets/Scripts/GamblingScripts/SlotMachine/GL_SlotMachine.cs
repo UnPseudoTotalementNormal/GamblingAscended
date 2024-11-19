@@ -55,9 +55,9 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         _slotMachineTryPullLeverEvent.AddListener(OnPullLever);
     }
 
-    private void OnPullLever(int[] ids, GameEventInfo gameEventInfo)
+    private void OnPullLever(GameEventInfo eventInfo)
     {
-        if (gameObject.HasGameID(ids))
+        if (gameObject.HasGameID(eventInfo.Ids))
         {
             TryPlay();
         }

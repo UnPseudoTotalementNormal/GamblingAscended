@@ -16,9 +16,9 @@ public class GL_Lever : MonoBehaviour
         _pullLeverEvent.AddListener(OnPullLever);
     }
 
-    private void OnPullLever(int[] ids, GameEventInfo gameEventInfo)
+    private void OnPullLever(GameEventInfo eventInfo)
     {
-        if (!gameObject.HasGameID(ids))
+        if (!gameObject.HasGameID(eventInfo.Ids))
         {
             return;
         }

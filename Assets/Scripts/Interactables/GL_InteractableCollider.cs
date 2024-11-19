@@ -13,29 +13,35 @@ namespace Interactables
 
         public void OnEnter()
         {
-            var gameEventInfo = new GameEventGameObject
+            var eventInfo = new GameEventGameObject
             {
                 Value = gameObject,
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject,
             };
-            InteractPointerEnterEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
+            InteractPointerEnterEvent?.Invoke(eventInfo);
         }
 
         public void OnExit()
         {
-            var gameEventInfo = new GameEventGameObject
+            var eventInfo = new GameEventGameObject
             {
                 Value = gameObject,
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject,
             };
-            InteractPointerExitEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
+            InteractPointerExitEvent?.Invoke(eventInfo);
         }
 
         public void OnInteract(GameObject sender)
         {
-            var gameEventInfo = new GameEventGameObject
+            var eventInfo = new GameEventGameObject
             {
                 Value = sender,
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject,
             };
-            InteractionEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
+            InteractionEvent?.Invoke(eventInfo);
         }
     }
 }

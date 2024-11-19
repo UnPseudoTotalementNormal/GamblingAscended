@@ -16,9 +16,9 @@ public class GL_CameraController : MonoBehaviour
         _mouseInputEvent.AddListener(OnMouseMoved);
     }
 
-    private void OnMouseMoved(int[] arg1, GameEventInfo gameEventInfo)
+    private void OnMouseMoved(GameEventInfo eventInfo)
     {
-        if (!gameEventInfo.TryTo(out GameEventVector2 gameEventVector2))
+        if (!eventInfo.TryTo(out GameEventVector2 gameEventVector2))
         {
             return;
         }

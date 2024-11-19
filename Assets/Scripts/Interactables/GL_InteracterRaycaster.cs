@@ -67,7 +67,7 @@ namespace Interactables
             return true;
         }
 
-        private void TryInteract(int[] ids, GameEventInfo gameEventInfo)
+        private void TryInteract(GameEventInfo eventInfo)
         {
             if (_currentInteractable == null && !TryGetInteractable(out _currentInteractable))
             {
