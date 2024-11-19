@@ -56,12 +56,13 @@ namespace GamblingScripts.BasicComponents
         public void AddMoney(float value)
         {
             MoneyInserted += value;
+            MoneyInserted = Math.Max(0, MoneyInserted);
         }
 
         public void RemoveMoney(float value)
         {
-            
             MoneyInserted -= value;
+            MoneyInserted = Math.Max(0, MoneyInserted);
         }
     }
 }

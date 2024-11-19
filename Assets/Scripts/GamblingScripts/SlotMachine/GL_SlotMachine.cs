@@ -59,7 +59,17 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     {
         if (gameObject.HasGameID(eventInfo.Ids))
         {
-            TryPlay();
+            if (!TryPlay())
+            {
+                return;
+            }
+
+            if (!eventInfo.TryTo(out GameEventGameObject gameEventGameObject))
+            {
+                return;
+            }
+
+            LastPlayer = gameEventGameObject.Value;
         }
     }
 

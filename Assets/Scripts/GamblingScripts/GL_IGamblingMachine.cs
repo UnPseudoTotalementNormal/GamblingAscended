@@ -6,9 +6,8 @@ using UnityEngine;
 public interface GL_IGamblingMachine
 {
     public GameEvent<GameEventInfo> PlayMachineEvent { get; }
-    
     public GL_CoinHolder CoinHolder { get; }
-    
+    public GameObject LastPlayer { get; }
     public float PlayMoneyCost { get; }
 
     public float GetMoneyInserted();

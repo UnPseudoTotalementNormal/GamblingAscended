@@ -19,8 +19,8 @@ MonoBehaviour:
     - Key: 1
       Value: 0
     - Key: 2
-      Value: 8
+      Value: 9
     - Key: 3
-      Value: 10
+      Value: 12
   GameEventOnAmount:
     _serializedList: []

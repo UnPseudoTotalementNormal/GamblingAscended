@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3c94cd95e67fc1444ab7220cb8a098c0
+    m_Address: Assets/GameEvents/Gambling/SM_TripleSkull.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 5e339e7d543d2174092d6b0b73daea44
     m_Address: Assets/GameEvents/Gambling/TryInsertMoney.asset
     m_ReadOnly: 0
