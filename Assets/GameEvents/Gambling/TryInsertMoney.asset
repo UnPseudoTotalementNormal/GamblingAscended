@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e82fabb5b83248bcbbf9219d5109db9e, type: 3}
+  m_Script: {fileID: 11500000, guid: 60ce9b8e11fc4ee187df646e2de08201, type: 3}
   m_Name: TryInsertMoney
   m_EditorClassIdentifier: 
-  param1Description: Sender
+  param1Description: 

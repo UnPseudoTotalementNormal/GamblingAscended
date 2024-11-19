@@ -5,7 +5,7 @@ using UnityEngine;
 
 public interface GL_IGamblingMachine
 {
-    public GameEvent<float> PlayMachineEvent { get; }
+    public GameEvent<GameEventInfo> PlayMachineEvent { get; }
     
     public GL_CoinHolder CoinHolder { get; }
     

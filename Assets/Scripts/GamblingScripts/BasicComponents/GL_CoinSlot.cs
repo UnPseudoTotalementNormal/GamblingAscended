@@ -8,15 +8,16 @@ namespace GamblingScripts.BasicComponents
     {
         private GL_CoinHolder _coinHolder;
         
-        public event Action<float> CoinInsertedEvent;
-
-        [SerializeField] private GameEvent<GameObject> _tryInsertMoneyEvent;
-        [SerializeField] private GameEvent<float> _moneyInsertedEvent;
+        [SerializeField] private GameEvent<GameEventInfo> _tryInsertMoneyEvent;
+        [SerializeField] private GameEvent<GameEventInfo> _moneyInsertedEvent;
 
         public void InsertCoin(float value)
         {
-            CoinInsertedEvent?.Invoke(value);
-            _moneyInsertedEvent.Invoke(value, gameObject.GetGameID());
+            var gameEventFloat = new GameEventFloat()
+            {
+                Value = value,
+            };
+            _moneyInsertedEvent.Invoke(gameEventFloat, gameObject.GetGameID());
         }
     }
 }

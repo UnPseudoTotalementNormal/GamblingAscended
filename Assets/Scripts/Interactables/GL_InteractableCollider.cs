@@ -6,24 +6,36 @@ namespace Interactables
 {
     public class GL_InteractableCollider : MonoBehaviour, GL_IInteract, GL_IInteractable
     {
-        [field:SerializeField] public GameEvent<GameObject> InteractPointerEnterEvent { get; private set; }
-        [field:SerializeField] public GameEvent<GameObject> InteractPointerExitEvent { get; private set; }
-        [field:SerializeField] public GameEvent<GameObject> InteractionEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameEventInfo> InteractPointerEnterEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameEventInfo> InteractPointerExitEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameEventInfo> InteractionEvent { get; private set; }
         
 
         public void OnEnter()
         {
-            InteractPointerEnterEvent.Invoke(gameObject, gameObject.GetGameID());
+            var gameEventInfo = new GameEventGameObject
+            {
+                Value = gameObject,
+            };
+            InteractPointerEnterEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
         }
 
         public void OnExit()
         {
-            InteractPointerExitEvent.Invoke(gameObject, gameObject.GetGameID());
+            var gameEventInfo = new GameEventGameObject
+            {
+                Value = gameObject,
+            };
+            InteractPointerExitEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
         }
 
         public void OnInteract(GameObject sender)
         {
-            InteractionEvent.Invoke(sender, gameObject.GetGameID());
+            var gameEventInfo = new GameEventGameObject
+            {
+                Value = sender,
+            };
+            InteractionEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
         }
     }
 }
