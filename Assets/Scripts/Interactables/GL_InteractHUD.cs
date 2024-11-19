@@ -17,9 +17,9 @@ public class GL_InteractHUD : MonoBehaviour
         _interactExitEvent.AddListener(OnInteractExit);
     }
 
-    private void OnInteractEnter(int[] ids, GameEventInfo gameEventInfo)
+    private void OnInteractEnter(GameEventInfo eventInfo)
     {
-        if (!gameEventInfo.TryTo(out GameEventGameObject gameEventGameObject))
+        if (!eventInfo.TryTo(out GameEventGameObject gameEventGameObject))
         {
             return;
         }
@@ -35,7 +35,7 @@ public class GL_InteractHUD : MonoBehaviour
         _textFeedback.text = $"Appuie sur \"E\" {interactableDescription.InteractionDescription}";
     }
     
-    private void OnInteractExit(int[] ids, GameEventInfo gameEventInfo)
+    private void OnInteractExit(GameEventInfo eventInfo)
     {
         _textFeedback.gameObject.SetActive(false);
     }

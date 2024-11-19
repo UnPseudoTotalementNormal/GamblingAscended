@@ -20,9 +20,9 @@ namespace GamblingScripts.BasicComponents
             _playMachineEvent.AddListener(RemoveMoney);
         }
 
-        private void AddMoney(int[] ids, GameEventInfo gameEventInfo)
+        private void AddMoney(GameEventInfo eventInfo)
         {
-            if (!gameObject.HasGameID(ids) || !gameEventInfo.TryTo(out GameEventFloat gameEventFloat))
+            if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventFloat gameEventFloat))
             {
                 return;
             }
@@ -30,9 +30,9 @@ namespace GamblingScripts.BasicComponents
             MoneyInserted += gameEventFloat.Value;
         }
 
-        private void RemoveMoney(int[] ids, GameEventInfo gameEventInfo)
+        private void RemoveMoney(GameEventInfo eventInfo)
         {
-            if (!gameObject.HasGameID(ids) || !gameEventInfo.TryTo(out GameEventFloat gameEventFloat))
+            if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventFloat gameEventFloat))
             {
                 return;
             }

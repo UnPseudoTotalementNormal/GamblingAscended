@@ -42,11 +42,13 @@ namespace GamblingScripts
 
         public virtual void Play()
         {
-            var gameEventFloat = new GameEventFloat()
+            var eventInfo = new GameEventFloat()
             {
-                Value = PlayMoneyCost
+                Value = PlayMoneyCost,
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject
             };
-            PlayMachineEvent.Invoke(gameEventFloat, gameObject.GetGameID());
+            PlayMachineEvent.Invoke(eventInfo);
         }
 
         protected abstract void Awake();

@@ -5,6 +5,7 @@ namespace GameEvents
     public class GameEventInfo
     {
         public int[] Ids;
+        public GameObject Sender;
         
         public T To<T>() where T : GameEventInfo
         {
