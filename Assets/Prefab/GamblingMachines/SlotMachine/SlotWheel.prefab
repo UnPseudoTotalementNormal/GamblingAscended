@@ -635,7 +635,10 @@ MonoBehaviour:
   _possibleResultImages:
   - {fileID: 11400000, guid: f47a52bb1d4e8934cb964d499e6a8f8c, type: 2}
   - {fileID: 11400000, guid: 145b5a1ed67ab1b44b57457fda0397f4, type: 2}
+  - {fileID: 11400000, guid: 145b5a1ed67ab1b44b57457fda0397f4, type: 2}
   - {fileID: 11400000, guid: e7b8721ec66fe6b45b6f8932a921912b, type: 2}
+  - {fileID: 11400000, guid: e7b8721ec66fe6b45b6f8932a921912b, type: 2}
+  - {fileID: 11400000, guid: 50f39a0f1c417ea4b87ed9c20b49470c, type: 2}
   _spinningSpeed: 480
 --- !u!1 &7425132563878891378
 GameObject:

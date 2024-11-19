@@ -15,6 +15,12 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_GUID: ae3f6a963e004ad4b9ffdbd59196b85e
   m_SerializeEntries:
+  - m_GUID: 07536ea0bc080d54cb1062c7395d64de
+    m_Address: Assets/GameEvents/Gambling/CashoutMoney.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0

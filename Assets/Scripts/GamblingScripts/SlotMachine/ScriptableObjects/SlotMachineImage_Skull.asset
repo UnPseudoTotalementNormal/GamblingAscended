@@ -10,17 +10,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f9407105245623d4eb03f0923064a0ed, type: 3}
-  m_Name: SlotMachineImage_Orange
+  m_Name: SlotMachineImage_Skull
   m_EditorClassIdentifier: 
-  Name: Orange
-  ObjectSprite: {fileID: 21300000, guid: 13658aca4aca0d349a137d96f5409447, type: 3}
+  Name: Skull
+  ObjectSprite: {fileID: 21300000, guid: e42aa0062205e6241ab522883305c483, type: 3}
   ValuesOnAmount:
     _serializedList:
     - Key: 1
       Value: 0
     - Key: 2
-      Value: 8
+      Value: 0
     - Key: 3
-      Value: 10
+      Value: 0
   GameEventOnAmount:
-    _serializedList: []
+    _serializedList:
+    - Key: 3
+      Value: {fileID: 11400000, guid: 3c94cd95e67fc1444ab7220cb8a098c0, type: 2}

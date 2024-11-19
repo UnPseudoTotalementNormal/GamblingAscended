@@ -158,8 +158,45 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
 
     private void SM_Result_SwitchAction()
     {
+        CalculateResult();
         Timer.Timer.NewTimer(0.5f, () => (this as GL_IStateMachine).DoSwitchAction((int)SlotMachineState.None));
     }
 
     #endregion
+    
+    private void CalculateResult()
+    {
+        Dictionary<GL_SlotMachineImage, int> result = new();
+        foreach (GL_SlotMachineImage image in _slotWheels.Select(slotWheel => slotWheel.GetResultImage()))
+        {
+            if (result.TryGetValue(image, out int count))
+            {
+                result[image] = count + 1;
+            }
+            else
+            {
+                result[image] = 1;
+            }
+        }
+
+        float moneyAmount = result.Keys.Sum(slotImage => slotImage.ValuesOnAmount[result[slotImage]]);
+
+        foreach (GL_SlotMachineImage slotImage in result.Keys)
+        {
+            var eventInfo = new GameEventInfo
+            {
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject
+            };
+            slotImage.GameEventOnAmount.TryGetValue(result[slotImage], out GameEvent<GameEventInfo> gameEvent);
+            gameEvent?.Invoke(eventInfo);
+        }
+        
+        if (moneyAmount == 0)
+        {
+            return;
+        }
+        
+        CoinHolder.AddMoney(moneyAmount);
+    }
 }
