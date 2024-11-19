@@ -7,6 +7,7 @@ namespace GameEvents
         public int[] Ids;
         public GameObject Sender;
         
+        // ReSharper disable Unity.PerformanceAnalysis
         public T To<T>() where T : GameEventInfo
         {
             if (this is T)

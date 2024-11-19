@@ -7,36 +7,61 @@ using GameEventFloat = GameEvents.GameEventFloat;
 
 namespace GamblingScripts.BasicComponents
 {
-    public class GL_CoinHolder : MonoBehaviour
+    public class GL_CoinHolder : MonoBehaviour, GL_ICoinHolder
     {
         public float MoneyInserted { get; private set; } = 0;
 
         [SerializeField] private GameEvent<GameEventInfo> _moneyInsertedEvent;
         [SerializeField] private GameEvent<GameEventInfo> _playMachineEvent;
+        [SerializeField] private GameEvent<GameEventInfo> _cashoutMoneyEvent;
         
         private void Start()
         {
-            _moneyInsertedEvent.AddListener(AddMoney);
-            _playMachineEvent.AddListener(RemoveMoney);
+            _moneyInsertedEvent?.AddListener(OnInsertedMoney);
+            _playMachineEvent?.AddListener(OnPlayMachine);
+            _cashoutMoneyEvent?.AddListener(OnCashoutMoney);
         }
 
-        private void AddMoney(GameEventInfo eventInfo)
+        private void OnCashoutMoney(GameEventInfo eventInfo)
+        {
+            if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventGameObject gameEventGameObject))
+            {
+                return;
+            }
+            
+            gameEventGameObject.Value.GetComponentInParent<GL_ICoinHolder>().AddMoney(MoneyInserted);
+            MoneyInserted = 0;
+        }
+
+        private void OnPlayMachine(GameEventInfo eventInfo)
         {
             if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventFloat gameEventFloat))
             {
                 return;
             }
             
-            MoneyInserted += gameEventFloat.Value;
+            RemoveMoney(gameEventFloat.Value);
         }
 
-        private void RemoveMoney(GameEventInfo eventInfo)
+        private void OnInsertedMoney(GameEventInfo eventInfo)
         {
             if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventFloat gameEventFloat))
             {
                 return;
             }
-            MoneyInserted -= gameEventFloat.Value;
+
+            AddMoney(gameEventFloat.Value);
+        }
+
+        public void AddMoney(float value)
+        {
+            MoneyInserted += value;
+        }
+
+        public void RemoveMoney(float value)
+        {
+            
+            MoneyInserted -= value;
         }
     }
 }

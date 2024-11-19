@@ -35,11 +35,11 @@ namespace Interactables
 
         public void OnInteract(GameObject sender)
         {
-            var eventInfo = new GameEventGameObject
+            var eventInfo = new GameEventGameObject()
             {
-                Value = sender,
                 Ids = new[] { gameObject.GetGameID() },
                 Sender = gameObject,
+                Value = sender,
             };
             InteractionEvent?.Invoke(eventInfo);
         }

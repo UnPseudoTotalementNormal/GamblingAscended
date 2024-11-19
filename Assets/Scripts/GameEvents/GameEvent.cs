@@ -29,6 +29,7 @@ namespace GameEvents
         
         public void RemoveListener(Action<T> action) => Action -= action;
         
+        // ReSharper disable Unity.PerformanceAnalysis
         public void Invoke(T value) => Action?.Invoke(value);
         
         public void ClearListeners() => Action = null;

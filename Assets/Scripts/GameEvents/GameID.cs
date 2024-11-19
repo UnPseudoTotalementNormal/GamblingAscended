@@ -25,6 +25,7 @@ namespace GameEvents
             _Ids.Remove(_id);
         }
 
+        // ReSharper disable Unity.PerformanceAnalysis
         public static int GetGameID(GameObject gameObject)
         {
             return gameObject.GetComponentInParent<GameID>().GetID();
