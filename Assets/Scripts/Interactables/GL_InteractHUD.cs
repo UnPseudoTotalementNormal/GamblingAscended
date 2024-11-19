@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class GL_InteractHUD : MonoBehaviour
 {
-    [SerializeField] private GameEvent<GameObject> _interactEnterEvent;
-    [SerializeField] private GameEvent<GameObject> _interactExitEvent;
+    [SerializeField] private GameEvent<GameEventInfo> _interactEnterEvent;
+    [SerializeField] private GameEvent<GameEventInfo> _interactExitEvent;
 
     [SerializeField] private TextMeshProUGUI _textFeedback;
 
@@ -17,9 +17,16 @@ public class GL_InteractHUD : MonoBehaviour
         _interactExitEvent.AddListener(OnInteractExit);
     }
 
-    private void OnInteractEnter(int[] ids, GameObject interactObject)
+    private void OnInteractEnter(int[] ids, GameEventInfo gameEventInfo)
     {
+        if (!gameEventInfo.TryTo(out GameEventGameObject gameEventGameObject))
+        {
+            return;
+        }
+        GameObject interactObject = gameEventGameObject.Value;
+        
         _textFeedback.gameObject.SetActive(true);
+        
         if (!interactObject.TryGetComponent(out GL_IInteractableDescription interactableDescription))
         {
             return;
@@ -28,7 +35,7 @@ public class GL_InteractHUD : MonoBehaviour
         _textFeedback.text = $"Appuie sur \"E\" {interactableDescription.InteractionDescription}";
     }
     
-    private void OnInteractExit(int[] ids, GameObject interactObject)
+    private void OnInteractExit(int[] ids, GameEventInfo gameEventInfo)
     {
         _textFeedback.gameObject.SetActive(false);
     }

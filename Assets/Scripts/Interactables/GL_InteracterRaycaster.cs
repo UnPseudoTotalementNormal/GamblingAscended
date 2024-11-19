@@ -9,7 +9,7 @@ namespace Interactables
         private Transform _transform;
         private GameObject _owner;
 
-        [SerializeField] private GameEvent _interactInputEvent;
+        [SerializeField] private GameEvent<GameEventInfo> _interactInputEvent;
 
         [SerializeField] private float _raycastLength;
 
@@ -67,7 +67,7 @@ namespace Interactables
             return true;
         }
 
-        private void TryInteract(int[] ids)
+        private void TryInteract(int[] ids, GameEventInfo gameEventInfo)
         {
             if (_currentInteractable == null && !TryGetInteractable(out _currentInteractable))
             {

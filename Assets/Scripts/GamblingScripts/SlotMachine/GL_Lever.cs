@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class GL_Lever : MonoBehaviour
 {
-    [SerializeField] private GameEvent<float> _pullLeverEvent;
+    [SerializeField] private GameEvent<GameEventInfo> _pullLeverEvent;
 
     [SerializeField] private Vector3 _baseRotation;
     [SerializeField] private Vector3 _pullRotation;
@@ -16,7 +16,7 @@ public class GL_Lever : MonoBehaviour
         _pullLeverEvent.AddListener(OnPullLever);
     }
 
-    private void OnPullLever(int[] ids, float value)
+    private void OnPullLever(int[] ids, GameEventInfo gameEventInfo)
     {
         if (!gameObject.HasGameID(ids))
         {

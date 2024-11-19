@@ -16,7 +16,7 @@ namespace GamblingScripts
         public Dictionary<int, Action> StatesSwitchAction { get; protected set; }
         [field:SerializeField] public float PlayMoneyCost { get; protected set; }
 
-        [field:SerializeField] public GameEvent<float> PlayMachineEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameEventInfo> PlayMachineEvent { get; private set; }
         public GL_CoinHolder CoinHolder { get; protected set; }
         
         void GL_IStateMachine.SetCurrentState(int state)
@@ -42,7 +42,11 @@ namespace GamblingScripts
 
         public virtual void Play()
         {
-            PlayMachineEvent.Invoke(PlayMoneyCost, gameObject.GetGameID());
+            var gameEventFloat = new GameEventFloat()
+            {
+                Value = PlayMoneyCost
+            };
+            PlayMachineEvent.Invoke(gameEventFloat, gameObject.GetGameID());
         }
 
         protected abstract void Awake();
