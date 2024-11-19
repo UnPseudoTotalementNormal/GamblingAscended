@@ -8,22 +8,26 @@ namespace Interactables
     {
         [field:SerializeField] public GameEvent<GameObject> InteractPointerEnterEvent { get; private set; }
         [field:SerializeField] public GameEvent<GameObject> InteractPointerExitEvent { get; private set; }
-        [field:SerializeField] public GameEvent<GameObject> InteractionEvent { get; private set; }
+        [field:SerializeField] public GameEvent<GameEventInfo> InteractionEvent { get; private set; }
         
 
         public void OnEnter()
         {
-            InteractPointerEnterEvent.Invoke(gameObject, gameObject.GetGameID());
+            InteractPointerEnterEvent?.Invoke(gameObject, gameObject.GetGameID());
         }
 
         public void OnExit()
         {
-            InteractPointerExitEvent.Invoke(gameObject, gameObject.GetGameID());
+            InteractPointerExitEvent?.Invoke(gameObject, gameObject.GetGameID());
         }
 
         public void OnInteract(GameObject sender)
         {
-            InteractionEvent.Invoke(sender, gameObject.GetGameID());
+            var gameEventInfo = new GameEventGameObject
+            {
+                Value = sender
+            };
+            InteractionEvent?.Invoke(gameEventInfo, gameObject.GetGameID());
         }
     }
 }

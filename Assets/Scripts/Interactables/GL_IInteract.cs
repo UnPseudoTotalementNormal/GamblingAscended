@@ -8,6 +8,6 @@ namespace Interactables
         public GameEvent<GameObject> InteractPointerEnterEvent { get; }
         public GameEvent<GameObject> InteractPointerExitEvent { get; }
 
-        public GameEvent<GameObject> InteractionEvent { get; }
+        public GameEvent<GameEventInfo> InteractionEvent { get; }
     }
 }

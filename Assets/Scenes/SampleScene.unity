@@ -423,7 +423,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InteractPointerEnterEvent>k__BackingField: {fileID: 11400000, guid: ba8a662a625a9ce488a13a6e44e56281, type: 2}
   <InteractPointerExitEvent>k__BackingField: {fileID: 11400000, guid: 30231e0b0b2ec4f4aabedd7a6b6fb656, type: 2}
-  <InteractionEvent>k__BackingField: {fileID: 11400000, guid: 5e339e7d543d2174092d6b0b73daea44, type: 2}
+  <InteractionEvent>k__BackingField: {fileID: 0}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

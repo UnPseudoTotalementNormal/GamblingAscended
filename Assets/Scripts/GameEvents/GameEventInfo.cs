@@ -4,6 +4,8 @@ namespace GameEvents
 {
     public class GameEventInfo
     {
+        public int[] Ids;
+        
         public T To<T>() where T : GameEventInfo
         {
             if (this is T)
