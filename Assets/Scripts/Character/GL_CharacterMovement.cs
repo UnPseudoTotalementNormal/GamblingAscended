@@ -9,6 +9,7 @@ namespace Character
     {
         private Transform _transform;
         private Rigidbody _rigidbody;
+        public bool IsPossessed { get; private set; }
         
         [SerializeField] private GameEvent<GameEventInfo> _moveInputEvent;
 
@@ -92,11 +93,13 @@ namespace Character
         void GL_IPossessable.OnPossess()
         {
             _moveInputEvent.AddListener(OnMoveInput);
+            IsPossessed = true;
         }
 
         void GL_IPossessable.OnUnpossess()
         {
             _moveInputEvent.RemoveListener(OnMoveInput);
+            IsPossessed = false;
         }
     }
 }

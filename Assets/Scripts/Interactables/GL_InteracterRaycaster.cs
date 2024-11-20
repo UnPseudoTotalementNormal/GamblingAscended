@@ -9,6 +9,7 @@ namespace Interactables
     {
         private Transform _transform;
         private GameObject _owner;
+        public bool IsPossessed { get; private set; }
 
         [SerializeField] private GameEvent<GameEventInfo> _interactInputEvent;
 
@@ -88,14 +89,17 @@ namespace Interactables
             return hitInfo.collider.TryGetComponent<GL_IInteractable>(out interactable);
         }
 
+
         void GL_IPossessable.OnPossess()
         {
             _interactInputEvent.AddListener(TryInteract);
+            IsPossessed = true;
         }
 
         void GL_IPossessable.OnUnpossess()
         {
             _interactInputEvent.RemoveListener(TryInteract);
+            IsPossessed = false;
         }
     }
 }

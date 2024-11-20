@@ -1,5 +1,6 @@
 using System;
 using GameEvents;
+using Possess;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,6 +10,19 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputContexts<GameEventInfo> _jumpInputEvent;
     [SerializeField] private GameEvent<GameEventInfo> _mouseMoveInputEvent;
     [SerializeField] private InputContexts<GameEventInfo> _interactInputEvent;
+
+    [SerializeField] private GameObject _playerPrefab;
+
+    private void Awake()
+    {
+        SpawnPlayer();
+    }
+
+    private void SpawnPlayer()
+    {
+        GameObject newPlayer = Instantiate(_playerPrefab);
+        newPlayer.Possess();
+    }
 
     public void OnMove(InputAction.CallbackContext context)
     {

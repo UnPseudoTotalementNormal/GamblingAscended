@@ -6,6 +6,8 @@ namespace Possess
 {
     public static class GL_PossessHelper
     {
+        public static void Possess(this GameObject gameObject, bool goToGameIdRoot = true) => gameObject.transform.Possess(goToGameIdRoot);
+        
         public static void Possess(this Transform transform, bool goToGameIdRoot = true)
         {
             Transform possessingTransform = transform;
