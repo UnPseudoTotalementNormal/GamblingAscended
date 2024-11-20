@@ -1,9 +1,10 @@
 using System;
 using GameEvents;
+using Possess;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-public class GL_CameraController : MonoBehaviour
+public class GL_CameraController : MonoBehaviour, GL_IPossessable
 {
     private Transform _transform;
     
@@ -13,7 +14,6 @@ public class GL_CameraController : MonoBehaviour
     private void Awake()
     {
         _transform = GetComponent<Transform>();
-        _mouseInputEvent.AddListener(OnMouseMoved);
     }
 
     private void OnMouseMoved(GameEventInfo eventInfo)
@@ -27,5 +27,15 @@ public class GL_CameraController : MonoBehaviour
         moveInput *= _sensitivity;
         _transform.Rotate(-moveInput.y, moveInput.x, 0);
         _transform.eulerAngles = new Vector3(_transform.eulerAngles.x, _transform.eulerAngles.y, 0);
+    }
+
+    void GL_IPossessable.OnPossess()
+    {
+        _mouseInputEvent.AddListener(OnMouseMoved);
+    }
+
+    void GL_IPossessable.OnUnpossess()
+    {
+        _mouseInputEvent.RemoveListener(OnMouseMoved);
     }
 }

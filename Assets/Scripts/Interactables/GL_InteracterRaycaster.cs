@@ -1,10 +1,11 @@
 using System;
 using GameEvents;
+using Possess;
 using UnityEngine;
 
 namespace Interactables
 {
-    public class GL_InteracterRaycaster : MonoBehaviour
+    public class GL_InteracterRaycaster : MonoBehaviour, GL_IPossessable
     {
         private Transform _transform;
         private GameObject _owner;
@@ -21,8 +22,6 @@ namespace Interactables
         {
             _transform = GetComponent<Transform>();
             _owner = gameObject;
-            
-            _interactInputEvent.AddListener(TryInteract);
         }
 
         private void Update()
@@ -89,5 +88,14 @@ namespace Interactables
             return hitInfo.collider.TryGetComponent<GL_IInteractable>(out interactable);
         }
 
+        void GL_IPossessable.OnPossess()
+        {
+            _interactInputEvent.AddListener(TryInteract);
+        }
+
+        void GL_IPossessable.OnUnpossess()
+        {
+            _interactInputEvent.RemoveListener(TryInteract);
+        }
     }
 }

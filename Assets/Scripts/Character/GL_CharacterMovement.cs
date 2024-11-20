@@ -1,10 +1,11 @@
 using System;
 using GameEvents;
+using Possess;
 using UnityEngine;
 
 namespace Character
 {
-    public class GL_CharacterMovement : MonoBehaviour
+    public class GL_CharacterMovement : MonoBehaviour, GL_IPossessable
     {
         private Transform _transform;
         private Rigidbody _rigidbody;
@@ -25,8 +26,6 @@ namespace Character
         {
             _transform = GetComponent<Transform>();
             _rigidbody = GetComponent<Rigidbody>();
-            
-            _moveInputEvent.AddListener(OnMoveInput);
         }
 
         private void OnMoveInput(GameEventInfo eventInfo)
@@ -88,6 +87,16 @@ namespace Character
             acceleration = Vector3.ClampMagnitude(acceleration, maxAccel);
             
             _rigidbody.AddForce(acceleration, ForceMode.Acceleration);
+        }
+
+        void GL_IPossessable.OnPossess()
+        {
+            _moveInputEvent.AddListener(OnMoveInput);
+        }
+
+        void GL_IPossessable.OnUnpossess()
+        {
+            _moveInputEvent.RemoveListener(OnMoveInput);
         }
     }
 }
