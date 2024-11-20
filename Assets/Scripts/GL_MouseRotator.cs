@@ -1,10 +1,8 @@
-using System;
 using GameEvents;
 using Possess;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-public class GL_HeadController : MonoBehaviour, GL_IPossessable
+public class GL_MouseRotator : MonoBehaviour, GL_IPossessable
 {
     private Transform _transform;
     public bool IsPossessed { get; private set; }
@@ -16,6 +14,7 @@ public class GL_HeadController : MonoBehaviour, GL_IPossessable
     [Header("Controls")]
     [SerializeField] private bool _controlXRotation = true;
     [SerializeField] private bool _controlYRotation = true;
+    [SerializeField] private bool _followParentYRotation = true;
 
     private void Awake()
     {
@@ -33,6 +32,13 @@ public class GL_HeadController : MonoBehaviour, GL_IPossessable
         moveInput *= _sensitivity;
         if (!_controlXRotation) moveInput.y = 0;
         if (!_controlYRotation) moveInput.x = 0;
+        
+        Vector3 currentRotation = _transform.eulerAngles;
+        float newRotationX = currentRotation.x - moveInput.y;
+        if (newRotationX is > 89 and < 271)
+        {
+            moveInput.y = 0;
+        }
         
         _transform.Rotate(-moveInput.y, moveInput.x, 0);
         _transform.eulerAngles = new Vector3(_transform.eulerAngles.x, _transform.eulerAngles.y, 0);
