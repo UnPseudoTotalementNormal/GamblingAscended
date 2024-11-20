@@ -10,6 +10,8 @@ namespace Interactables
         private Transform _transform;
         private GameObject _owner;
         public bool IsPossessed { get; private set; }
+        public GameEvent<GameEventInfo> OnPossessedEvent { get; }
+        public GameEvent<GameEventInfo> OnUnpossessedEvent { get; }
 
         [SerializeField] private GameEvent<GameEventInfo> _interactInputEvent;
 
@@ -93,12 +95,14 @@ namespace Interactables
         void GL_IPossessable.OnPossess()
         {
             _interactInputEvent.AddListener(TryInteract);
+            OnPossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
             IsPossessed = true;
         }
 
         void GL_IPossessable.OnUnpossess()
         {
             _interactInputEvent.RemoveListener(TryInteract);
+            OnUnpossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
             IsPossessed = false;
         }
     }

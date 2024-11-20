@@ -10,7 +10,9 @@ namespace Character
         private Transform _transform;
         private Rigidbody _rigidbody;
         public bool IsPossessed { get; private set; }
-        
+        public GameEvent<GameEventInfo> OnPossessedEvent { get; private set; }
+        public GameEvent<GameEventInfo> OnUnpossessedEvent { get; private set; }
+
         [SerializeField] private GameEvent<GameEventInfo> _moveInputEvent;
 
         [Header("Locomotion")]
@@ -47,7 +49,7 @@ namespace Character
         private void FixedUpdate()
         {
             ApplyFriction();
-            MoveCharacter(_direction);
+            Walk(_direction);
         }
 
         private void ApplyFriction()
@@ -60,7 +62,7 @@ namespace Character
             _rigidbody.AddForce(frictionForce, ForceMode.Acceleration);
         }
 
-        private void MoveCharacter(Vector2 direction)
+        private void Walk(Vector2 direction)
         {
             if (direction == Vector2.zero)
             {
@@ -93,12 +95,14 @@ namespace Character
         void GL_IPossessable.OnPossess()
         {
             _moveInputEvent.AddListener(OnMoveInput);
+            OnPossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
             IsPossessed = true;
         }
 
         void GL_IPossessable.OnUnpossess()
         {
             _moveInputEvent.RemoveListener(OnMoveInput);
+            OnUnpossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
             IsPossessed = false;
         }
     }

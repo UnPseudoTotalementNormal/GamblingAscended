@@ -6,7 +6,9 @@ public class GL_MouseRotator : MonoBehaviour, GL_IPossessable
 {
     private Transform _transform;
     public bool IsPossessed { get; private set; }
-    
+    public GameEvent<GameEventInfo> OnPossessedEvent { get; }
+    public GameEvent<GameEventInfo> OnUnpossessedEvent { get; }
+
     [Header("Input")]
     [SerializeField] private GameEvent<GameEventInfo> _mouseInputEvent;
     [SerializeField] private float _sensitivity = 1;
@@ -47,12 +49,14 @@ public class GL_MouseRotator : MonoBehaviour, GL_IPossessable
     void GL_IPossessable.OnPossess()
     {
         _mouseInputEvent.AddListener(OnMouseMoved);
+        OnPossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
         IsPossessed = true;
     }
 
     void GL_IPossessable.OnUnpossess()
     {
         _mouseInputEvent.RemoveListener(OnMouseMoved);
+        OnUnpossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
         IsPossessed = false;
     }
 }

@@ -1,4 +1,5 @@
 using System;
+using GameEvents;
 using Possess;
 using UnityEngine;
 
@@ -8,7 +9,9 @@ public class GL_PossessableCamera : MonoBehaviour, GL_IPossessable
     private Camera _camera;
     private AudioListener _audioListener;
     public bool IsPossessed { get; private set; }
-    
+    public GameEvent<GameEventInfo> OnPossessedEvent { get; }
+    public GameEvent<GameEventInfo> OnUnpossessedEvent { get; }
+
     private void Awake()
     {
         _camera = GetComponent<Camera>();
@@ -20,12 +23,14 @@ public class GL_PossessableCamera : MonoBehaviour, GL_IPossessable
     void GL_IPossessable.OnPossess()
     {
         ActivateCamera();
+        OnPossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
         IsPossessed = true;
     }
 
     void GL_IPossessable.OnUnpossess()
     {
         DeactivateCamera();
+        OnUnpossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
         IsPossessed = false;
     }
 
