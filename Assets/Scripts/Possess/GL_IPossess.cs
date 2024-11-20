@@ -6,7 +6,6 @@ namespace Possess
     public interface GL_IPossessable
     {
         public bool IsPossessed { get; }
-        
         public GameEvent<GameEventInfo> OnPossessedEvent { get; }
         public GameEvent<GameEventInfo> OnUnpossessedEvent { get; }
         

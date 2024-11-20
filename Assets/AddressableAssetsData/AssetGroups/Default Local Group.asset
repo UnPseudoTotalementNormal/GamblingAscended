@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 694ae6a81faf52644b73168e7feeed0d
+    m_Address: Assets/GameEvents/Player/LinkHUDWithPlayer.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7774df23b5d1c324392d7839ed964b28
     m_Address: Assets/GameEvents/Gambling/InsertedMoney.asset
     m_ReadOnly: 0

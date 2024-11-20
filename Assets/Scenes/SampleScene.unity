@@ -3240,6 +3240,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1593135229}
   - component: {fileID: 1593135232}
+  - component: {fileID: 1593135233}
   - component: {fileID: 1593135231}
   - component: {fileID: 1593135230}
   m_Layer: 5
@@ -3383,6 +3384,34 @@ MonoBehaviour:
   _textUI: {fileID: 1593135230}
   _coinHolder: {fileID: 0}
   _prefix: 'Coins: '
+--- !u!114 &1593135233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1593135228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069e950bcaab0f649a0eea8816c9c211, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EventLink: {fileID: 11400000, guid: 694ae6a81faf52644b73168e7feeed0d, type: 2}
+  OnHUDLinkedWithGameObject:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1593135232}
+        m_TargetAssemblyTypeName: GL_CoinCounter, Assembly-CSharp
+        m_MethodName: SetCoinHolder
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1595555865
 GameObject:
   m_ObjectHideFlags: 0
@@ -4566,10 +4595,10 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 410087041}
+  - {fileID: 1982273312}
   - {fileID: 832575519}
   - {fileID: 851664857}
   - {fileID: 1161833791}
-  - {fileID: 1982273312}
   - {fileID: 1993585581}
   - {fileID: 1933476580}
   - {fileID: 2009888038}

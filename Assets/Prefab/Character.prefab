@@ -124,6 +124,8 @@ GameObject:
   - component: {fileID: 527901569264912872}
   - component: {fileID: 1473599177583552309}
   - component: {fileID: 5873665426895753726}
+  - component: {fileID: 1567320430240041663}
+  - component: {fileID: 3059341674115828909}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -240,6 +242,39 @@ MonoBehaviour:
   _sensitivity: 0.075
   _controlXRotation: 0
   _controlYRotation: 1
+  _followParentYRotation: 1
+--- !u!114 &1567320430240041663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127146696485877804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3babfc49b711c43b63c6d90c6a7450, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <OnPossessedEvent>k__BackingField: {fileID: 11400000, guid: 694ae6a81faf52644b73168e7feeed0d, type: 2}
+  <OnUnpossessedEvent>k__BackingField: {fileID: 0}
+  OnPossessed:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnpossessed:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &3059341674115828909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2127146696485877804}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f86dc9e945472c449c930a19438f02d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2663315861600407246
 GameObject:
   m_ObjectHideFlags: 0
@@ -353,7 +388,6 @@ GameObject:
   - component: {fileID: 6669618204392534023}
   - component: {fileID: 6068044275590912171}
   - component: {fileID: 4767427824368424338}
-  - component: {fileID: 1092677080324885581}
   - component: {fileID: 7073471408122030742}
   - component: {fileID: 1249741520893432969}
   - component: {fileID: 564897002242575074}
@@ -407,6 +441,7 @@ MonoBehaviour:
   _sensitivity: 0.075
   _controlXRotation: 1
   _controlYRotation: 0
+  _followParentYRotation: 1
 --- !u!114 &4767427824368424338
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -421,18 +456,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _interactInputEvent: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
   _raycastLength: 5
---- !u!114 &1092677080324885581
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4418999313882208516}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f86dc9e945472c449c930a19438f02d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!20 &7073471408122030742
 Camera:
   m_ObjectHideFlags: 0

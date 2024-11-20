@@ -14,12 +14,26 @@ public class GL_CoinCounter : MonoBehaviour
     [SerializeField] private string _prefix;
     private void Awake()
     {
-        _coinHolderScript = _coinHolder.GetComponent<GL_ICoinHolder>();
+        if (_coinHolder)
+        {
+            SetCoinHolder(_coinHolder);
+        }
     }
 
     private void Update()
     {
+        if (_coinHolderScript == null)
+        {
+            return;
+        }
+        
         if (_textMesh) _textMesh.text = _prefix + _coinHolderScript.MoneyInserted;
         if (_textUI) _textUI.text = _prefix + _coinHolderScript.MoneyInserted;
+    }
+
+    public void SetCoinHolder(GameObject coinHolderObject)
+    {
+        _coinHolder = coinHolderObject;
+        _coinHolder.TryGetComponent(out _coinHolderScript);
     }
 }
