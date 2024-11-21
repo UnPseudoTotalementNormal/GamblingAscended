@@ -2,15 +2,15 @@ using System;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.U2D;
 
 public class GL_PathTracer : MonoBehaviour
 {
     [SerializeField] private Transform _startTransform;
     [SerializeField] private Transform _endTransform;
 
-    [SerializeField] private Sprite _sprite;
-
-    private void Awake()
+    [SerializeField] private SpriteShape _spriteShape;
+    private void Start()
     {
         TracePath();
     }
@@ -22,32 +22,33 @@ public class GL_PathTracer : MonoBehaviour
         NavMeshPath path = new();
         if (!TryGetPathTo(_startTransform.position, _endTransform.position, ref path))
         {
+            Debug.LogWarning("No path found");
             return;
         }
         
-        for (int i = 0; i < path.corners.Length - 1 ; i++)
+        var newPath = new GameObject("Path");
+        Transform pathTransform = newPath.transform;
+        pathTransform.SetParent(transform);
+        pathTransform.Rotate(Vector3.right * 90);
+        
+        var newSpriteShapeController = newPath.AddComponent<SpriteShapeController>();
+        newSpriteShapeController.spriteShape = _spriteShape;
+        newSpriteShapeController.splineDetail = 16;
+        
+        Spline spriteSpline = newSpriteShapeController.spline;
+        spriteSpline.isOpenEnded = true;
+
+        for (int i = 0; i < path.corners.Length ; i++)
         {
-            Debug.DrawLine(path.corners[i], path.corners[i + 1], Color.magenta, 5f);
-
-            Vector3 direction = (path.corners[i + 1] - path.corners[i]).normalized;
-            float distance = Vector3.Distance(path.corners[i], path.corners[i + 1]);
+            Vector3 cornerPos = path.corners[i];
+            Quaternion rotation = Quaternion.Euler(-90, 0, 0);
+            Vector3 rotatedVector = rotation * cornerPos;
             
-            var newPath = new GameObject();
-            var newPathTransform = newPath.transform;
-            
-            var newSpriteRenderer = newPath.AddComponent<SpriteRenderer>();
-            newSpriteRenderer.drawMode = SpriteDrawMode.Tiled;
-            newSpriteRenderer.sprite = _sprite;
-            newSpriteRenderer.size = new Vector2(_sprite.rect.width / 100f, distance);
-            
-            newPathTransform.position = path.corners[i] + direction * (distance / 2f);
-            newPathTransform.rotation = Quaternion.LookRotation(direction);
-            newPathTransform.Rotate(Vector3.right * 90, Space.Self);
-
-            newSpriteRenderer.sortingOrder = i;
+            spriteSpline.InsertPointAt(i, rotatedVector);
+            spriteSpline.SetTangentMode(i, ShapeTangentMode.Continuous);
         }
     }
-    
+
     public bool TryGetPathTo(Vector3 startPos, Vector3 targetPos, ref NavMeshPath path)
     {
         return NavMesh.CalculatePath(startPos, targetPos, NavMesh.AllAreas, path) && path.corners.Length > 1;
