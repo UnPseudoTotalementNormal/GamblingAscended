@@ -1,4 +1,5 @@
 using System;
+using Extensions;
 using GameEvents;
 using UnityEngine;
 
@@ -23,7 +24,7 @@ public class GL_GamblingMachineReactEvent : MonoBehaviour
             return;
         }
         GameObject lastPlayer = _gamblingMachine.LastPlayer;
-        GL_ICoinHolder playerCoinHolder = lastPlayer.GetComponent<GL_ICoinHolder>();
+        lastPlayer.TryGetComponentInParents(out GL_ICoinHolder playerCoinHolder);
 
         float removeAmount = 15;
         float moneyInserted = _gamblingMachine.CoinHolder.MoneyInserted;
