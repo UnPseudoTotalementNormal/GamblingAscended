@@ -49,21 +49,31 @@ namespace Character.Enemy
                 return;
             }
 
-            Vector2 direction = CurrentWaypoint - transform.position;
-            _characterMovement.SetDirection(direction.normalized);
+            Vector3 direction = CurrentWaypoint - transform.position;
+            Vector2 flatDirection = new Vector2(direction.x, direction.z).normalized;
+            _characterMovement.SetDirection(flatDirection);
             CurrentDistance += _rigidbody.linearVelocity.magnitude * Time.fixedDeltaTime;
         }
 
         public void CheckNextWaypoint()
         {
-            if (!(CurrentDistance > CurrentWaypointDistance)) return;
+            if (CurrentDistance < CurrentWaypointDistance)
+            {
+                return;
+            }
             
             List<float> keys = _waypoints.Keys.ToList();
             _currentWaypointIndex++;
             float value = keys[_currentWaypointIndex];
-            
+
             CurrentWaypoint = _waypoints[value];
             CurrentWaypointDistance = value;
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.green;
+            Gizmos.DrawCube(CurrentWaypoint, Vector3.one * 1f);
         }
     }
 }

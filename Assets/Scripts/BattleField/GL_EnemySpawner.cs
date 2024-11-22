@@ -7,7 +7,7 @@ public class GL_EnemySpawner : MonoBehaviour
     [SerializeField] private GameObject _enemy;
     [SerializeField] private GL_PathTracer _pathTracer;
 
-    private void Awake()
+    private void Start()
     {
         SpawnEnemy(_enemy);
     }

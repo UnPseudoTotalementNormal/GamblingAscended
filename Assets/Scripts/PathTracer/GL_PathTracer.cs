@@ -16,7 +16,7 @@ public class GL_PathTracer : MonoBehaviour
 
     public SerializedDictionary<float, Vector3> Waypoints = new();
     
-    private void Start()
+    private void Awake()
     {
         TracePath();
     }
@@ -31,6 +31,11 @@ public class GL_PathTracer : MonoBehaviour
             return;
         }
         
+        SetPath(path);
+    }
+
+    private void SetPath(NavMeshPath path)
+    {
         var newPath = new GameObject("Path");
         Transform pathTransform = newPath.transform;
         pathTransform.SetParent(transform);
