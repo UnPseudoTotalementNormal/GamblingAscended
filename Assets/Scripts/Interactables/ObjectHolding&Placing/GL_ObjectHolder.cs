@@ -22,6 +22,8 @@ public class GL_ObjectHolder : MonoBehaviour
     [SerializeField] private float _dropMaxDistance = 2;
 
     private Material _currentPlacingMaterial;
+    [SerializeField] private Color _canPlaceColor;
+    [SerializeField] private Color _cannotPlaceColor;
     
     private GameObject _drawObject;
 
@@ -69,7 +71,7 @@ public class GL_ObjectHolder : MonoBehaviour
                 ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast)))
         {
             _drawObject.transform.position = hitInfo.point + hitInfo.normal *
-                (Vector3.Dot(hitInfo.normal, objectBounds.extents));
+                (Vector3.Dot(hitInfo.normal.Abs(), objectBounds.extents.Abs()));
             if (!hitInfo.collider.gameObject.TryGetComponentInParents(out GL_IPlaceableGround placeableGround))
             {
                 canPlaceObject = false;
@@ -89,7 +91,7 @@ public class GL_ObjectHolder : MonoBehaviour
 
         if (_currentPlacingMaterial)
         {
-            _currentPlacingMaterial.color = canPlaceObject ? Color.green : Color.red;
+            _currentPlacingMaterial.color = canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
         }
         
         
