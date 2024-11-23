@@ -63,4 +63,14 @@ namespace GameEvents
     }
 
     #endregion
+    
+    #region CustomInfos
+    
+    public class GameEventDamage : GameEventInfo
+    {
+        public float Damage;
+        public int DamageType;
+    }
+    
+    #endregion
 }
