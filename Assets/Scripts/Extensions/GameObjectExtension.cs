@@ -15,7 +15,7 @@ namespace Extensions
             return false;
         }
         
-        public static Bounds GetCollidersBounds(this GameObject gameObject, bool ignoreDisabled = false)
+        public static Bounds GetCollidersBounds(this GameObject gameObject, bool ignoreDisabled = false, bool ignoreRotation = true)
         {
             var bounds = new Bounds(gameObject.transform.position, Vector3.zero);
             bool shouldDisableGameObject = false;
@@ -43,13 +43,20 @@ namespace Extensions
                     collider.enabled = true;
                     Physics.SyncTransforms();
                 }
-                
+
+                var savedRotation = collider.transform.rotation;
+                if (ignoreRotation)
+                {
+                    collider.transform.rotation = Quaternion.identity;
+                }
                 collider.transform.position += Vector3.one;
                 Physics.SyncTransforms();
                 collider.transform.position -= Vector3.one;
                 Physics.SyncTransforms();
                 
                 bounds.Encapsulate(collider.bounds);
+                
+                collider.transform.rotation = savedRotation;
                 
                 //si on ne fais pas d'incantation magique dans cet ordre précis
                 //les bounds sont de (0, 0, 0) alors que là ça fonctionne, tkt tkt

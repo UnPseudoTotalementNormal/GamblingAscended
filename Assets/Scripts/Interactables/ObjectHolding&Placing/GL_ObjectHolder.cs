@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Enums;
 using Extensions;
 using GameEvents;
@@ -57,15 +58,18 @@ public class GL_ObjectHolder : MonoBehaviour
             }
 
         }
-        
+
+        Bounds objectBounds = _drawObject.GetCollidersBounds();
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
-                ~(int)LayerMaskEnum.Character))
+                ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast)))
         {
-            
+            _drawObject.transform.position = hitInfo.point + hitInfo.normal *
+                (Vector3.Dot(hitInfo.normal, objectBounds.extents));
         }
         else
         {
-            _drawObject.transform.position = transform.position + transform.forward * _dropMaxDistance;
+            _drawObject.transform.position = transform.position + transform.forward * _dropMaxDistance -
+                                             (objectBounds.extents.z * transform.forward);
         }
         
 
@@ -76,16 +80,16 @@ public class GL_ObjectHolder : MonoBehaviour
             return;
         }
         
-        Debug.Log(_drawObject.GetCollidersBounds().extents);
-        
-        var renderers = previewedObject.GetComponentsInChildren<Renderer>();
+        var renderers = _drawObject.GetComponentsInChildren<Renderer>();
         _currentPlacingMaterial = new(_placingMaterial);
         foreach (Renderer renderer in renderers)
         {
+            List<Material> newMaterials = new List<Material>();
             for (int i = 0; i < renderer.materials.Length; i++)
             {
-                renderer.materials[i] = _currentPlacingMaterial;
+                newMaterials.Add(_currentPlacingMaterial);
             }
+            renderer.SetMaterials(newMaterials);
         }
         
         var colliders = _drawObject.GetComponentsInChildren<Collider>();
@@ -130,18 +134,8 @@ public class GL_ObjectHolder : MonoBehaviour
         
         var droppedObject = _currentHoldable.GetGameObject();
         Bounds objectBounds = droppedObject.GetCollidersBounds();
-        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
-                ~(int)LayerMaskEnum.Character))
-        {
-            droppedObject.transform.position = hitInfo.point + objectBounds.extents.y * Vector3.up;
-            
-        }
-        else
-        {
-            droppedObject.transform.position = transform.position + (transform.forward * _dropMaxDistance) -
-                                               (objectBounds.extents.z * transform.forward);
-        }
-        droppedObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
+        droppedObject.transform.position = _drawObject.transform.position;
+        droppedObject.transform.eulerAngles = new Vector3(0, _drawObject.transform.eulerAngles.y);
         
         _currentHoldable.OnDropped();
         Timer.Timer.NewTimer(0, () => { _interacterRaycaster.EnableComponent(); });

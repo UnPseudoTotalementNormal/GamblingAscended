@@ -471,6 +471,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tryPickupEvent: {fileID: 11400000, guid: fc943b81ebde061428b21972f6144f0f, type: 2}
   _interactInputEvent: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
+  _tryPlaceInputEvent: {fileID: 11400000, guid: 08d1e8a7cf52ed6438f85a6f3007cc68, type: 2}
+  _placingMaterial: {fileID: 2100000, guid: 9b1e6bcd4a302e847ab36986cec9822d, type: 2}
   _dropMaxDistance: 5
 --- !u!20 &7073471408122030742
 Camera:

@@ -16,6 +16,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
             if (TryGetComponent(out Rigidbody body))
             {
                 body.linearVelocity = Vector3.zero;
+                body.angularVelocity = Vector3.zero;
             }
         }
 
