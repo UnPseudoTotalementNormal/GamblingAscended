@@ -105,6 +105,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fc943b81ebde061428b21972f6144f0f
+    m_Address: Assets/GameEvents/TryPickup.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 59bf2ecf388784745bcb2c12ccb03ea8, type: 2}
   m_SchemaSet:

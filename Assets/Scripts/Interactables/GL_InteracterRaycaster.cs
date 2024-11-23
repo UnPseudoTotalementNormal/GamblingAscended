@@ -91,6 +91,17 @@ namespace Interactables
             return hitInfo.collider.TryGetComponent<GL_IInteractable>(out interactable);
         }
 
+        public void EnableComponent()
+        {
+            enabled = true;
+        }
+
+        public void DisableComponent()
+        {
+            _currentInteractable = default;
+            OldInteractableExit();
+            enabled = false;
+        }
 
         void GL_IPossessable.OnPossess()
         {

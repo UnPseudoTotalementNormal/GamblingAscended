@@ -14,5 +14,15 @@ namespace Extensions
             }
             return false;
         }
+        
+        public static Bounds GetCollidersBounds(this GameObject gameObject)
+        {
+            var bounds = new Bounds(gameObject.transform.position, Vector3.zero);
+            foreach (var collider in gameObject.GetComponentsInChildren<Collider>())
+            {
+                bounds.Encapsulate(collider.bounds);
+            }
+            return bounds;
+        }
     }
 }
