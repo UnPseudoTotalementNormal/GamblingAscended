@@ -5,6 +5,7 @@ using Extensions;
 using GameEvents;
 using Interactables;
 using Interactables.ObjectHolding_Placing;
+using Unity.Mathematics;
 using UnityEngine;
 
 [RequireComponent(typeof(GL_InteracterRaycaster))]
@@ -23,6 +24,8 @@ public class GL_ObjectHolder : MonoBehaviour
     private Material _currentPlacingMaterial;
     
     private GameObject _drawObject;
+
+    private const float OBJECT_SKIN_WIDTH = 0.01f;
 
 
     private void Awake()
@@ -56,31 +59,59 @@ public class GL_ObjectHolder : MonoBehaviour
                 }
                 Destroy(component);
             }
-
         }
 
+        bool canPlaceObject = true;
+
+        _drawObject.transform.rotation = Quaternion.identity;
         Bounds objectBounds = _drawObject.GetCollidersBounds();
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
                 ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast)))
         {
             _drawObject.transform.position = hitInfo.point + hitInfo.normal *
                 (Vector3.Dot(hitInfo.normal, objectBounds.extents));
+            if (!hitInfo.collider.gameObject.TryGetComponentInParents(out GL_IPlaceableGround placeableGround))
+            {
+                canPlaceObject = false;
+            }
         }
         else
         {
             _drawObject.transform.position = transform.position + transform.forward * _dropMaxDistance -
                                              (objectBounds.extents.z * transform.forward);
+            canPlaceObject = false;
         }
         
+        Collider[] overlapColliders = Physics.OverlapBox(_drawObject.transform.position,
+            objectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
+            ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast));
 
-        _drawObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
+
+        if (_currentPlacingMaterial)
+        {
+            _currentPlacingMaterial.color = canPlaceObject ? Color.green : Color.red;
+        }
+        
         
         if (!spawnedObject)
         {
             return;
         }
         
-        var renderers = _drawObject.GetComponentsInChildren<Renderer>();
+        SetPlacingMaterials(_drawObject);
+
+        var colliders = _drawObject.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            //collider.enabled = false;
+        }
+        
+        _drawObject.SetActive(true);
+    }
+
+    private void SetPlacingMaterials(GameObject objectToChange)
+    {
+        var renderers = objectToChange.GetComponentsInChildren<Renderer>();
         _currentPlacingMaterial = new(_placingMaterial);
         foreach (Renderer renderer in renderers)
         {
@@ -91,14 +122,6 @@ public class GL_ObjectHolder : MonoBehaviour
             }
             renderer.SetMaterials(newMaterials);
         }
-        
-        var colliders = _drawObject.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders)
-        {
-            //collider.enabled = false;
-        }
-        
-        _drawObject.SetActive(true);
     }
 
 
