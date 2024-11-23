@@ -8,6 +8,8 @@ namespace Enums
         Water = 1 << 4,
         UI = 1 << 5,
         IgnorePlaceable = 1 << 6,
+        Item = 1 << 7,
+        Character = 1 << 8,
         All = ~0
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 9003155993859122052}
   - component: {fileID: 3729169547530629239}
   - component: {fileID: 8813922023000236396}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 5873665426895753726}
   - component: {fileID: 1567320430240041663}
   - component: {fileID: 3059341674115828909}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Character
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -170,7 +170,7 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 384
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
@@ -287,7 +287,7 @@ GameObject:
   - component: {fileID: 6740600468909667432}
   - component: {fileID: 4754298920659557766}
   - component: {fileID: 6269375678707185418}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CharacterHUD
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 7073471408122030742}
   - component: {fileID: 1249741520893432969}
   - component: {fileID: 564897002242575074}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -471,6 +471,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _tryPickupEvent: {fileID: 11400000, guid: fc943b81ebde061428b21972f6144f0f, type: 2}
   _interactInputEvent: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
+  _dropMaxDistance: 5
 --- !u!20 &7073471408122030742
 Camera:
   m_ObjectHideFlags: 0

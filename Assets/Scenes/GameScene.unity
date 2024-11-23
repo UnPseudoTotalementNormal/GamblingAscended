@@ -8566,7 +8566,7 @@ GameObject:
   - component: {fileID: 1651606368}
   - component: {fileID: 1651606367}
   - component: {fileID: 1651606366}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8726,6 +8726,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f263e5786a34eb69e51c737a8a25a03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _interactionEvent: {fileID: 11400000, guid: a0c22d88e1fb758459720d3947b7032f, type: 2}
+  _tryPickupEvent: {fileID: 11400000, guid: fc943b81ebde061428b21972f6144f0f, type: 2}
 --- !u!4 &1651606374
 Transform:
   m_ObjectHideFlags: 0
