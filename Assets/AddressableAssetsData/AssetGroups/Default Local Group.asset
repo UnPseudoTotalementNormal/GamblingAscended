@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 08d1e8a7cf52ed6438f85a6f3007cc68
+    m_Address: Assets/GameEvents/Input/PlaceInputStarted.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0

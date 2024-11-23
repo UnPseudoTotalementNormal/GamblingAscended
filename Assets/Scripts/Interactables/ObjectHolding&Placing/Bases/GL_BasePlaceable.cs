@@ -13,7 +13,10 @@ namespace Interactables.ObjectHolding_Placing.Bases
         
         public void OnPlaced()
         {
-            
+            if (TryGetComponent(out Rigidbody body))
+            {
+                body.linearVelocity = Vector3.zero;
+            }
         }
 
         public bool CanBePlacedAt(Vector3 position)
@@ -27,6 +30,13 @@ namespace Interactables.ObjectHolding_Placing.Bases
             }
             
             return false;
+        }
+        
+        [ContextMenu("Print Bounds")]
+        public void PrintBounds()
+        {
+            var bounds = gameObject.GetCollidersBounds();
+            Debug.Log($"Center: {bounds.center}, Extents: {bounds.extents}");
         }
     }
 }

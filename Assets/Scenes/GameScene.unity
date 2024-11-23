@@ -8558,8 +8558,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1651606374}
   - component: {fileID: 1651606375}
-  - component: {fileID: 1651606373}
   - component: {fileID: 1651606372}
+  - component: {fileID: 1651606373}
   - component: {fileID: 1651606371}
   - component: {fileID: 1651606370}
   - component: {fileID: 1651606369}
@@ -9631,6 +9631,10 @@ MonoBehaviour:
     EventStarted: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
     EventPerformed: {fileID: 0}
     EventCancel: {fileID: 0}
+  _placeInputEvent:
+    EventStarted: {fileID: 11400000, guid: 08d1e8a7cf52ed6438f85a6f3007cc68, type: 2}
+    EventPerformed: {fileID: 0}
+    EventCancel: {fileID: 0}
   _playerPrefab: {fileID: 2127146696485877804, guid: 7848b104205414749b5365574ab22e23, type: 3}
 --- !u!4 &1933476580
 Transform:
@@ -9705,7 +9709,19 @@ MonoBehaviour:
     m_ActionId: 6b444451-8a00-4d00-a97e-f47457f736a8
     m_ActionName: 'Player/Look[/Mouse/delta]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1933476579}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: OnPlace
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 6c2ab1b8-8984-453a-af3d-a3c78ae1679a
     m_ActionName: 'Player/Attack[/Mouse/leftButton,/Keyboard/enter]'
   - m_PersistentCalls:

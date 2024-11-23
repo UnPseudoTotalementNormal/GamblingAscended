@@ -14,8 +14,14 @@ public class GL_ObjectHolder : MonoBehaviour
     
     [SerializeField] private GameEvent<GameEventInfo> _tryPickupEvent;
     [SerializeField] private GameEvent<GameEventInfo> _interactInputEvent;
+    [SerializeField] private GameEvent<GameEventInfo> _tryPlaceInputEvent;
 
+    [SerializeField] private Material _placingMaterial;
     [SerializeField] private float _dropMaxDistance = 2;
+
+    private Material _currentPlacingMaterial;
+    
+    private GameObject _drawObject;
 
 
     private void Awake()
@@ -24,7 +30,73 @@ public class GL_ObjectHolder : MonoBehaviour
         _tryPickupEvent?.AddListener(OnTryPickup);
         _interactInputEvent?.AddListener(TryDrop);
     }
-    
+
+    private void Update()
+    {
+        if (_currentHoldable != null)
+        {
+            DrawPreview(_currentHoldable.GetGameObject());
+        }
+    }
+
+    private void DrawPreview(GameObject previewedObject)
+    {
+        bool spawnedObject = false;
+        if (!_drawObject)
+        {
+            spawnedObject = true;
+            _drawObject = Instantiate(previewedObject);
+            var components = _drawObject.GetComponentsInChildren<Component>();
+            foreach (var component in components)
+            {
+                if (component is Renderer or Collider or Transform or MeshFilter)
+                {
+                    continue;
+                }
+                Destroy(component);
+            }
+
+        }
+        
+        if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
+                ~(int)LayerMaskEnum.Character))
+        {
+            
+        }
+        else
+        {
+            _drawObject.transform.position = transform.position + transform.forward * _dropMaxDistance;
+        }
+        
+
+        _drawObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
+        
+        if (!spawnedObject)
+        {
+            return;
+        }
+        
+        Debug.Log(_drawObject.GetCollidersBounds().extents);
+        
+        var renderers = previewedObject.GetComponentsInChildren<Renderer>();
+        _currentPlacingMaterial = new(_placingMaterial);
+        foreach (Renderer renderer in renderers)
+        {
+            for (int i = 0; i < renderer.materials.Length; i++)
+            {
+                renderer.materials[i] = _currentPlacingMaterial;
+            }
+        }
+        
+        var colliders = _drawObject.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            //collider.enabled = false;
+        }
+        
+        _drawObject.SetActive(true);
+    }
+
 
     public void OnTryPickup(GameEventInfo eventInfo)
     {
@@ -55,13 +127,9 @@ public class GL_ObjectHolder : MonoBehaviour
         {
             return;
         }
-
-        
         
         var droppedObject = _currentHoldable.GetGameObject();
-        droppedObject.SetActive(true); //to get the fucking collider bounds, otherwise it won't work fuck unity
         Bounds objectBounds = droppedObject.GetCollidersBounds();
-        droppedObject.SetActive(false);
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
                 ~(int)LayerMaskEnum.Character))
         {
@@ -71,12 +139,14 @@ public class GL_ObjectHolder : MonoBehaviour
         else
         {
             droppedObject.transform.position = transform.position + (transform.forward * _dropMaxDistance) -
-                                               objectBounds.extents.x * Vector3.right;
+                                               (objectBounds.extents.z * transform.forward);
         }
+        droppedObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
         
         _currentHoldable.OnDropped();
         Timer.Timer.NewTimer(0, () => { _interacterRaycaster.EnableComponent(); });
         _currentHoldable = null;
+        Destroy(_drawObject);
     }
     
     private void TryDrop(GameEventInfo eventInfo)

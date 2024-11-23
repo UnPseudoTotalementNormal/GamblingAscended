@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using GameEvents;
 using UnityEngine;
 
@@ -24,13 +26,32 @@ namespace GameEvents
         [SerializeField] private string param1Description;
         
         public Action<T> Action { get; private set; }
+        private List<Action<T>> actions = new();
         
-        public void AddListener(Action<T> action) => Action += action;
+        public void AddListener(Action<T> action) => actions.Add(action);
         
-        public void RemoveListener(Action<T> action) => Action -= action;
+        public void RemoveListener(Action<T> action) => actions.Remove(action);
         
         // ReSharper disable Unity.PerformanceAnalysis
-        public void Invoke(T value) => Action?.Invoke(value);
+        public void Invoke(T value)
+        {
+            actions.RemoveAll(a => a == null);
+            foreach (Action<T> action in actions.ToList())
+            {
+                try
+                {
+                    action(value);
+                }
+                catch (Exception error)
+                {
+                    if (error is not MissingReferenceException)
+                    {
+                        Debug.LogException(error);
+                    }
+                    RemoveListener(action);
+                }
+            }
+        }
         
         public void ClearListeners() => Action = null;
     }

@@ -10,6 +10,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputContexts<GameEventInfo> _jumpInputEvent;
     [SerializeField] private GameEvent<GameEventInfo> _mouseMoveInputEvent;
     [SerializeField] private InputContexts<GameEventInfo> _interactInputEvent;
+    [SerializeField] private InputContexts<GameEventInfo> _placeInputEvent;
 
     [SerializeField] private GameObject _playerPrefab;
 
@@ -60,6 +61,14 @@ public class InputManager : MonoBehaviour
         if (context.started) _interactInputEvent.EventStarted?.Invoke(gameEventInfo);
         if (context.performed) _interactInputEvent.EventPerformed?.Invoke(gameEventInfo);
         if (context.canceled) _interactInputEvent.EventCancel?.Invoke(gameEventInfo);
+    }
+
+    public void OnPlace(InputAction.CallbackContext context)
+    {
+        var gameEventInfo = new GameEventInfo();
+        if (context.started) _placeInputEvent.EventStarted?.Invoke(gameEventInfo);
+        if (context.performed) _placeInputEvent.EventPerformed?.Invoke(gameEventInfo);
+        if (context.canceled) _placeInputEvent.EventCancel?.Invoke(gameEventInfo);
     }
 
     [Serializable]
