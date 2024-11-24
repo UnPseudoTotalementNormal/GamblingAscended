@@ -25,18 +25,17 @@ namespace GameEvents
         [Header("Useless, for dev info only")]
         [SerializeField] private string param1Description;
         
-        public Action<T> Action { get; private set; }
-        private List<Action<T>> actions = new();
+        private List<Action<T>> _actionList = new();
         
-        public void AddListener(Action<T> action) => actions.Add(action);
+        public void AddListener(Action<T> action) => _actionList.Add(action);
         
-        public void RemoveListener(Action<T> action) => actions.Remove(action);
+        public void RemoveListener(Action<T> action) => _actionList.Remove(action);
         
         // ReSharper disable Unity.PerformanceAnalysis
         public void Invoke(T value)
         {
-            actions.RemoveAll(a => a == null);
-            foreach (Action<T> action in actions.ToList())
+            _actionList.RemoveAll(a => a == null);
+            foreach (Action<T> action in _actionList.ToList())
             {
                 try
                 {
@@ -53,6 +52,6 @@ namespace GameEvents
             }
         }
         
-        public void ClearListeners() => Action = null;
+        public void ClearListeners() => _actionList = new();
     }
 }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using GameEvents;
 using Unity.AI.Navigation;
 using UnityEngine;
 using UnityEngine.AI;
@@ -14,9 +15,20 @@ public class GL_PathTracer : MonoBehaviour
     [SerializeField] private SpriteShape _spriteShape;
     [SerializeField] private Material _spriteMaterial;
 
+    [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
+    [SerializeField] private GameEvent<GameEventInfo> _onPathTraced;
+    
     public SerializedDictionary<float, Vector3> Waypoints = new();
+
+    private GameObject _path;
     
     private void Awake()
+    {
+        TracePath();
+        _objectPlacedEvent?.AddListener(RetracePath);
+    }
+
+    private void RetracePath(GameEventInfo eventInfo)
     {
         TracePath();
     }
@@ -36,12 +48,17 @@ public class GL_PathTracer : MonoBehaviour
 
     private void SetPath(NavMeshPath path)
     {
-        var newPath = new GameObject("Path");
-        Transform pathTransform = newPath.transform;
+        if (_path)
+        {
+            Destroy(_path);
+        }
+        
+        _path = new GameObject("Path");
+        Transform pathTransform = _path.transform;
         pathTransform.SetParent(transform);
         pathTransform.Rotate(Vector3.right * 90);
         
-        var newSpriteShapeController = newPath.AddComponent<SpriteShapeController>();
+        var newSpriteShapeController = _path.AddComponent<SpriteShapeController>();
         newSpriteShapeController.spriteShape = _spriteShape;
         newSpriteShapeController.splineDetail = 16;
         
@@ -55,8 +72,9 @@ public class GL_PathTracer : MonoBehaviour
         
         Spline spriteSpline = newSpriteShapeController.spline;
         spriteSpline.isOpenEnded = true;
-
+        
         float totalDistance = 0;
+        Waypoints.Clear();
         for (int i = 0; i < path.corners.Length ; i++)
         {
             Vector3 cornerPos = path.corners[i];
@@ -74,6 +92,13 @@ public class GL_PathTracer : MonoBehaviour
             }
             Waypoints[totalDistance] = cornerPos;
         }
+        
+        var eventInfo = new GameEventPathTraced()
+        {
+            Sender = gameObject,
+            PathTracerWaypoints = Waypoints,
+        };
+        _onPathTraced?.Invoke(eventInfo);
     }
 
     public bool TryGetPathTo(Vector3 startPos, Vector3 targetPos, ref NavMeshPath path)

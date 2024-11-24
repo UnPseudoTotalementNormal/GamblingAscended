@@ -38,7 +38,10 @@ public class GL_Health : MonoBehaviour
         CurrentHealth -= damage;
         _onTakeDamageEvent?.Invoke(new GameEventFloat { Value = CurrentHealth });
         
-        if (!(CurrentHealth <= 0)) return;
+        if (CurrentHealth > 0)
+        {
+            return;
+        }
         
         CurrentHealth = 0;
         _onDeathEvent?.Invoke(new GameEventInfo());

@@ -62,7 +62,7 @@ public class GL_CharacterFloat : MonoBehaviour
         Ray ray = new Ray(_transform.position, Vector3.down);
         RaycastHit hitInfo;
         
-        if (!Physics.Raycast(ray, out hitInfo, _rayLength))
+        if (!Physics.Raycast(ray, out hitInfo, _rayLength, ~_rigidbody.excludeLayers))
         {
             return;
         }

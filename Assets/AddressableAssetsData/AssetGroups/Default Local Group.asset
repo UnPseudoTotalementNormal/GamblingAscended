@@ -105,6 +105,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5ade679ffdf6114da5f7b4e37490bd6
+    m_Address: Assets/GameEvents/Battlefield/OnPathTraced.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba8a662a625a9ce488a13a6e44e56281
     m_Address: Assets/GameEvents/Interactable/InteractPointerEnter.asset
     m_ReadOnly: 0
