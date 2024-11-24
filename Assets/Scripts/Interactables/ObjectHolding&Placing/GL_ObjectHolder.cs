@@ -147,9 +147,9 @@ public class GL_ObjectHolder : MonoBehaviour
         if (currentPlaceable.DestroyItemOnPlaced)
         {
             Destroy(_currentHoldable.GetGameObject());
+            Reset();
         }
 
-        Reset();
     }
 
     public void OnTryPickup(GameEventInfo eventInfo)

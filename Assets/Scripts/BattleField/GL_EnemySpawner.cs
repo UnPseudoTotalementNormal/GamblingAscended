@@ -18,6 +18,6 @@ public class GL_EnemySpawner : MonoBehaviour
         var pathFollower = newEnemy.GetComponent<GL_PathFollower>();
         pathFollower.Init(_pathTracer.Waypoints);
 
-        Timer.Timer.NewTimer(1, () => { SpawnEnemy(_enemy); });
+        Timer.Timer.NewTimer(2, () => { SpawnEnemy(_enemy); });
     }
 }
