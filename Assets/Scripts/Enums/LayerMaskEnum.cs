@@ -10,6 +10,7 @@ namespace Enums
         IgnorePlaceable = 1 << 6,
         Item = 1 << 7,
         Character = 1 << 8,
+        Path = 1 << 9,
         All = ~0
     }
 }

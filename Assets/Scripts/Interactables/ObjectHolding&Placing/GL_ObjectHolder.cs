@@ -73,7 +73,8 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObject.transform.position = Vector3.zero;
         Bounds localObjectBounds = _drawObject.GetCollidersBounds();
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
-                ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast)))
+                ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.Path |
+                  (int)LayerMaskEnum.IgnoreRaycast)))
         {
             _drawObject.transform.position = hitInfo.point + hitInfo.normal *
                 Vector3.Dot(hitInfo.normal.Abs(), localObjectBounds.extents.Abs()) - localObjectBounds.center;

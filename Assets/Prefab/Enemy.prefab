@@ -108,4 +108,4 @@ MonoBehaviour:
   CurrentWaypointDistance: 0
   CurrentWaypoint: {x: 0, y: 0, z: 0}
   CurrentDistance: 0
-  _onPathTraced: {fileID: 11400000, guid: b5ade679ffdf6114da5f7b4e37490bd6, type: 2}
+  _onPathTraced: {fileID: 0}
