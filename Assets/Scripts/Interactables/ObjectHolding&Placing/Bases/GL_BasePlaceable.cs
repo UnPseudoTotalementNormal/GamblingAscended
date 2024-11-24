@@ -10,7 +10,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
     public class GL_BasePlaceable : MonoBehaviour, GL_IPlaceable
     {
         private Collider[] _tryPlaceResults = new Collider[50];
-        
+        [field:SerializeField] public GameObject PlaceableObject { get; private set; }
         public void OnPlaced()
         {
             if (TryGetComponent(out Rigidbody body))

@@ -35,13 +35,14 @@ public class GL_ObjectHolder : MonoBehaviour
         _interacterRaycaster = GetComponent<GL_InteracterRaycaster>();
         _tryPickupEvent?.AddListener(OnTryPickup);
         _interactInputEvent?.AddListener(TryDrop);
+        _tryPlaceInputEvent?.AddListener(TryPlace);
     }
 
     private void Update()
     {
-        if (_currentHoldable != null)
+        if (_currentHoldable != null && _currentHoldable.IsPlaceable())
         {
-            DrawPreview(_currentHoldable.GetGameObject());
+            DrawPreview(_currentHoldable.GetPlaceable().PlaceableObject);
         }
     }
 
@@ -105,7 +106,7 @@ public class GL_ObjectHolder : MonoBehaviour
         var colliders = _drawObject.GetComponentsInChildren<Collider>();
         foreach (Collider collider in colliders)
         {
-            //collider.enabled = false;
+            collider.enabled = false;
         }
         
         _drawObject.SetActive(true);
@@ -126,6 +127,10 @@ public class GL_ObjectHolder : MonoBehaviour
         }
     }
 
+    private void TryPlace(GameEventInfo eventInfo)
+    {
+        
+    }
 
     public void OnTryPickup(GameEventInfo eventInfo)
     {
@@ -159,8 +164,8 @@ public class GL_ObjectHolder : MonoBehaviour
         
         var droppedObject = _currentHoldable.GetGameObject();
         Bounds objectBounds = droppedObject.GetCollidersBounds();
-        droppedObject.transform.position = _drawObject.transform.position;
-        droppedObject.transform.eulerAngles = new Vector3(0, _drawObject.transform.eulerAngles.y);
+        droppedObject.transform.position = transform.position;
+        droppedObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
         
         _currentHoldable.OnDropped();
         Timer.Timer.NewTimer(0, () => { _interacterRaycaster.EnableComponent(); });
