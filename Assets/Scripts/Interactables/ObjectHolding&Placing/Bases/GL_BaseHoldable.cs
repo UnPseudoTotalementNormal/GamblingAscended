@@ -43,6 +43,11 @@ namespace Interactables.ObjectHolding_Placing.Bases
         public void OnDropped()
         {
             gameObject.SetActive(true);
+            if (TryGetComponent(out Rigidbody body))
+            {
+                body.linearVelocity = Vector3.zero;
+                body.angularVelocity = Vector3.zero;
+            }
         }
     }
 }

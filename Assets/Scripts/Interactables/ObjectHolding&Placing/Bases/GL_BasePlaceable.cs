@@ -11,13 +11,16 @@ namespace Interactables.ObjectHolding_Placing.Bases
     {
         private Collider[] _tryPlaceResults = new Collider[50];
         [field:SerializeField] public GameObject PlaceableObject { get; private set; }
+        [field: SerializeField] public bool DestroyItemOnPlaced { get; private set; } = true;
+
         public void OnPlaced()
         {
-            if (TryGetComponent(out Rigidbody body))
-            {
-                body.linearVelocity = Vector3.zero;
-                body.angularVelocity = Vector3.zero;
-            }
+            
+        }
+
+        public void Place(Vector3 position, Vector3 rotation)
+        {
+            var newObject = Instantiate(PlaceableObject, position, Quaternion.Euler(rotation));
         }
 
         public bool CanBePlacedAt(Vector3 position)

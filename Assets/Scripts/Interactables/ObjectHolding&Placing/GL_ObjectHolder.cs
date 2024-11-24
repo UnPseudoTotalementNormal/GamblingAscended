@@ -24,8 +24,11 @@ public class GL_ObjectHolder : MonoBehaviour
     private Material _currentPlacingMaterial;
     [SerializeField] private Color _canPlaceColor;
     [SerializeField] private Color _cannotPlaceColor;
+
+    [SerializeField] private Vector3 _placeRotation;
     
     private GameObject _drawObject;
+    private bool _canPlaceObject;
 
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
@@ -64,35 +67,40 @@ public class GL_ObjectHolder : MonoBehaviour
             }
         }
 
-        bool canPlaceObject = true;
+        _canPlaceObject = true;
 
-        _drawObject.transform.rotation = Quaternion.identity;
-        Bounds objectBounds = _drawObject.GetCollidersBounds();
+        _drawObject.transform.eulerAngles = _placeRotation;
+        _drawObject.transform.position = Vector3.zero;
+        Bounds localObjectBounds = _drawObject.GetCollidersBounds();
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
                 ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast)))
         {
             _drawObject.transform.position = hitInfo.point + hitInfo.normal *
-                (Vector3.Dot(hitInfo.normal.Abs(), objectBounds.extents.Abs()));
+                Vector3.Dot(hitInfo.normal.Abs(), localObjectBounds.extents.Abs()) - localObjectBounds.center;
             if (!hitInfo.collider.gameObject.TryGetComponentInParents(out GL_IPlaceableGround placeableGround))
             {
-                canPlaceObject = false;
+                _canPlaceObject = false;
             }
         }
         else
         {
-            _drawObject.transform.position = transform.position + transform.forward * _dropMaxDistance -
-                                             (objectBounds.extents.z * transform.forward);
-            canPlaceObject = false;
+            Vector3 itemPoint = transform.forward * _dropMaxDistance;
+            _drawObject.transform.position = transform.position + itemPoint - localObjectBounds.center;
+            _canPlaceObject = false;
         }
-        
-        Collider[] overlapColliders = Physics.OverlapBox(_drawObject.transform.position,
-            objectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
-            ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.IgnoreRaycast));
+        Bounds worldObjectBounds = _drawObject.GetCollidersBounds();
+        Collider[] overlapColliders = Physics.OverlapBox(worldObjectBounds.center,
+            localObjectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
+            ~((int)LayerMaskEnum.IgnoreRaycast));
 
+        if (overlapColliders.Length > 0)
+        {
+            _canPlaceObject = false;
+        }
 
         if (_currentPlacingMaterial)
         {
-            _currentPlacingMaterial.color = canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
+            _currentPlacingMaterial.color = _canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
         }
         
         
@@ -129,7 +137,19 @@ public class GL_ObjectHolder : MonoBehaviour
 
     private void TryPlace(GameEventInfo eventInfo)
     {
+        if (_currentHoldable == null || !_canPlaceObject)
+        {
+            return;
+        }
         
+        var currentPlaceable = _currentHoldable.GetPlaceable();
+        currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
+        if (currentPlaceable.DestroyItemOnPlaced)
+        {
+            Destroy(_currentHoldable.GetGameObject());
+        }
+
+        Reset();
     }
 
     public void OnTryPickup(GameEventInfo eventInfo)
@@ -168,11 +188,16 @@ public class GL_ObjectHolder : MonoBehaviour
         droppedObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
         
         _currentHoldable.OnDropped();
+        Reset();
+    }
+
+    private void Reset()
+    {
         Timer.Timer.NewTimer(0, () => { _interacterRaycaster.EnableComponent(); });
         _currentHoldable = null;
         Destroy(_drawObject);
     }
-    
+
     private void TryDrop(GameEventInfo eventInfo)
     {
         if (!gameObject.HasGameID(eventInfo.Ids) || _currentHoldable == null)

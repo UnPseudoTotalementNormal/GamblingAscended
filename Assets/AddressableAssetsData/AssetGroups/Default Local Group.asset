@@ -111,6 +111,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f46b56b24486c024d82cf7847c1ebe10
+    m_Address: Assets/GameEvents/Player/Possess.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: fc943b81ebde061428b21972f6144f0f
     m_Address: Assets/GameEvents/TryPickup.asset
     m_ReadOnly: 0
