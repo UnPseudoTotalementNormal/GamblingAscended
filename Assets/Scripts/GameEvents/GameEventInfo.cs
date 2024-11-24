@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace GameEvents
@@ -70,6 +71,11 @@ namespace GameEvents
     {
         public float Damage;
         public int DamageType;
+    }
+
+    public class GameEventPathTraced : GameEventInfo
+    {
+        public Dictionary<float, Vector3> PathTracerWaypoints;
     }
     
     #endregion

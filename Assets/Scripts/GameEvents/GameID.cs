@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Extensions;
 using UnityEngine;
 
 namespace GameEvents
@@ -28,15 +29,14 @@ namespace GameEvents
         // ReSharper disable Unity.PerformanceAnalysis
         public static int GetGameID(GameObject gameObject)
         {
-            try
-            {
-                return gameObject.GetComponentInParent<GameID>().GetID();
-            }
-            catch
+            bool hasGameID = gameObject.TryGetComponentInParents<GameID>(out GameID gameID);
+            if (!hasGameID)
             {
                 Debug.LogError("GameID not found on " + gameObject.name);
                 return -1;
             }
+            
+            return gameID.GetID();
         }
 
         public static void CleanIds()

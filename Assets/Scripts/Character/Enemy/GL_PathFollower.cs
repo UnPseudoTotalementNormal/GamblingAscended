@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using GameEvents;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Serialization;
@@ -19,6 +20,8 @@ namespace Character.Enemy
 
         public Dictionary<float, Vector3> _waypoints;
 
+        [SerializeField] private GameEvent<GameEventInfo> _onPathTraced;
+        
         private bool _isInit;
         
         public void Init(Dictionary<float, Vector3> pathTracerWaypoints)
@@ -28,8 +31,29 @@ namespace Character.Enemy
             
             _waypoints = pathTracerWaypoints;
             CheckNextWaypoint();
+            
+            _onPathTraced?.AddListener(OnPathTraced);
 
             _isInit = true;
+        }
+
+        private void OnPathTraced(GameEventInfo eventInfo)
+        {
+            if (!eventInfo.TryTo(out GameEventPathTraced gameEventPathTraced))
+            {
+                return;
+            }
+            
+            _waypoints = gameEventPathTraced.PathTracerWaypoints;
+            
+            // Get the closest waypoint as the target
+            var closestWaypoint = _waypoints.OrderBy(wp => Vector3.Distance(transform.position, wp.Value)).First();
+            _currentWaypointIndex = _waypoints.Keys.ToList().IndexOf(closestWaypoint.Key);
+            CurrentWaypoint = closestWaypoint.Value;
+
+            // Calculate the new distance based on the closest waypoint
+            CurrentDistance = closestWaypoint.Key - Vector3.Distance(transform.position, CurrentWaypoint);
+            CurrentWaypointDistance = closestWaypoint.Key;
         }
 
         private void Update()

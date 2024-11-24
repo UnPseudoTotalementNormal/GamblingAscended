@@ -50,17 +50,17 @@ namespace Interactables
         
         private void OldInteractableExit()
         {
-            if (_oldInteractable == default) return;
+            if (_oldInteractable == null) return;
             
             _oldInteractable?.OnExit();
-            _oldInteractable = default;
+            _oldInteractable = null;
         }
 
         private bool CheckInteract()
         {
             if (!TryGetInteractable(out GL_IInteractable interactable))
             {
-                _currentInteractable = default;
+                _currentInteractable = null;
                 return false;
             }
 
@@ -71,7 +71,7 @@ namespace Interactables
 
         private void TryInteract(GameEventInfo eventInfo)
         {
-            if (_currentInteractable == null && !TryGetInteractable(out _currentInteractable))
+            if (!enabled || (_currentInteractable == null && !TryGetInteractable(out _currentInteractable)))
             {
                 return;
             }
@@ -84,13 +84,24 @@ namespace Interactables
             Ray ray = new Ray(_transform.position, _transform.forward);
             if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastLength))
             {
-                interactable = default;
+                interactable = null;
                 return false;
             }
             
             return hitInfo.collider.TryGetComponent<GL_IInteractable>(out interactable);
         }
 
+        public void EnableComponent()
+        {
+            enabled = true;
+        }
+
+        public void DisableComponent()
+        {
+            _currentInteractable = null;
+            OldInteractableExit();
+            enabled = false;
+        }
 
         void GL_IPossessable.OnPossess()
         {

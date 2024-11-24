@@ -6,7 +6,10 @@ namespace GameEvents
     public static class GameObjectGameIDExtension
     {
         public static int GetGameID(this GameObject gameObject) => GameID.GetGameID(gameObject);
-        
-        public static bool HasGameID(this GameObject gameObject, int[] gameIDs) => gameIDs.Contains(gameObject.GetGameID());
+
+        public static bool HasGameID(this GameObject gameObject, int[] gameIDs)
+        {
+            return gameIDs == null || gameIDs.Contains(gameObject.GetGameID());
+        }
     }
 }

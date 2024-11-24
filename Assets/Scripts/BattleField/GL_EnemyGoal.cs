@@ -35,7 +35,7 @@ namespace BattleField
                 Ids = new[] { gameObject.GetGameID() },
                 Damage = enemy.Damage,
             }); 
-            enemy.gameObject.SetActive(false);
+            Destroy(enemy.gameObject);
         }
     }
 }
