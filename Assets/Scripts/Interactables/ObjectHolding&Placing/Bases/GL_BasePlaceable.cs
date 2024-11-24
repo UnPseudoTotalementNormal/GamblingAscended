@@ -12,7 +12,8 @@ namespace Interactables.ObjectHolding_Placing.Bases
         private Collider[] _tryPlaceResults = new Collider[50];
         [field:SerializeField] public GameObject PlaceableObject { get; private set; }
         [field: SerializeField] public bool DestroyItemOnPlaced { get; private set; } = true;
-
+        [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
+        
         public void OnPlaced()
         {
             
@@ -21,6 +22,13 @@ namespace Interactables.ObjectHolding_Placing.Bases
         public void Place(Vector3 position, Vector3 rotation)
         {
             var newObject = Instantiate(PlaceableObject, position, Quaternion.Euler(rotation));
+
+            var eventInfo = new GameEventInfo()
+            {
+                Ids = new[] { gameObject.GetGameID() },
+                Sender = gameObject,
+            };
+            _objectPlacedEvent?.Invoke(eventInfo);
         }
 
         public bool CanBePlacedAt(Vector3 position)
