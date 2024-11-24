@@ -45,8 +45,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 40b670e3b6b68c54fbfe03f4de3320cd
+    m_Address: Assets/GameEvents/DayNightCycle/SkipDay.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46de748d32ef4304bbb4be27d8857dcc
     m_Address: Assets/GameEvents/Battlefield/TakeDamage.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 4a90c2e2985f273489b7e7f607ec1662
+    m_Address: Assets/GameEvents/DayNightCycle/OnDayEnded.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
@@ -93,6 +105,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a97bcd043c540fc4282c21fd11ddefd1
+    m_Address: Assets/GameEvents/DayNightCycle/SkipNight.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: af2bcc642b8ba924ea7479755e3b377d
     m_Address: Assets/GameEvents/Gambling/PlayMachine.asset
     m_ReadOnly: 0
@@ -117,6 +135,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: df10f83fbbe72af499f26a451a03d0c8
+    m_Address: Assets/GameEvents/DayNightCycle/OnNightEnded.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f1db088461054dc4bbd0f95c4801a31c
     m_Address: Assets/GameEvents/Battlefield/ObjectPlaced.asset
     m_ReadOnly: 0
@@ -125,6 +149,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f46b56b24486c024d82cf7847c1ebe10
     m_Address: Assets/GameEvents/Player/Possess.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: fb9c5642637c8594f8b5f6101a945301
+    m_Address: Assets/GameEvents/DayNightCycle/SkipTimeOfDay.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
