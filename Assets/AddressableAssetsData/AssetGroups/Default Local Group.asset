@@ -106,7 +106,7 @@ MonoBehaviour:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a31e7d5628e6afb4fac40080f1d7594b
-    m_Address: Assets/GameEvents/None.asset
+    m_Address: Assets/GameEvents/NoneEvent.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

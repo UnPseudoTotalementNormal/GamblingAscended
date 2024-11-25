@@ -10,7 +10,8 @@ namespace Interactables
         [field:SerializeField] public GameEventEnum InteractPointerEnterEvent { get; private set; } = GameEventEnum.InteractPointerEnter;
 
         [field: SerializeField] public GameEventEnum InteractPointerExitEvent { get; private set; } = GameEventEnum.InteractPointerExit;
-        [field:SerializeField] public GameEvent<GameEventInfo> InteractionEvent { get; private set; }
+
+        [field: SerializeField] public GameEventEnum InteractionEvent { get; private set; } = GameEventEnum.NoneEvent;
         
 
         public void OnEnter()
@@ -43,7 +44,7 @@ namespace Interactables
                 Sender = gameObject,
                 Value = sender,
             };
-            InteractionEvent?.Invoke(eventInfo);
+            InteractionEvent.Invoke(eventInfo);
         }
     }
 }

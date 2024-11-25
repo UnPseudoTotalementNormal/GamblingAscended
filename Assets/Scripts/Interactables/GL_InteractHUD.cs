@@ -1,13 +1,14 @@
 using System;
 using GameEvents;
+using GameEvents.Enum;
 using Interactables;
 using TMPro;
 using UnityEngine;
 
 public class GL_InteractHUD : MonoBehaviour
 {
-    [SerializeField] private GameEvent<GameEventInfo> _interactEnterEvent;
-    [SerializeField] private GameEvent<GameEventInfo> _interactExitEvent;
+    [SerializeField] private GameEventEnum _interactEnterEvent = GameEventEnum.InteractPointerEnter;
+    [SerializeField] private GameEventEnum _interactExitEvent = GameEventEnum.InteractPointerExit;
 
     [SerializeField] private TextMeshProUGUI _textFeedback;
 

@@ -17,7 +17,7 @@ namespace GameEvents
 
         private static GameEventHolder GetGameEventHolder()
         {
-            if (Instance != null)
+            if (Instance)
             {
                 return Instance;
             }
@@ -27,6 +27,7 @@ namespace GameEvents
         
         public void SetGameEvents(Dictionary<GameEventEnum, GameEventWithInfo> newEvents)
         {
+            GameEvents = new();
             foreach (var currentEvent in newEvents)
             {
                 GameEvents[currentEvent.Key] = currentEvent.Value;
