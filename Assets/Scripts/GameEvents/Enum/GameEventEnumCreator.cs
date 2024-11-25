@@ -36,7 +36,6 @@ public static class GameEventEnumCreator
         await LoadGameEvents();
         UpdateEnumFile();
         FillGameEventHolder();
-        Debug.Log("refreshed game event enum");
     }
 
     private static void FillGameEventHolder()
@@ -53,8 +52,7 @@ public static class GameEventEnumCreator
             }
             else
             {
-                Debug.Log($"Failed {eventName}!");
-                
+                Debug.Log($"Failed to find event enum: {eventName}, try to reload domain");
             }
         }
         

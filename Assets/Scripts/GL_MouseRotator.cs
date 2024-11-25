@@ -21,6 +21,7 @@ public class GL_MouseRotator : MonoBehaviour, GL_IPossessable
     private void Awake()
     {
         _transform = GetComponent<Transform>();
+        var idk = _followParentYRotation;
     }
 
     private void OnMouseMoved(GameEventInfo eventInfo)
