@@ -68,16 +68,23 @@ public class GL_WaveSystem : MonoBehaviour
             return;
         }
 
+        if (CheckEndingWave())
+        {
+            StopWave();
+        }
+    }
+
+    private bool CheckEndingWave()
+    {
         foreach (GL_EnemySpawner spawner in _enemySpawners)
         {
             if (spawner.GetAliveEnemies().Count != 0)
             {
-                continue;
+                return false;
             }
-
-            StopWave();
-            
         }
+
+        return true;
     }
 
     private void UpdateEnemySpawners()

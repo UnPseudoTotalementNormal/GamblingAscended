@@ -11,7 +11,7 @@ public class GL_EnemySpawner : MonoBehaviour
     
     private GameEventEnum _spawnEnemyEvent = GameEventEnum.SpawnEnemy;
 
-    private List<GameObject> _aliveEnemies;
+    private List<GameObject> _aliveEnemies = new();
 
     private void Start()
     {
