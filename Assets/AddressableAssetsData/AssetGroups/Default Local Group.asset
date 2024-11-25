@@ -105,6 +105,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a31e7d5628e6afb4fac40080f1d7594b
+    m_Address: Assets/GameEvents/None.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a97bcd043c540fc4282c21fd11ddefd1
     m_Address: Assets/GameEvents/DayNightCycle/SkipNight.asset
     m_ReadOnly: 0
