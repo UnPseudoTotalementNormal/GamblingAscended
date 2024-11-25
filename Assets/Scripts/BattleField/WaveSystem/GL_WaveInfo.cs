@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Character.Enemy;
 using UnityEngine;
 
 namespace BattleField.WaveSystem
@@ -12,7 +13,7 @@ namespace BattleField.WaveSystem
         [Serializable]
         public struct EnemySpawnerInfo
         {
-            public int Enemy; //todo: replace with Scriptable
+            public GL_EnemyObject Enemy; //todo: replace with Scriptable
             public int Count;
             public float Interval;
             public float StartTime;
@@ -38,8 +39,9 @@ namespace BattleField.WaveSystem
                     return false;
                 }
 
+                Debug.Log(SpawnedCount);
                 NextSpawnAtTime = waveTime + Infos.Interval;
-                SpawnedCount++;
+                SpawnedCount += 1;
                 return true;
             }
         }

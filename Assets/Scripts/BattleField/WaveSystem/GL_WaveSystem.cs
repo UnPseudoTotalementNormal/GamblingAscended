@@ -32,14 +32,22 @@ public class GL_WaveSystem : MonoBehaviour
     {
         _waveTimer += Time.deltaTime;
 
-        foreach (EnemySpawner enemySpawner in _currentWaveInfo)
+        for (var i = 0; i < _currentWaveInfo.Count; i++)
         {
-            if (!enemySpawner.ShouldSpawn(_waveTimer))
+            EnemySpawner enemySpawner = _currentWaveInfo[i];
+            bool shouldSpawn = enemySpawner.ShouldSpawn(_waveTimer);
+            _currentWaveInfo[i] = enemySpawner;
+            if (!shouldSpawn)
             {
                 continue;
             }
-            
-            //enemySpawner.Infos.Enemy todo: instantiate enemy
+
+            var eventInfo = new GameEventSpawnEnemy()
+            {
+                EnemyObject = enemySpawner.Infos.Enemy,
+                Sender = gameObject
+            };
+            GameEventEnum.SpawnEnemy.Invoke(eventInfo); //enemySpawner.Infos.Enemy
         }
     }
 }
