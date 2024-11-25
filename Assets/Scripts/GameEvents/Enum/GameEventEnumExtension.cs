@@ -13,5 +13,10 @@ namespace GameEvents.Enum
         {
             GameEventHolder.GetGameEvent(gameEvent).RemoveListener(action);
         }
+        
+        public static void Invoke(this GameEventEnum gameEvent, GameEventInfo eventInfo)
+        {
+            GameEventHolder.GetGameEvent(gameEvent).Invoke(eventInfo);
+        }
     }
 }

@@ -1,13 +1,15 @@
 using System;
 using GameEvents;
+using GameEvents.Enum;
 using UnityEngine;
 
 namespace Interactables
 {
     public class GL_InteractableCollider : MonoBehaviour, GL_IInteract, GL_IInteractable
     {
-        [field:SerializeField] public GameEvent<GameEventInfo> InteractPointerEnterEvent { get; private set; }
-        [field:SerializeField] public GameEvent<GameEventInfo> InteractPointerExitEvent { get; private set; }
+        [field:SerializeField] public GameEventEnum InteractPointerEnterEvent { get; private set; } = GameEventEnum.InteractPointerEnter;
+
+        [field: SerializeField] public GameEventEnum InteractPointerExitEvent { get; private set; } = GameEventEnum.InteractPointerExit;
         [field:SerializeField] public GameEvent<GameEventInfo> InteractionEvent { get; private set; }
         
 
@@ -19,7 +21,7 @@ namespace Interactables
                 Ids = new[] { gameObject.GetGameID() },
                 Sender = gameObject,
             };
-            InteractPointerEnterEvent?.Invoke(eventInfo);
+            InteractPointerEnterEvent.Invoke(eventInfo);
         }
 
         public void OnExit()
@@ -30,7 +32,7 @@ namespace Interactables
                 Ids = new[] { gameObject.GetGameID() },
                 Sender = gameObject,
             };
-            InteractPointerExitEvent?.Invoke(eventInfo);
+            InteractPointerExitEvent.Invoke(eventInfo);
         }
 
         public void OnInteract(GameObject sender)
