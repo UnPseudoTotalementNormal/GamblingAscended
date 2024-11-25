@@ -10320,7 +10320,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameEvents:
-    _serializedList: []
+    _serializedList:
+    - Key: 0
+      Value: {fileID: 11400000, guid: 07536ea0bc080d54cb1062c7395d64de, type: 2}
+    - Key: 1
+      Value: {fileID: 11400000, guid: 08d1e8a7cf52ed6438f85a6f3007cc68, type: 2}
+    - Key: 2
+      Value: {fileID: 11400000, guid: 30231e0b0b2ec4f4aabedd7a6b6fb656, type: 2}
+    - Key: 3
+      Value: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
+    - Key: 4
+      Value: {fileID: 11400000, guid: 3c94cd95e67fc1444ab7220cb8a098c0, type: 2}
+    - Key: 5
+      Value: {fileID: 11400000, guid: 40b670e3b6b68c54fbfe03f4de3320cd, type: 2}
+    - Key: 6
+      Value: {fileID: 11400000, guid: 46de748d32ef4304bbb4be27d8857dcc, type: 2}
+    - Key: 7
+      Value: {fileID: 11400000, guid: 4a90c2e2985f273489b7e7f607ec1662, type: 2}
+    - Key: 8
+      Value: {fileID: 11400000, guid: 5e339e7d543d2174092d6b0b73daea44, type: 2}
+    - Key: 9
+      Value: {fileID: 11400000, guid: 5fc2b61e90e26244183cd70d9c6e7c68, type: 2}
+    - Key: 10
+      Value: {fileID: 11400000, guid: 694ae6a81faf52644b73168e7feeed0d, type: 2}
+    - Key: 11
+      Value: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
+    - Key: 12
+      Value: {fileID: 11400000, guid: 812e4c34b9bd30c46b9cac4a21a6cb57, type: 2}
+    - Key: 13
+      Value: {fileID: 11400000, guid: 9cb8b9531f3ce3a46b500f83a038a4f9, type: 2}
+    - Key: 14
+      Value: {fileID: 11400000, guid: a0c22d88e1fb758459720d3947b7032f, type: 2}
+    - Key: 15
+      Value: {fileID: 11400000, guid: a97bcd043c540fc4282c21fd11ddefd1, type: 2}
+    - Key: 16
+      Value: {fileID: 11400000, guid: af2bcc642b8ba924ea7479755e3b377d, type: 2}
+    - Key: 17
+      Value: {fileID: 11400000, guid: b09f5cff72b79d44baeafcd4be3552b8, type: 2}
+    - Key: 18
+      Value: {fileID: 11400000, guid: b5ade679ffdf6114da5f7b4e37490bd6, type: 2}
+    - Key: 19
+      Value: {fileID: 11400000, guid: ba8a662a625a9ce488a13a6e44e56281, type: 2}
+    - Key: 20
+      Value: {fileID: 11400000, guid: df10f83fbbe72af499f26a451a03d0c8, type: 2}
+    - Key: 21
+      Value: {fileID: 11400000, guid: f1db088461054dc4bbd0f95c4801a31c, type: 2}
+    - Key: 22
+      Value: {fileID: 11400000, guid: f46b56b24486c024d82cf7847c1ebe10, type: 2}
+    - Key: 23
+      Value: {fileID: 11400000, guid: fb9c5642637c8594f8b5f6101a945301, type: 2}
+    - Key: 24
+      Value: {fileID: 11400000, guid: fc943b81ebde061428b21972f6144f0f, type: 2}
 --- !u!1001 &1984793920
 PrefabInstance:
   m_ObjectHideFlags: 0
