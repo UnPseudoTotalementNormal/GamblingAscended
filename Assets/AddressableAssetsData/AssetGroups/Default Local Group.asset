@@ -27,6 +27,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 12bd2148b139def4e84905e461f6adef
+    m_Address: Assets/GameEvents/Wave/OnWaveEnded.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0
