@@ -39,7 +39,6 @@ namespace BattleField.WaveSystem
                     return false;
                 }
 
-                Debug.Log(SpawnedCount);
                 NextSpawnAtTime = waveTime + Infos.Interval;
                 SpawnedCount += 1;
                 return true;

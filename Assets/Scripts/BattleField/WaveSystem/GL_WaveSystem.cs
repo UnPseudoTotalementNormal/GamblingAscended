@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using BattleField.WaveSystem;
 using GameEvents;
 using GameEvents.Enum;
@@ -14,17 +15,29 @@ public class GL_WaveSystem : MonoBehaviour
     private bool _isWaveRunning = false;
 
     private float _waveTimer = 0;
+
+    private List<GL_EnemySpawner> _enemySpawners = new();
     
     private List<EnemySpawner> _currentWaveInfo;
     
     private void Awake()
     {
+        GetSpawners();
         StartWave();
+    }
+
+    private void GetSpawners()
+    {
+        GL_EnemySpawner[] spawners = GetComponentsInChildren<GL_EnemySpawner>(true);
+        foreach (GL_EnemySpawner spawner in spawners)
+        {
+            _enemySpawners.Add(spawner);
+        }
     }
 
     private void StartWave()
     {
-        _currentWaveInfo = _waves[CurrentWave].SpawnInfo;
+        _currentWaveInfo = _waves[CurrentWave].SpawnInfo.ToList();
         GameEventEnum.OnWaveStarted.Invoke(new GameEventInfo());
     }
 
@@ -37,6 +50,7 @@ public class GL_WaveSystem : MonoBehaviour
             EnemySpawner enemySpawner = _currentWaveInfo[i];
             bool shouldSpawn = enemySpawner.ShouldSpawn(_waveTimer);
             _currentWaveInfo[i] = enemySpawner;
+            
             if (!shouldSpawn)
             {
                 continue;
@@ -47,7 +61,18 @@ public class GL_WaveSystem : MonoBehaviour
                 EnemyObject = enemySpawner.Infos.Enemy,
                 Sender = gameObject
             };
-            GameEventEnum.SpawnEnemy.Invoke(eventInfo); //enemySpawner.Infos.Enemy
+
+            if (enemySpawner.SpawnedCount >= enemySpawner.Infos.Count)
+            {
+                _currentWaveInfo.RemoveAt(i);
+                i--;
+            }
+
+            if (_currentWaveInfo.Count == 0)
+            {
+                Debug.Log("end wave");
+            }
+            GameEventEnum.SpawnEnemy.Invoke(eventInfo);
         }
     }
 }
