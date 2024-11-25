@@ -6244,6 +6244,7 @@ GameObject:
   m_Component:
   - component: {fileID: 972468371}
   - component: {fileID: 972468372}
+  - component: {fileID: 972468373}
   m_Layer: 0
   m_Name: BattleField
   m_TagString: Untagged
@@ -6283,6 +6284,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemy: {fileID: 6077906806579385801, guid: 1f68e99aacf2bf6488524cd1486be8a2, type: 3}
   _pathTracer: {fileID: 1637823337}
+--- !u!114 &972468373
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 972468370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 142d8839005c9ab4f9ce5a3d11240d99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentWave: 0
+  _waves:
+  - {fileID: 11400000, guid: e057c06f5e1f9d842821f2456f8d1155, type: 2}
 --- !u!4 &1161833791 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 475789545525856254, guid: 1593fc1790c9f9b4db7b44dff9aefc90, type: 3}
@@ -10320,7 +10336,59 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   GameEvents:
-    _serializedList: []
+    _serializedList:
+    - Key: 982266853
+      Value: {fileID: 11400000, guid: 07536ea0bc080d54cb1062c7395d64de, type: 2}
+    - Key: 845041143
+      Value: {fileID: 11400000, guid: 08d1e8a7cf52ed6438f85a6f3007cc68, type: 2}
+    - Key: 753738431
+      Value: {fileID: 11400000, guid: 30231e0b0b2ec4f4aabedd7a6b6fb656, type: 2}
+    - Key: 1773524498
+      Value: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
+    - Key: 1244631313
+      Value: {fileID: 11400000, guid: 3c94cd95e67fc1444ab7220cb8a098c0, type: 2}
+    - Key: 182344791
+      Value: {fileID: 11400000, guid: 40b670e3b6b68c54fbfe03f4de3320cd, type: 2}
+    - Key: 1340303201
+      Value: {fileID: 11400000, guid: 46de748d32ef4304bbb4be27d8857dcc, type: 2}
+    - Key: 144782802
+      Value: {fileID: 11400000, guid: 4a90c2e2985f273489b7e7f607ec1662, type: 2}
+    - Key: 1043368654
+      Value: {fileID: 11400000, guid: 5e339e7d543d2174092d6b0b73daea44, type: 2}
+    - Key: 1182031282
+      Value: {fileID: 11400000, guid: 5fc2b61e90e26244183cd70d9c6e7c68, type: 2}
+    - Key: 318300786
+      Value: {fileID: 11400000, guid: 694ae6a81faf52644b73168e7feeed0d, type: 2}
+    - Key: 334907994
+      Value: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
+    - Key: 690672657
+      Value: {fileID: 11400000, guid: 812e4c34b9bd30c46b9cac4a21a6cb57, type: 2}
+    - Key: 1297585482
+      Value: {fileID: 11400000, guid: 9cb8b9531f3ce3a46b500f83a038a4f9, type: 2}
+    - Key: 409535969
+      Value: {fileID: 11400000, guid: a0c22d88e1fb758459720d3947b7032f, type: 2}
+    - Key: 1241932080
+      Value: {fileID: 11400000, guid: a31e7d5628e6afb4fac40080f1d7594b, type: 2}
+    - Key: 1176105285
+      Value: {fileID: 11400000, guid: a97bcd043c540fc4282c21fd11ddefd1, type: 2}
+    - Key: 924176648
+      Value: {fileID: 11400000, guid: af2bcc642b8ba924ea7479755e3b377d, type: 2}
+    - Key: 1736676368
+      Value: {fileID: 11400000, guid: b09f5cff72b79d44baeafcd4be3552b8, type: 2}
+    - Key: 1073145235
+      Value: {fileID: 11400000, guid: b5ade679ffdf6114da5f7b4e37490bd6, type: 2}
+    - Key: 913092858
+      Value: {fileID: 11400000, guid: ba8a662a625a9ce488a13a6e44e56281, type: 2}
+    - Key: 795388589
+      Value: {fileID: 11400000, guid: df10f83fbbe72af499f26a451a03d0c8, type: 2}
+    - Key: 1420845220
+      Value: {fileID: 11400000, guid: f1db088461054dc4bbd0f95c4801a31c, type: 2}
+    - Key: 1549981139
+      Value: {fileID: 11400000, guid: f46b56b24486c024d82cf7847c1ebe10, type: 2}
+    - Key: 257580511
+      Value: {fileID: 11400000, guid: fb9c5642637c8594f8b5f6101a945301, type: 2}
+    - Key: 1695392603
+      Value: {fileID: 11400000, guid: fc943b81ebde061428b21972f6144f0f, type: 2}
 --- !u!1001 &1984793920
 PrefabInstance:
   m_ObjectHideFlags: 0
