@@ -19,13 +19,15 @@ public class GL_WaveSystem : MonoBehaviour
     private List<GL_EnemySpawner> _enemySpawners = new();
     
     private List<EnemySpawner> _currentWaveInfo;
+
+    private bool _isEndingWave = false;
     
     private void Awake()
     {
         GetSpawners();
         StartWave();
     }
-
+    
     private void GetSpawners()
     {
         GL_EnemySpawner[] spawners = GetComponentsInChildren<GL_EnemySpawner>(true);
@@ -37,14 +39,49 @@ public class GL_WaveSystem : MonoBehaviour
 
     private void StartWave()
     {
+        _isEndingWave = false;
+        _isWaveRunning = true;
         _currentWaveInfo = _waves[CurrentWave].SpawnInfo.ToList();
         GameEventEnum.OnWaveStarted.Invoke(new GameEventInfo());
+        Debug.Log("Started wave");
+    }
+    
+    private void StopWave()
+    {
+        _isWaveRunning = false;
+        _isEndingWave = false;
+        Debug.Log("Stopped wave");
     }
 
     private void Update()
     {
+        if (!_isWaveRunning)
+        {
+            return;
+        }
+        
         _waveTimer += Time.deltaTime;
 
+        if (!_isEndingWave)
+        {
+            UpdateEnemySpawners();
+            return;
+        }
+
+        foreach (GL_EnemySpawner spawner in _enemySpawners)
+        {
+            if (spawner.GetAliveEnemies().Count != 0)
+            {
+                continue;
+            }
+
+            StopWave();
+            
+        }
+    }
+
+    private void UpdateEnemySpawners()
+    {
         for (var i = 0; i < _currentWaveInfo.Count; i++)
         {
             EnemySpawner enemySpawner = _currentWaveInfo[i];
@@ -70,7 +107,7 @@ public class GL_WaveSystem : MonoBehaviour
 
             if (_currentWaveInfo.Count == 0)
             {
-                Debug.Log("end wave");
+                _isEndingWave = true;
             }
             GameEventEnum.SpawnEnemy.Invoke(eventInfo);
         }
