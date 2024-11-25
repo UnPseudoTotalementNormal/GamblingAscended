@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Enums;
 using Extensions;
 using GameEvents;
+using GameEvents.Enum;
 using Interactables;
 using Interactables.ObjectHolding_Placing;
 using Unity.Mathematics;
@@ -29,6 +30,7 @@ public class GL_ObjectHolder : MonoBehaviour
     
     private GameObject _drawObject;
     private bool _canPlaceObject;
+    private bool _isNightTime;
 
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
@@ -39,6 +41,8 @@ public class GL_ObjectHolder : MonoBehaviour
         _tryPickupEvent?.AddListener(OnTryPickup);
         _interactInputEvent?.AddListener(TryDrop);
         _tryPlaceInputEvent?.AddListener(TryPlace);
+        GameEventEnum.OnDayEnded.AddListener((eventInfo) => { _isNightTime = true; });
+        GameEventEnum.OnNightEnded.AddListener((eventInfo) => { _isNightTime = false; });
     }
 
     private void Update()
@@ -90,9 +94,15 @@ public class GL_ObjectHolder : MonoBehaviour
             _canPlaceObject = false;
         }
         Bounds worldObjectBounds = _drawObject.GetCollidersBounds();
+        int ignoreLayer = (int)LayerMaskEnum.IgnoreRaycast;
+        if (_isNightTime)
+        {
+            Debug.Log(":)");
+            ignoreLayer |= (int)LayerMaskEnum.Path;
+        }
         Collider[] overlapColliders = Physics.OverlapBox(worldObjectBounds.center,
             localObjectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
-            ~((int)LayerMaskEnum.IgnoreRaycast));
+            ~ignoreLayer);
 
         if (overlapColliders.Length > 0)
         {

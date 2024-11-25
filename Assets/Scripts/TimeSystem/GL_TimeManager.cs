@@ -25,12 +25,14 @@ public class GL_TimeManager : MonoBehaviour
     {
         DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 20)
             .SetEase(Ease.Linear);
+        GameEventEnum.OnDayEnded.Invoke(new GameEventInfo());
     }
 
     private void TimeSetDay(GameEventInfo eventInfo)
     {
         DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 20)
             .SetEase(Ease.Linear);
+        GameEventEnum.OnNightEnded.Invoke(new GameEventInfo());
     }
 
     private void Update()
