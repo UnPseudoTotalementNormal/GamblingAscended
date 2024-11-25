@@ -10,12 +10,38 @@ namespace BattleField.WaveSystem
         public List<EnemySpawner> SpawnInfo;
         
         [Serializable]
-        public struct EnemySpawner
+        public struct EnemySpawnerInfo
         {
             public int Enemy; //todo: replace with Scriptable
             public int Count;
             public float Interval;
             public float StartTime;
+        }
+        
+        [Serializable]
+        public struct EnemySpawner
+        {
+            public EnemySpawnerInfo Infos;
+
+            [HideInInspector] public int SpawnedCount;
+            [HideInInspector] public float NextSpawnAtTime;
+            
+            public bool ShouldSpawn(float waveTime)
+            {
+                if (Infos.StartTime > waveTime || SpawnedCount >= Infos.Count)
+                {
+                    return false;
+                }
+
+                if (NextSpawnAtTime > waveTime)
+                {
+                    return false;
+                }
+
+                NextSpawnAtTime = waveTime + Infos.Interval;
+                SpawnedCount++;
+                return true;
+            }
         }
     }
 }

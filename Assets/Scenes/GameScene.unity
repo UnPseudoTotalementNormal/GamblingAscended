@@ -6282,7 +6282,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7f986ed2ac70d4e874ccc91f233012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemy: {fileID: 6077906806579385801, guid: 1f68e99aacf2bf6488524cd1486be8a2, type: 3}
+  _enemyCharacter: {fileID: 6077906806579385801, guid: 1f68e99aacf2bf6488524cd1486be8a2, type: 3}
   _pathTracer: {fileID: 1637823337}
 --- !u!114 &972468373
 MonoBehaviour:

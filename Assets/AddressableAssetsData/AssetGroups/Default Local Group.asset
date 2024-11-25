@@ -51,6 +51,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 434147cb0d0098941adfa10bd6b4c158
+    m_Address: Assets/GameEvents/Battlefield/SpawnEnemy.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46de748d32ef4304bbb4be27d8857dcc
     m_Address: Assets/GameEvents/Battlefield/TakeDamage.asset
     m_ReadOnly: 0
@@ -89,6 +95,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 812e4c34b9bd30c46b9cac4a21a6cb57
     m_Address: Assets/GameEvents/Gambling/SM_TryPullLever.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 88e94871fdd3f04418f7b66551232f1f
+    m_Address: Assets/GameEvents/Wave/OnWaveStarted.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
