@@ -33,6 +33,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 1684ffd54695e5f449983d9cfe97f902
+    m_Address: Assets/GameEvents/DayNightCycle/TrySleep.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0
@@ -71,6 +77,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4a90c2e2985f273489b7e7f607ec1662
     m_Address: Assets/GameEvents/DayNightCycle/OnDayEnded.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 543b474451cf0cf4faf07dd1602a67d8
+    m_Address: Assets/GameEvents/DayNightCycle/OnSleep.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

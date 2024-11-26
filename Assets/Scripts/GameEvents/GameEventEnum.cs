@@ -19,6 +19,7 @@ ObjectPlaced = 1420845220,
 OnDayEnded = 144782802,
 OnNightEnded = 795388589,
 OnPathTraced = 1073145235,
+OnSleep = 742937595,
 OnWaveEnded = 1687208573,
 OnWaveStarted = 1685466937,
 PlaceInputStarted = 845041143,
@@ -33,6 +34,7 @@ SpawnEnemy = 518759709,
 TakeDamage = 1340303201,
 TryInsertMoney = 1043368654,
 TryPickup = 1695392603,
+TrySleep = 999174416,
             }
         }
         

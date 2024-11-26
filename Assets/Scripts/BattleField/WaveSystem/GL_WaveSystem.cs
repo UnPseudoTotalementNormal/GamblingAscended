@@ -25,9 +25,19 @@ public class GL_WaveSystem : MonoBehaviour
     private void Awake()
     {
         GetSpawners();
-        StartWave();
+        GameEventEnum.OnSleep.AddListener(OnSleep);
+    }
+
+    private void Start()
+    {
+        StopWave();
     }
     
+    private void OnSleep(GameEventInfo eventInfo)
+    {
+        Timer.Timer.NewTimer(7, StartWave);
+    }
+
     private void GetSpawners()
     {
         GL_EnemySpawner[] spawners = GetComponentsInChildren<GL_EnemySpawner>(true);
@@ -50,7 +60,6 @@ public class GL_WaveSystem : MonoBehaviour
     {
         _isWaveRunning = false;
         _isEndingWave = false;
-        CurrentWave += 1;
         GameEventEnum.OnWaveEnded.Invoke(new GameEventFloat { Value = CurrentWave });
         Debug.Log("Stopped wave");
     }
@@ -72,6 +81,7 @@ public class GL_WaveSystem : MonoBehaviour
 
         if (CheckEndingWave())
         {
+            CurrentWave += 1;
             StopWave();
         }
     }

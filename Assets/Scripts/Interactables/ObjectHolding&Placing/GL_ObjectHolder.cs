@@ -97,7 +97,6 @@ public class GL_ObjectHolder : MonoBehaviour
         int ignoreLayer = (int)LayerMaskEnum.IgnoreRaycast;
         if (_isNightTime)
         {
-            Debug.Log(":)");
             ignoreLayer |= (int)LayerMaskEnum.Path;
         }
         Collider[] overlapColliders = Physics.OverlapBox(worldObjectBounds.center,

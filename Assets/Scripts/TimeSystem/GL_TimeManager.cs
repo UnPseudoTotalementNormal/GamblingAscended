@@ -12,6 +12,14 @@ public class GL_TimeManager : MonoBehaviour
 
     [SerializeField] private GameEvent<GameEventInfo> _switchTimeOfDay;
 
+    public enum StateOfDay
+    {
+        Day,
+        Night,
+    }
+
+    public StateOfDay CurrentStateOfDay { get; private set; }
+
     private const float DAY_TIME = 14;
     private const float NIGHT_TIME = 24;
     
@@ -19,18 +27,32 @@ public class GL_TimeManager : MonoBehaviour
     {
         GameEventEnum.OnWaveStarted.AddListener(TimeSetDay);
         GameEventEnum.OnWaveEnded.AddListener(TimeSetNight);
+        GameEventEnum.TrySleep.AddListener(TrySleep);
+    }
+
+    private void TrySleep(GameEventInfo eventInfo)
+    {
+        if (CurrentStateOfDay != StateOfDay.Night)
+        {
+            return;
+        }
+        
+        TimeSetDay(new GameEventInfo());
+        GameEventEnum.OnSleep.Invoke(new GameEventInfo());
     }
 
     private void TimeSetNight(GameEventInfo eventInfo)
     {
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 20)
+        CurrentStateOfDay = StateOfDay.Night;
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 10)
             .SetEase(Ease.Linear);
         GameEventEnum.OnDayEnded.Invoke(new GameEventInfo());
     }
 
     private void TimeSetDay(GameEventInfo eventInfo)
     {
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 20)
+        CurrentStateOfDay = StateOfDay.Day;
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 10)
             .SetEase(Ease.Linear);
         GameEventEnum.OnNightEnded.Invoke(new GameEventInfo());
     }
@@ -63,18 +85,5 @@ public class GL_TimeManager : MonoBehaviour
     private void OnValidate()
     {
         UpdateLighting(_timeOfDay/24f);
-        if (_directionalLight)
-        {
-            return;
-        }
-
-        if (RenderSettings.sun != null)
-        {
-            _directionalLight = RenderSettings.sun;
-        }
-        else
-        {
-            _directionalLight = gameObject.GetComponent<Light>();
-        }
     }
 }
