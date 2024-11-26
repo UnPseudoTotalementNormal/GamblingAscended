@@ -45,6 +45,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 364c6f49136c3a942b7d38c38c9e3477
+    m_Address: Assets/GameEvents/AskAnswer/AnswerCanPathTrace.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3c7c4e181661abb45ae89516f5dbfec4
     m_Address: Assets/GameEvents/Input/InteractInputStarted.asset
     m_ReadOnly: 0
@@ -83,6 +89,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 543b474451cf0cf4faf07dd1602a67d8
     m_Address: Assets/GameEvents/DayNightCycle/OnSleep.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 5927a2af4e08bb641856a5d46b8f3676
+    m_Address: Assets/GameEvents/AskAnswer/AskCanPathTrace.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

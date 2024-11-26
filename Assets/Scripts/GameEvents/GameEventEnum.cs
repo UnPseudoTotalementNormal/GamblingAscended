@@ -4,6 +4,8 @@
             public enum GameEventEnum
             {
 
+AnswerCanPathTrace = 331542624,
+AskCanPathTrace = 354859126,
 BaseDestroyed = 1297585482,
 CashoutMoney = 982266853,
 InsertedMoney = 334907994,

@@ -8,6 +8,7 @@ using Interactables;
 using Interactables.ObjectHolding_Placing;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(GL_InteracterRaycaster))]
 public class GL_ObjectHolder : MonoBehaviour
@@ -34,7 +35,9 @@ public class GL_ObjectHolder : MonoBehaviour
 
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
+    private bool _canTracePath;
 
+    
     private void Awake()
     {
         _interacterRaycaster = GetComponent<GL_InteracterRaycaster>();
@@ -43,6 +46,18 @@ public class GL_ObjectHolder : MonoBehaviour
         _tryPlaceInputEvent?.AddListener(TryPlace);
         GameEventEnum.OnDayEnded.AddListener((eventInfo) => { _isNightTime = true; });
         GameEventEnum.OnNightEnded.AddListener((eventInfo) => { _isNightTime = false; });
+        GameEventEnum.AnswerCanPathTrace.AddListener(OnCanPathTraceAnswer);
+        GameEventEnum.AnswerCanPathTrace.AddListener(OnAnswerCanPathTrace);
+    }
+
+    private void OnCanPathTraceAnswer(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventBool gameEventBool))
+        {
+            return;
+        }
+        
+        _canTracePath = gameEventBool.Value;
     }
 
     private void Update()
@@ -108,6 +123,12 @@ public class GL_ObjectHolder : MonoBehaviour
             _canPlaceObject = false;
         }
 
+        if (_canPlaceObject)
+        {
+            GameEventEnum.AskCanPathTrace.Invoke(new GameEventInfo { Ids = new[] { gameObject.GetGameID() }});
+            _canPlaceObject = _canTracePath;
+        }
+
         if (_currentPlacingMaterial)
         {
             _currentPlacingMaterial.color = _canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
@@ -126,6 +147,13 @@ public class GL_ObjectHolder : MonoBehaviour
         {
             collider.enabled = false;
         }
+        
+        var obstacle = _drawObject.AddComponent<NavMeshObstacle>();
+        obstacle.shape = NavMeshObstacleShape.Box;
+        obstacle.carving = true;
+        obstacle.carveOnlyStationary = false;
+        obstacle.center = localObjectBounds.center;
+        obstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
         
         _drawObject.SetActive(true);
     }
@@ -152,6 +180,13 @@ public class GL_ObjectHolder : MonoBehaviour
             return;
         }
         
+        GameEventEnum.AskCanPathTrace.Invoke(new GameEventInfo { Ids = new[] { gameObject.GetGameID() }});
+        
+        if (!_canTracePath)
+        {
+            return;
+        }
+        
         var currentPlaceable = _currentHoldable.GetPlaceable();
         currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
         if (currentPlaceable.DestroyItemOnPlaced)
@@ -160,6 +195,17 @@ public class GL_ObjectHolder : MonoBehaviour
             Reset();
         }
 
+    }
+
+    private void OnAnswerCanPathTrace(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventBool gameEventBool))
+        {
+            return;
+        }
+
+        Debug.Log(gameEventBool.Value);
+        _canTracePath = gameEventBool.Value;
     }
 
     public void OnTryPickup(GameEventInfo eventInfo)
