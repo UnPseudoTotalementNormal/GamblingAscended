@@ -95,7 +95,7 @@ public class GL_PathTracer : MonoBehaviour
         _pathCollider = new GameObject("PathCollider");
         Transform pathColliderTransform = _pathCollider.transform;
         pathColliderTransform.SetParent(transform);
-        _pathCollider.layer = (int)(Math.Log((int)LayerMaskEnum.Path) / Math.Log(2));
+        _pathCollider.layer = LayerMaskEnum.Path.GetLayer();
         for (int i = 0; i < path.corners.Length; i++)
         {
             if (i == 0)

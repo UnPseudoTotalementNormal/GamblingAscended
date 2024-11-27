@@ -2,6 +2,7 @@ using System;
 using GameEvents;
 using Towers.Interface;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -12,11 +13,14 @@ namespace Towers
         [field:SerializeField] public float AttackCooldown { get; private set; }
         public GL_EnemyDetector EnemyDetector { get; private set; }
 
-        private GameEventEnum _onAttackEvent;
+        protected bool _canAttack = false;
+
+        protected GameEventEnum _onAttackEvent;
 
         private void Awake()
         {
-            EnemyDetector = GetComponent<GL_EnemyDetector>();
+            EnemyDetector = gameObject.AddComponent<GL_EnemyDetector>();
+            EnemyDetector.Init(AttackRange);
         }
 
 
@@ -26,8 +30,6 @@ namespace Towers
             {
                 return;
             }
-            
-            Debug.Log(EnemyDetector.GetFirstEnemy().name);
         }
     }
 }
