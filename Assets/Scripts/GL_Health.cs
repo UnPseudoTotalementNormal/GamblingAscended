@@ -1,31 +1,24 @@
 using System;
 using System.Collections.Generic;
 using GameEvents;
+using GameEvents.Enum;
 using UnityEngine;
 
 public class GL_Health : MonoBehaviour
 {
     public float CurrentHealth;
     public float MaxHealth;
-
-    [SerializeField] private List<GameEvent<GameEventInfo>> _takeDamageEvents;
-    
-    [SerializeField] private GameEvent<GameEventInfo> _onTakeDamageEvent;
-    [SerializeField] private GameEvent<GameEventInfo> _onDeathEvent;
     
     private void Awake()
     {
         CurrentHealth = MaxHealth;
         
-        foreach (GameEvent<GameEventInfo> takeDamageEvent in _takeDamageEvents)
-        {
-            takeDamageEvent.AddListener(OnTakeDamage);
-        }
+        GameEventEnum.TakeDamage.AddListener(OnTakeDamage);
     }
 
-    private void OnTakeDamage(GameEventInfo obj)
+    private void OnTakeDamage(GameEventInfo eventInfo)
     {
-        if (!obj.TryTo(out GameEventDamage damageInfo))
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventDamage damageInfo))
         {
             return;
         }
@@ -36,7 +29,7 @@ public class GL_Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        _onTakeDamageEvent?.Invoke(new GameEventFloat { Value = CurrentHealth });
+        GameEventEnum.OnDamageTaken.Invoke(new GameEventFloat { Value = damage });
         
         if (CurrentHealth > 0)
         {
@@ -44,6 +37,6 @@ public class GL_Health : MonoBehaviour
         }
         
         CurrentHealth = 0;
-        _onDeathEvent?.Invoke(new GameEventInfo());
+        GameEventEnum.OnDeath.Invoke(new GameEventInfo());
     }
 }

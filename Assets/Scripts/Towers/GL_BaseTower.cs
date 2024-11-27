@@ -1,5 +1,7 @@
 using System;
+using Character.Enemy;
 using GameEvents;
+using GameEvents.Enum;
 using Towers.Interface;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -12,6 +14,7 @@ namespace Towers
         [field:SerializeField] public float AttackRadius { get; private set;  }
         [field:SerializeField] public float AttackCooldown { get; private set; }
         public GL_EnemyDetector EnemyDetector { get; private set; }
+        private float _currentAttackCooldown;
 
         protected bool _canAttack = false;
 
@@ -26,10 +29,27 @@ namespace Towers
 
         private void Update()
         {
-            if (EnemyDetector.EnemiesInRange.Count <= 0)
+            _currentAttackCooldown -= Time.deltaTime;
+            TryAttack();
+        }
+
+        private void TryAttack()
+        {
+            if (_currentAttackCooldown >= 0 || EnemyDetector.EnemiesInRange.Count <= 0)
             {
                 return;
             }
+
+            _currentAttackCooldown = AttackCooldown;
+
+            GL_BaseEnemy shootingEnemy = EnemyDetector.GetFirstEnemy();
+            GameEventDamage damageEvent = new GameEventDamage
+            {
+                Ids = new[] { EnemyDetector.GetFirstEnemy().gameObject.GetGameID() },
+                Damage = AttackDamage,
+                Sender = gameObject,
+            };
+            GameEventEnum.TakeDamage.Invoke(damageEvent);
         }
     }
 }

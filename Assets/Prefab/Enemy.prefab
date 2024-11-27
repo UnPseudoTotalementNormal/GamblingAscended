@@ -74,6 +74,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2127146696485877804, guid: 7848b104205414749b5365574ab22e23, type: 3}
       insertIndex: -1
       addedObject: {fileID: -2859713339808130345}
+    - targetCorrespondingSourceObject: {fileID: 2127146696485877804, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3302455175477785249}
   m_SourcePrefab: {fileID: 100100000, guid: 7848b104205414749b5365574ab22e23, type: 3}
 --- !u!1 &6077906806579385801 stripped
 GameObject:
@@ -109,3 +112,20 @@ MonoBehaviour:
   CurrentWaypoint: {x: 0, y: 0, z: 0}
   CurrentDistance: 0
   _onPathTraced: {fileID: 0}
+--- !u!114 &3302455175477785249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6077906806579385801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9162864833dc45719ea88ca48d6faa44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentHealth: 0
+  MaxHealth: 15
+  _takeDamageEvents: []
+  _onTakeDamageEvent: {fileID: 0}
+  _onDeathEvent: {fileID: 0}

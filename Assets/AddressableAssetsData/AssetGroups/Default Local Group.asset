@@ -111,6 +111,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 62795c314da0e4443a68b9e35651da06
+    m_Address: Assets/GameEvents/Battlefield/Health/OnDamageTaken.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 694ae6a81faf52644b73168e7feeed0d
     m_Address: Assets/GameEvents/Player/LinkHUDWithPlayer.asset
     m_ReadOnly: 0
@@ -125,6 +131,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ea9ec5cf67f6f14bb2e32d7fa83a38a
     m_Address: Assets/GameEvents/Trigger/OnTriggerExit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 804c43b31b95b994d93b8175d4c6122c
+    m_Address: Assets/GameEvents/Battlefield/Health/OnDeath.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

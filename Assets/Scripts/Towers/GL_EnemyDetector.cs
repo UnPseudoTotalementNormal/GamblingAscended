@@ -38,6 +38,7 @@ namespace Towers
             triggerCollider.radius = DetectionRange;
             triggerCollider.isTrigger = true;
             triggerObject.layer = LayerMaskEnum.IgnoreRaycast.GetLayer();
+            triggerObject.AddComponent<GL_TriggerHandler>();
         }
 
 
