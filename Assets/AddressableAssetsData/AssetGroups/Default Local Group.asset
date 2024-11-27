@@ -123,6 +123,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7ea9ec5cf67f6f14bb2e32d7fa83a38a
+    m_Address: Assets/GameEvents/Trigger/OnTriggerExit.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 812e4c34b9bd30c46b9cac4a21a6cb57
     m_Address: Assets/GameEvents/Gambling/SM_TryPullLever.asset
     m_ReadOnly: 0
@@ -131,6 +137,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88e94871fdd3f04418f7b66551232f1f
     m_Address: Assets/GameEvents/Wave/OnWaveStarted.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 8d754476585422146968e337949a8cc1
+    m_Address: Assets/GameEvents/Trigger/OnTriggerEnter.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
@@ -179,6 +191,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba8a662a625a9ce488a13a6e44e56281
     m_Address: Assets/GameEvents/Interactable/InteractPointerEnter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d8d49c66598ce9f47bcf6318c3e7ab2b
+    m_Address: Assets/GameEvents/Trigger/OnTriggerUpdate.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

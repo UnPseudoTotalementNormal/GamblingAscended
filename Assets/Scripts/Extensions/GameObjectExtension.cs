@@ -28,6 +28,11 @@ namespace Extensions
             
             foreach (var collider in gameObject.GetComponentsInChildren<Collider>(true))
             {
+                if (collider.isTrigger)
+                {
+                    continue;
+                }
+                
                 bool disableCollGameobject = false;
                 if (!collider.gameObject.activeSelf && !ignoreDisabled)
                 {

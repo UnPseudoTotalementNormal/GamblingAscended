@@ -83,6 +83,12 @@ namespace GameEvents
     {
         public GL_EnemyObject EnemyObject;
     }
+
+    public class GameEventTriggerHandler : GameEventInfo
+    {
+        public Collider TriggerValue;
+        public List<Collider> TriggerList;
+    }
     
     #endregion
 }
