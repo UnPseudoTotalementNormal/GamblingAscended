@@ -36,8 +36,9 @@ public class GL_ObjectHolder : MonoBehaviour
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
     private bool _canTracePath;
+    private NavMeshObstacle _drawObjectObstacle;
 
-    
+
     private void Awake()
     {
         _interacterRaycaster = GetComponent<GL_InteracterRaycaster>();
@@ -148,12 +149,12 @@ public class GL_ObjectHolder : MonoBehaviour
             collider.enabled = false;
         }
         
-        var obstacle = _drawObject.AddComponent<NavMeshObstacle>();
-        obstacle.shape = NavMeshObstacleShape.Box;
-        obstacle.carving = true;
-        obstacle.carveOnlyStationary = false;
-        obstacle.center = localObjectBounds.center;
-        obstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
+        _drawObjectObstacle = _drawObject.AddComponent<NavMeshObstacle>();
+        _drawObjectObstacle.shape = NavMeshObstacleShape.Box;
+        _drawObjectObstacle.carving = true;
+        _drawObjectObstacle.carveOnlyStationary = false;
+        _drawObjectObstacle.center = localObjectBounds.center;
+        _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
         
         _drawObject.SetActive(true);
     }
@@ -186,6 +187,8 @@ public class GL_ObjectHolder : MonoBehaviour
         {
             return;
         }
+
+        _drawObjectObstacle.enabled = false;
         
         var currentPlaceable = _currentHoldable.GetPlaceable();
         currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
@@ -195,6 +198,7 @@ public class GL_ObjectHolder : MonoBehaviour
             Reset();
         }
 
+        _drawObjectObstacle.enabled = true;
     }
 
     private void OnAnswerCanPathTrace(GameEventInfo eventInfo)
