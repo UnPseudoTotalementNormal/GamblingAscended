@@ -53,7 +53,6 @@ public class GL_WaveSystem : MonoBehaviour
         _isWaveRunning = true;
         _currentWaveInfo = _waves[CurrentWave].SpawnInfo.ToList();
         GameEventEnum.OnWaveStarted.Invoke(new GameEventFloat { Value = CurrentWave });
-        Debug.Log("Started wave");
     }
     
     private void StopWave()
@@ -61,7 +60,6 @@ public class GL_WaveSystem : MonoBehaviour
         _isWaveRunning = false;
         _isEndingWave = false;
         GameEventEnum.OnWaveEnded.Invoke(new GameEventFloat { Value = CurrentWave });
-        Debug.Log("Stopped wave");
     }
 
     private void Update()
