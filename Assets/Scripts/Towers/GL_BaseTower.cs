@@ -9,7 +9,7 @@ namespace Towers
     public class GL_BaseTower : MonoBehaviour, GL_ITower
     {
         [field:SerializeField] public float AttackDamage { get; private set; }
-        [field:SerializeField] public float AttackRange { get; private set;  }
+        [field:SerializeField] public float AttackRadius { get; private set;  }
         [field:SerializeField] public float AttackCooldown { get; private set; }
         public GL_EnemyDetector EnemyDetector { get; private set; }
 
@@ -20,7 +20,7 @@ namespace Towers
         private void Awake()
         {
             EnemyDetector = gameObject.AddComponent<GL_EnemyDetector>();
-            EnemyDetector.Init(AttackRange);
+            EnemyDetector.Init(AttackRadius);
         }
 
 

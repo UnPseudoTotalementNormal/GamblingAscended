@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using Character.Enemy;
 using Enums;
 using Extensions;
 using GameEvents;
 using GameEvents.Enum;
 using Interactables;
 using Interactables.ObjectHolding_Placing;
+using Towers.Interface;
 using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.AI;
@@ -30,13 +32,16 @@ public class GL_ObjectHolder : MonoBehaviour
     [SerializeField] private Vector3 _placeRotation;
     
     private GameObject _drawObject;
+    private NavMeshObstacle _drawObjectObstacle;
+    private GameObject _drawObjectRangePreview;
+    [SerializeField] private Mesh _previewMesh;
     private bool _canPlaceObject;
     private bool _isNightTime;
 
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
     private bool _canTracePath;
-    private NavMeshObstacle _drawObjectObstacle;
+    
 
 
     private void Awake()
@@ -129,10 +134,10 @@ public class GL_ObjectHolder : MonoBehaviour
             GameEventEnum.AskCanPathTrace.Invoke(new GameEventInfo { Ids = new[] { gameObject.GetGameID() }});
             _canPlaceObject = _canTracePath;
         }
-
+        
         if (_currentPlacingMaterial)
         {
-            _currentPlacingMaterial.color = _canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
+            ChangePlacingMaterialColor(hitInfo.collider);
         }
         
         
@@ -155,8 +160,29 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObjectObstacle.carveOnlyStationary = false;
         _drawObjectObstacle.center = localObjectBounds.center;
         _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
+
+        GL_IPlaceable placeableObject = _currentHoldable.GetPlaceable();
+        if (placeableObject != null && placeableObject.PlaceableObject.TryGetComponent(out GL_ITower placeableTower))
+        {
+            _drawObjectRangePreview = new GameObject("RangePreview");
+            _drawObjectRangePreview.transform.SetParent(_drawObject.transform);
+            _drawObjectRangePreview.AddComponent<MeshFilter>().mesh = _previewMesh;
+            _drawObjectRangePreview.AddComponent<MeshRenderer>().material = _currentPlacingMaterial;
+            _drawObjectRangePreview.transform.localPosition = new Vector3(0, -localObjectBounds.extents.y + localObjectBounds.center.y);
+            _drawObjectRangePreview.transform.localScale = new Vector3(placeableTower.AttackRadius * 2, 0.5f, placeableTower.AttackRadius * 2);
+        }
+        
         
         _drawObject.SetActive(true);
+    }
+
+    private void ChangePlacingMaterialColor(bool isOnGround)
+    {
+        _currentPlacingMaterial.color = _canPlaceObject ? _canPlaceColor : _cannotPlaceColor;
+        if (_drawObjectRangePreview)
+        {
+            _drawObjectRangePreview.SetActive(isOnGround);
+        }
     }
 
     private void SetPlacingMaterials(GameObject objectToChange)

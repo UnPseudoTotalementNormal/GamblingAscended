@@ -386,7 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AttackDamage>k__BackingField: 0
-  <AttackRange>k__BackingField: 5
+  <AttackRadius>k__BackingField: 5
   <AttackCooldown>k__BackingField: 0
 --- !u!114 &1514087784718910685
 MonoBehaviour:

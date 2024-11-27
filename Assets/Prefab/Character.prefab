@@ -473,10 +473,11 @@ MonoBehaviour:
   _interactInputEvent: {fileID: 11400000, guid: 3c7c4e181661abb45ae89516f5dbfec4, type: 2}
   _tryPlaceInputEvent: {fileID: 11400000, guid: 08d1e8a7cf52ed6438f85a6f3007cc68, type: 2}
   _placingMaterial: {fileID: 2100000, guid: 9b1e6bcd4a302e847ab36986cec9822d, type: 2}
-  _dropMaxDistance: 5
+  _dropMaxDistance: 10
   _canPlaceColor: {r: 0, g: 0.5686275, b: 0, a: 0.39215687}
   _cannotPlaceColor: {r: 0.5686275, g: 0, b: 0, a: 0.39215687}
   _placeRotation: {x: 0, y: 90, z: 0}
+  _previewMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!20 &7073471408122030742
 Camera:
   m_ObjectHideFlags: 0
