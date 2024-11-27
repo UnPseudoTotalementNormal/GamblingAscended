@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Character.Enemy;
 using UnityEngine;
 
 namespace GameEvents
@@ -76,6 +77,11 @@ namespace GameEvents
     public class GameEventPathTraced : GameEventInfo
     {
         public Dictionary<float, Vector3> PathTracerWaypoints;
+    }
+
+    public class GameEventSpawnEnemy : GameEventInfo
+    {
+        public GL_EnemyObject EnemyObject;
     }
     
     #endregion

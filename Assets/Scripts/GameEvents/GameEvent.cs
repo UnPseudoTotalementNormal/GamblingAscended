@@ -32,7 +32,7 @@ namespace GameEvents
         public void RemoveListener(Action<T> action) => _actionList.Remove(action);
         
         // ReSharper disable Unity.PerformanceAnalysis
-        public void Invoke(T value)
+        public virtual void Invoke(T value)
         {
             _actionList.RemoveAll(a => a == null);
             foreach (Action<T> action in _actionList.ToList())

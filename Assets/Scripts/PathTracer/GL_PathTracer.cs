@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using Enums;
 using GameEvents;
+using GameEvents.Enum;
 using NavmeshTools;
 using Unity.AI.Navigation;
 using UnityEngine;
@@ -33,23 +34,22 @@ public class GL_PathTracer : MonoBehaviour
     {
         TracePath();
         _objectPlacedEvent?.AddListener(RetracePath);
-        //_askCanPathTrace?.AddListener(AnswerCanPathTrace);
+        GameEventEnum.AskCanPathTrace.AddListener(AnswerCanPathTrace);
     }
 
-    /*private void AnswerCanPathTrace(GameEventInfo eventInfo)
+    private void AnswerCanPathTrace(GameEventInfo eventInfo)
     {
-        bool canPathTrace = false;
-
         NavMeshPath tryPath = new();
-        canPathTrace = GL_NavmeshUtils.TryGetPathTo(_startTransform.position, _endTransform.position, ref tryPath);
+        bool canPathTrace = GL_NavmeshUtils.TryGetPathTo(_startTransform.position, _endTransform.position, ref tryPath);
         
         var answerInfo = new GameEventBool()
         {
+            Ids = eventInfo.Ids,
             Sender = gameObject,
             Value = canPathTrace,
         };
-        _anwserCanPathTrace?.Invoke(answerInfo);
-    }*/
+        GameEventEnum.AnswerCanPathTrace.Invoke(answerInfo);
+    }
 
     private void RetracePath(GameEventInfo eventInfo)
     {

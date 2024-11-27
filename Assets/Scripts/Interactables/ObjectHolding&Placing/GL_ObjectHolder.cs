@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Enums;
 using Extensions;
 using GameEvents;
+using GameEvents.Enum;
 using Interactables;
 using Interactables.ObjectHolding_Placing;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.AI;
 
 [RequireComponent(typeof(GL_InteracterRaycaster))]
 public class GL_ObjectHolder : MonoBehaviour
@@ -29,8 +31,12 @@ public class GL_ObjectHolder : MonoBehaviour
     
     private GameObject _drawObject;
     private bool _canPlaceObject;
+    private bool _isNightTime;
 
     private const float OBJECT_SKIN_WIDTH = 0.01f;
+
+    private bool _canTracePath;
+    private NavMeshObstacle _drawObjectObstacle;
 
 
     private void Awake()
@@ -39,6 +45,20 @@ public class GL_ObjectHolder : MonoBehaviour
         _tryPickupEvent?.AddListener(OnTryPickup);
         _interactInputEvent?.AddListener(TryDrop);
         _tryPlaceInputEvent?.AddListener(TryPlace);
+        GameEventEnum.OnDayEnded.AddListener((eventInfo) => { _isNightTime = true; });
+        GameEventEnum.OnNightEnded.AddListener((eventInfo) => { _isNightTime = false; });
+        GameEventEnum.AnswerCanPathTrace.AddListener(OnCanPathTraceAnswer);
+        GameEventEnum.AnswerCanPathTrace.AddListener(OnAnswerCanPathTrace);
+    }
+
+    private void OnCanPathTraceAnswer(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventBool gameEventBool))
+        {
+            return;
+        }
+        
+        _canTracePath = gameEventBool.Value;
     }
 
     private void Update()
@@ -90,13 +110,24 @@ public class GL_ObjectHolder : MonoBehaviour
             _canPlaceObject = false;
         }
         Bounds worldObjectBounds = _drawObject.GetCollidersBounds();
+        int ignoreLayer = (int)LayerMaskEnum.IgnoreRaycast;
+        if (_isNightTime)
+        {
+            ignoreLayer |= (int)LayerMaskEnum.Path;
+        }
         Collider[] overlapColliders = Physics.OverlapBox(worldObjectBounds.center,
             localObjectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
-            ~((int)LayerMaskEnum.IgnoreRaycast));
+            ~ignoreLayer);
 
         if (overlapColliders.Length > 0)
         {
             _canPlaceObject = false;
+        }
+
+        if (_canPlaceObject)
+        {
+            GameEventEnum.AskCanPathTrace.Invoke(new GameEventInfo { Ids = new[] { gameObject.GetGameID() }});
+            _canPlaceObject = _canTracePath;
         }
 
         if (_currentPlacingMaterial)
@@ -117,6 +148,13 @@ public class GL_ObjectHolder : MonoBehaviour
         {
             collider.enabled = false;
         }
+        
+        _drawObjectObstacle = _drawObject.AddComponent<NavMeshObstacle>();
+        _drawObjectObstacle.shape = NavMeshObstacleShape.Box;
+        _drawObjectObstacle.carving = true;
+        _drawObjectObstacle.carveOnlyStationary = false;
+        _drawObjectObstacle.center = localObjectBounds.center;
+        _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
         
         _drawObject.SetActive(true);
     }
@@ -143,6 +181,15 @@ public class GL_ObjectHolder : MonoBehaviour
             return;
         }
         
+        GameEventEnum.AskCanPathTrace.Invoke(new GameEventInfo { Ids = new[] { gameObject.GetGameID() }});
+        
+        if (!_canTracePath)
+        {
+            return;
+        }
+
+        _drawObjectObstacle.enabled = false;
+        
         var currentPlaceable = _currentHoldable.GetPlaceable();
         currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
         if (currentPlaceable.DestroyItemOnPlaced)
@@ -151,6 +198,18 @@ public class GL_ObjectHolder : MonoBehaviour
             Reset();
         }
 
+        _drawObjectObstacle.enabled = true;
+    }
+
+    private void OnAnswerCanPathTrace(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventBool gameEventBool))
+        {
+            return;
+        }
+
+        Debug.Log(gameEventBool.Value);
+        _canTracePath = gameEventBool.Value;
     }
 
     public void OnTryPickup(GameEventInfo eventInfo)
