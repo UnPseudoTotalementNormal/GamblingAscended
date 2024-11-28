@@ -14,7 +14,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
         [field: SerializeField] public bool DestroyItemOnPlaced { get; private set; } = true;
         [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
         
-        public void OnPlaced()
+        public virtual void OnPlaced(GameObject spawnedObject)
         {
             
         }
@@ -28,6 +28,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
                 Ids = new[] { gameObject.GetGameID() },
                 Sender = gameObject,
             };
+            OnPlaced(newObject);
             _objectPlacedEvent?.Invoke(eventInfo);
         }
 
@@ -42,13 +43,6 @@ namespace Interactables.ObjectHolding_Placing.Bases
             }
             
             return false;
-        }
-        
-        [ContextMenu("Print Bounds")]
-        public void PrintBounds()
-        {
-            var bounds = gameObject.GetCollidersBounds();
-            Debug.Log($"Center: {bounds.center}, Extents: {bounds.extents}");
         }
     }
 }

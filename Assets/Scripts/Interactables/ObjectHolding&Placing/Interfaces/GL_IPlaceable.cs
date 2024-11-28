@@ -6,7 +6,7 @@ namespace Interactables.ObjectHolding_Placing
     {
         public GameObject PlaceableObject { get; }
         public bool DestroyItemOnPlaced { get; }
-        public void OnPlaced();
+        public virtual void OnPlaced(GameObject spawnedObject){}
         public void Place(Vector3 position, Vector3 rotation);
         public bool CanBePlacedAt(Vector3 position);
     }

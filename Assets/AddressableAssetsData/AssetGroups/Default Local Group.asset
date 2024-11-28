@@ -231,6 +231,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e86f6935b75849347a36e15c132aa9a2
+    m_Address: Assets/GameEvents/Battlefield/SetTowerInfo.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f1db088461054dc4bbd0f95c4801a31c
     m_Address: Assets/GameEvents/Battlefield/ObjectPlaced.asset
     m_ReadOnly: 0
