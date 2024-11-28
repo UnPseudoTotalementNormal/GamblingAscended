@@ -234,7 +234,6 @@ public class GL_ObjectHolder : MonoBehaviour
             return;
         }
 
-        Debug.Log(gameEventBool.Value);
         _canTracePath = gameEventBool.Value;
     }
 
