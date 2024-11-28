@@ -48,6 +48,12 @@ namespace Towers
                 return;
             }
             
+            Attack();
+        }
+
+        public void Attack()
+        {
+            GL_BaseEnemy shootingEnemy = EnemyDetector.GetFirstEnemy();
             GameEventDamage damageEvent = new GameEventDamage
             {
                 Ids = new[] { shootingEnemy.gameObject.GetGameID() },

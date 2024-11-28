@@ -7,5 +7,7 @@ namespace Towers.Interface
         public float AttackCooldown { get; }
         
         public GL_EnemyDetector EnemyDetector { get; }
+
+        public void Attack();
     }
 }

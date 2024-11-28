@@ -10,5 +10,6 @@ namespace Character.Enemy
         public float Damage;
         public float Health;
         public float MoveSpeed;
+        public float MoneyOnDeath;
     }
 }
