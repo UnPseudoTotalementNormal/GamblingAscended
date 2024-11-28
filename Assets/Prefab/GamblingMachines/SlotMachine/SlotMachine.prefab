@@ -129,6 +129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 039c083a226047e8baec1031176b94cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BaseMoney>k__BackingField: 0
   _moneyInsertedEvent: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
   _playMachineEvent: {fileID: 11400000, guid: af2bcc642b8ba924ea7479755e3b377d, type: 2}
   _cashoutMoneyEvent: {fileID: 11400000, guid: 07536ea0bc080d54cb1062c7395d64de, type: 2}
@@ -164,7 +165,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7329908716490042721
 Transform:
@@ -335,7 +336,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2720919517155579097
 Transform:
@@ -688,7 +689,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &394963373359796383
 Transform:
