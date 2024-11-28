@@ -153,6 +153,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89fdca7839951e740b0ecef8e6c91233
+    m_Address: Assets/GameEvents/Battlefield/PickupPurse.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 8d754476585422146968e337949a8cc1
     m_Address: Assets/GameEvents/Trigger/OnTriggerEnter.asset
     m_ReadOnly: 0

@@ -63,6 +63,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f86dc9e945472c449c930a19438f02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BaseMoney>k__BackingField: 0
   DropPurseOnDeath: 0
   _pursePrefab: {fileID: 1979312531032683301}
 --- !u!114 &7589534902082743344
@@ -79,7 +80,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InteractPointerEnterEvent>k__BackingField: 913092858
   <InteractPointerExitEvent>k__BackingField: 753738431
-  <InteractionEvent>k__BackingField: 409535969
+  <InteractionEvent>k__BackingField: 2138537822
 --- !u!114 &7998828817488299444
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -112,14 +113,14 @@ Rigidbody:
     m_Bits: 0
   m_ExcludeLayers:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 768
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!33 &6684162845391579693
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -23,7 +23,7 @@ namespace GameEvents
         
         private void OnDestroy()
         {
-            _Ids.Remove(_id);
+            //_Ids.Remove(_id);
         }
 
         // ReSharper disable Unity.PerformanceAnalysis

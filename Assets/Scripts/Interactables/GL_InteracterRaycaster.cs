@@ -1,4 +1,5 @@
 using System;
+using Enums;
 using GameEvents;
 using Possess;
 using UnityEngine;
@@ -82,7 +83,8 @@ namespace Interactables
         private bool TryGetInteractable(out GL_IInteractable interactable)
         {
             Ray ray = new Ray(_transform.position, _transform.forward);
-            if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastLength))
+            if (!Physics.Raycast(ray, out RaycastHit hitInfo, _raycastLength, 
+                    ~((int)LayerMaskEnum.Path | (int)LayerMaskEnum.IgnoreRaycast)))
             {
                 interactable = null;
                 return false;

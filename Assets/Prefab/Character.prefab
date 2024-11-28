@@ -275,6 +275,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f86dc9e945472c449c930a19438f02d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <BaseMoney>k__BackingField: 15
   DropPurseOnDeath: 0
   _pursePrefab: {fileID: 1979312531032683301, guid: b75270da2f6c1494694cb2d5a16f2eb0, type: 3}
 --- !u!1 &2663315861600407246

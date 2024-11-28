@@ -10,6 +10,7 @@ namespace GamblingScripts.BasicComponents
     public class GL_CoinHolder : MonoBehaviour, GL_ICoinHolder
     {
         public float MoneyInserted { get; private set; } = 0;
+        [field:SerializeField] public float BaseMoney { get; private set; }
 
         [SerializeField] private GameEvent<GameEventInfo> _moneyInsertedEvent;
         [SerializeField] private GameEvent<GameEventInfo> _playMachineEvent;
@@ -20,6 +21,7 @@ namespace GamblingScripts.BasicComponents
             _moneyInsertedEvent?.AddListener(OnInsertedMoney);
             _playMachineEvent?.AddListener(OnPlayMachine);
             _cashoutMoneyEvent?.AddListener(OnCashoutMoney);
+            AddMoney(BaseMoney);
         }
 
         private void OnCashoutMoney(GameEventInfo eventInfo)

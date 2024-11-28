@@ -27,6 +27,15 @@ namespace Interactables
 
         public void OnExit()
         {
+            if (!this) //check if object is destroyed
+            {
+                var nullEventInfo = new GameEventGameObject
+                {
+                    Ids = new[] { -1 },
+                };
+                InteractPointerExitEvent.Invoke(nullEventInfo);
+                return;
+            }
             var eventInfo = new GameEventGameObject
             {
                 Value = gameObject,
