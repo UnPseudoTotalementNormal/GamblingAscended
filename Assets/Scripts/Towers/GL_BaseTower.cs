@@ -43,9 +43,14 @@ namespace Towers
             _currentAttackCooldown = AttackCooldown;
 
             GL_BaseEnemy shootingEnemy = EnemyDetector.GetFirstEnemy();
+            if (!shootingEnemy)
+            {
+                return;
+            }
+            
             GameEventDamage damageEvent = new GameEventDamage
             {
-                Ids = new[] { EnemyDetector.GetFirstEnemy().gameObject.GetGameID() },
+                Ids = new[] { shootingEnemy.gameObject.GetGameID() },
                 Damage = AttackDamage,
                 Sender = gameObject,
             };

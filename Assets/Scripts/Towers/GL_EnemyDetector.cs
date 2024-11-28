@@ -76,12 +76,19 @@ namespace Towers
 
         public GL_BaseEnemy GetFirstEnemy()
         {
+            CleanDestroyedEnemies();
             return EnemiesInRange.OrderByDescending(e => e.PathFollower.CurrentDistance).FirstOrDefault();
         }
         
         public GL_BaseEnemy GetLastEnemy()
         {
+            CleanDestroyedEnemies();
             return EnemiesInRange.OrderBy(e => e.PathFollower.CurrentDistance).FirstOrDefault();
+        }
+
+        private void CleanDestroyedEnemies()
+        {
+            EnemiesInRange.Where(enemy => !enemy).ToList().ForEach(e => EnemiesInRange.Remove(e));
         }
     }
 }
