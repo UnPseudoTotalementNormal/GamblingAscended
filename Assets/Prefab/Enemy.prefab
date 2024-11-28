@@ -24,6 +24,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 3059341674115828909, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      propertyPath: DropPurseOnDeath
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7628747781540499959, guid: 7848b104205414749b5365574ab22e23, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
