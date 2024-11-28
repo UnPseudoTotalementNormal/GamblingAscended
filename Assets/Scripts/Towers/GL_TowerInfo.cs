@@ -1,12 +1,13 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Towers
 {
     [CreateAssetMenu(fileName = "TowerObject", menuName = "TowerObject")]
-    public class GL_TowerObject : ScriptableObject
+    public class GL_TowerInfo : ScriptableObject
     {
         public float AttackDamage;
-        public float AttackRange;
+        [FormerlySerializedAs("AttackRange")] public float AttackRadius;
         public float AttackCooldown;
     }
 }

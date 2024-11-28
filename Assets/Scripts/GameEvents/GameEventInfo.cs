@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character.Enemy;
+using Towers;
 using UnityEngine;
 
 namespace GameEvents
@@ -93,6 +94,11 @@ namespace GameEvents
     public class GameEventEnemyInfo : GameEventInfo
     {
         public GL_EnemyInfo EnemyInfo;
+    }
+
+    public class GameEventTowerInfo : GameEventInfo
+    {
+        public GL_TowerInfo TowerInfo;
     }
     
     #endregion

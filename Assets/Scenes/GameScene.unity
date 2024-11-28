@@ -10856,7 +10856,7 @@ MonoBehaviour:
   <PlaceableObject>k__BackingField: {fileID: 6016099035318599708, guid: cf1e95af8a7fb4049ad80a5e5ccbca63, type: 3}
   <DestroyItemOnPlaced>k__BackingField: 0
   _objectPlacedEvent: {fileID: 11400000, guid: f1db088461054dc4bbd0f95c4801a31c, type: 2}
-  _towerObject: {fileID: 0}
+  TowerInfo: {fileID: 11400000, guid: 87eecf6ff523d934e82aa10eba2b7fc5, type: 2}
 --- !u!1 &1745302975
 GameObject:
   m_ObjectHideFlags: 0
@@ -12851,6 +12851,8 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: d8d49c66598ce9f47bcf6318c3e7ab2b, type: 2}
     - Key: 795388589
       Value: {fileID: 11400000, guid: df10f83fbbe72af499f26a451a03d0c8, type: 2}
+    - Key: 1178104137
+      Value: {fileID: 11400000, guid: e86f6935b75849347a36e15c132aa9a2, type: 2}
     - Key: 1420845220
       Value: {fileID: 11400000, guid: f1db088461054dc4bbd0f95c4801a31c, type: 2}
     - Key: 1549981139

@@ -7,6 +7,7 @@ using GameEvents;
 using GameEvents.Enum;
 using Interactables;
 using Interactables.ObjectHolding_Placing;
+using Towers;
 using Towers.Interface;
 using Unity.Mathematics;
 using UnityEngine;
@@ -162,14 +163,15 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
 
         GL_IPlaceable placeableObject = _currentHoldable.GetPlaceable();
-        if (placeableObject != null && placeableObject.PlaceableObject.TryGetComponent(out GL_ITower placeableTower))
+        if (placeableObject is GL_TowerPlaceable towerPlaceable)
         {
+            GL_TowerInfo towerInfo = towerPlaceable.TowerInfo;
             _drawObjectRangePreview = new GameObject("RangePreview");
             _drawObjectRangePreview.transform.SetParent(_drawObject.transform);
             _drawObjectRangePreview.AddComponent<MeshFilter>().mesh = _previewMesh;
             _drawObjectRangePreview.AddComponent<MeshRenderer>().material = _currentPlacingMaterial;
             _drawObjectRangePreview.transform.localPosition = new Vector3(0, -localObjectBounds.extents.y + localObjectBounds.center.y);
-            _drawObjectRangePreview.transform.localScale = new Vector3(placeableTower.AttackRadius * 2, 0.5f, placeableTower.AttackRadius * 2);
+            _drawObjectRangePreview.transform.localScale = new Vector3(towerInfo.AttackRadius * 2, 0.5f, towerInfo.AttackRadius * 2);
         }
         
         

@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: IdkRandomTower
   m_EditorClassIdentifier: 
   AttackDamage: 5
-  AttackRange: 5
+  AttackRadius: 5
   AttackCooldown: 1

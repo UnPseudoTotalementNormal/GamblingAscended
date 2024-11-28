@@ -1,3 +1,4 @@
+using System;
 using Character.Enemy;
 using GameEvents;
 using GameEvents.Enum;
@@ -20,8 +21,25 @@ namespace Towers
 
         private void Awake()
         {
+            GameEventEnum.SetTowerInfo.AddListener(SetTowerInfo);
             EnemyDetector = gameObject.AddComponent<GL_EnemyDetector>();
+        }
+
+        private void Start()
+        {
             EnemyDetector.Init(AttackRadius);
+        }
+
+        private void SetTowerInfo(GameEventInfo eventInfo)
+        {
+            if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventTowerInfo gameEventTowerInfo))
+            {
+                return;
+            }
+            
+            AttackDamage = gameEventTowerInfo.TowerInfo.AttackDamage;
+            AttackRadius = gameEventTowerInfo.TowerInfo.AttackRadius;
+            AttackCooldown = gameEventTowerInfo.TowerInfo.AttackCooldown;
         }
 
 
