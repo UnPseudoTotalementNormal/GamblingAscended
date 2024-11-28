@@ -2,8 +2,8 @@ using UnityEngine;
 
 namespace Character.Enemy
 {
-    [CreateAssetMenu(fileName = "EnemyObject", menuName = "Enemy/EnemyObject")]
-    public class GL_EnemyObject : ScriptableObject
+    [CreateAssetMenu(fileName = "EnemyInfo", menuName = "Enemy/EnemyInfo")]
+    public class GL_EnemyInfo : ScriptableObject
     {
         public GameObject Prefab;
         public string Name;

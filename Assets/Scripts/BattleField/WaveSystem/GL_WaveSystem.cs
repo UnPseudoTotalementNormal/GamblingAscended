@@ -35,7 +35,7 @@ public class GL_WaveSystem : MonoBehaviour
     
     private void OnSleep(GameEventInfo eventInfo)
     {
-        Timer.Timer.NewTimer(7, StartWave);
+        Timer.Timer.NewTimer(4, StartWave);
     }
 
     private void GetSpawners()
@@ -52,14 +52,14 @@ public class GL_WaveSystem : MonoBehaviour
         _isEndingWave = false;
         _isWaveRunning = true;
         _currentWaveInfo = _waves[CurrentWave].SpawnInfo.ToList();
-        GameEventEnum.OnWaveStarted.Invoke(new GameEventFloat { Value = CurrentWave });
+        GameEventEnum.OnWaveStarted.Invoke(new GameEventInt { Value = CurrentWave });
     }
     
     private void StopWave()
     {
         _isWaveRunning = false;
         _isEndingWave = false;
-        GameEventEnum.OnWaveEnded.Invoke(new GameEventFloat { Value = CurrentWave });
+        GameEventEnum.OnWaveEnded.Invoke(new GameEventInt { Value = CurrentWave });
     }
 
     private void Update()
@@ -112,7 +112,7 @@ public class GL_WaveSystem : MonoBehaviour
 
             var eventInfo = new GameEventSpawnEnemy()
             {
-                EnemyObject = enemySpawner.Infos.Enemy,
+                EnemyInfo = enemySpawner.Infos.Enemy,
                 Sender = gameObject
             };
 

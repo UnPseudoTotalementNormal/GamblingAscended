@@ -25,12 +25,20 @@ public class GL_EnemySpawner : MonoBehaviour
             return;
         }
         
-        SpawnEnemy(spawnEnemyInfo.EnemyObject);
+        SpawnEnemy(spawnEnemyInfo.EnemyInfo);
     }
 
-    private void SpawnEnemy(GL_EnemyObject enemy)
+    private void SpawnEnemy(GL_EnemyInfo enemy)
     {
         GameObject newEnemy = Instantiate(enemy.Prefab, _pathTracer.Waypoints[0], Quaternion.identity);
+        
+        GameEventEnum.SetEnemyInfo.Invoke(new GameEventEnemyInfo
+        {
+            Ids = new [] { newEnemy.GetGameID() },
+            EnemyInfo = enemy,
+            Sender = gameObject,
+        });
+        
         var pathFollower = newEnemy.GetComponent<GL_PathFollower>();
         pathFollower.Init(_pathTracer.Waypoints);
         

@@ -14,6 +14,7 @@ public class GL_Health : MonoBehaviour
         CurrentHealth = MaxHealth;
         
         GameEventEnum.TakeDamage.AddListener(OnTakeDamage);
+        GameEventEnum.SetEnemyInfo.AddListener(SetEnemyInfo);
     }
 
     private void OnTakeDamage(GameEventInfo eventInfo)
@@ -38,5 +39,16 @@ public class GL_Health : MonoBehaviour
         
         CurrentHealth = 0;
         GameEventEnum.OnDeath.Invoke(new GameEventInfo { Ids = new [] { gameObject.GetGameID() } });
+    }
+    
+    private void SetEnemyInfo(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventEnemyInfo gameEventEnemyInfo))
+        {
+            return;
+        }
+
+        MaxHealth = gameEventEnemyInfo.EnemyInfo.Health;
+        CurrentHealth = MaxHealth;
     }
 }

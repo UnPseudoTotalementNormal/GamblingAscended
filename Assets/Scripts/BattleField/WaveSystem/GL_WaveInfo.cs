@@ -13,7 +13,7 @@ namespace BattleField.WaveSystem
         [Serializable]
         public struct EnemySpawnerInfo
         {
-            public GL_EnemyObject Enemy; //todo: replace with Scriptable
+            public GL_EnemyInfo Enemy; //todo: replace with Scriptable
             public int Count;
             public float Interval;
             public float StartTime;

@@ -147,6 +147,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 87c567c2fb6d41a4d905746a96cd19e9
+    m_Address: Assets/GameEvents/Battlefield/SetEnemyInfo.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88e94871fdd3f04418f7b66551232f1f
     m_Address: Assets/GameEvents/Wave/OnWaveStarted.asset
     m_ReadOnly: 0

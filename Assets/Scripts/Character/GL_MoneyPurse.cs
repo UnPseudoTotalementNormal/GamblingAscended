@@ -14,7 +14,18 @@ public class GL_MoneyPurse : MonoBehaviour, GL_ICoinHolder
     {
         GameEventEnum.OnDeath.AddListener(OnDeath);
         GameEventEnum.PickupPurse.AddListener(PickUpPurse);
+        GameEventEnum.SetEnemyInfo.AddListener(SetEnemyInfo);
         AddMoney(BaseMoney);
+    }
+
+    private void SetEnemyInfo(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventEnemyInfo gameEventEnemyInfo))
+        {
+            return;
+        }
+        
+        MoneyInserted = gameEventEnemyInfo.EnemyInfo.MoneyOnDeath;
     }
 
 
@@ -46,8 +57,6 @@ public class GL_MoneyPurse : MonoBehaviour, GL_ICoinHolder
         {
             return;
         }
-
-        Debug.Log(gameObject.GetGameID());
         
         gameEventGameObject.Value.GetComponentInParent<GL_ICoinHolder>().AddMoney(MoneyInserted);
         RemoveMoney(MoneyInserted);

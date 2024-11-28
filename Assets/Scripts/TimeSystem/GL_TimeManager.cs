@@ -44,7 +44,7 @@ public class GL_TimeManager : MonoBehaviour
     private void TimeSetNight(GameEventInfo eventInfo)
     {
         CurrentStateOfDay = StateOfDay.Night;
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 10)
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 5)
             .SetEase(Ease.Linear);
         GameEventEnum.OnDayEnded.Invoke(new GameEventInfo());
     }
@@ -52,7 +52,7 @@ public class GL_TimeManager : MonoBehaviour
     private void TimeSetDay(GameEventInfo eventInfo)
     {
         CurrentStateOfDay = StateOfDay.Day;
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 10)
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 5)
             .SetEase(Ease.Linear);
         GameEventEnum.OnNightEnded.Invoke(new GameEventInfo());
     }

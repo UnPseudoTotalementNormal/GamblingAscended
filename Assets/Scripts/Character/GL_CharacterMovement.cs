@@ -1,5 +1,6 @@
 using System;
 using GameEvents;
+using GameEvents.Enum;
 using Possess;
 using UnityEngine;
 
@@ -29,8 +30,9 @@ namespace Character
         {
             _transform = GetComponent<Transform>();
             _rigidbody = GetComponent<Rigidbody>();
+            GameEventEnum.SetEnemyInfo.AddListener(SetEnemyInfo);
         }
-
+        
         private void OnMoveInput(GameEventInfo eventInfo)
         {
             if (!eventInfo.TryTo(out GameEventVector2 gameEventVector2))
@@ -104,6 +106,16 @@ namespace Character
             _moveInputEvent.RemoveListener(OnMoveInput);
             OnUnpossessedEvent?.Invoke(new GameEventGameObject {Value = gameObject});
             IsPossessed = false;
+        }
+        
+        private void SetEnemyInfo(GameEventInfo eventInfo)
+        {
+            if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventEnemyInfo gameEventEnemyInfo))
+            {
+                return;
+            }
+            
+            _maxSpeed = gameEventEnemyInfo.EnemyInfo.MoveSpeed;
         }
     }
 }
