@@ -7657,6 +7657,8 @@ MonoBehaviour:
   CurrentWave: 0
   _waves:
   - {fileID: 11400000, guid: e057c06f5e1f9d842821f2456f8d1155, type: 2}
+  - {fileID: 11400000, guid: fd5c20c136f9de340b3abf997e4f4df5, type: 2}
+  - {fileID: 11400000, guid: b3245d868f087bb47bc303aa67d9f7c7, type: 2}
 --- !u!114 &972468374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11470,37 +11472,6 @@ Mesh:
     offset: 0
     size: 0
     path: 
---- !u!1 &1772699727
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1772699728}
-  m_Layer: 0
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1772699728
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1772699727}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.4174924, y: -1.9289834, z: -2.7092776}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!43 &1794182374
 Mesh:
   m_ObjectHideFlags: 0
@@ -15294,4 +15265,3 @@ SceneRoots:
   - {fileID: 2038829494}
   - {fileID: 97941397}
   - {fileID: 1651606374}
-  - {fileID: 1772699728}

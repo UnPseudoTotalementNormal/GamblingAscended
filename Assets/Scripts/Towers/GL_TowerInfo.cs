@@ -1,5 +1,5 @@
+using Enums;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Towers
 {
@@ -9,6 +9,7 @@ namespace Towers
         public float AttackDamage;
         public float AttackRadius;
         public float AttackCooldown;
+        public AttackType AttackType = AttackType.Raycast;
 
         public GameObject TowerModel;
     }

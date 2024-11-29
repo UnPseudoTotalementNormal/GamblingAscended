@@ -1,5 +1,6 @@
 using System;
 using Character.Enemy;
+using Enums;
 using GameEvents;
 using GameEvents.Enum;
 using Towers.Interface;
@@ -9,9 +10,10 @@ namespace Towers
 {
     public class GL_BaseTower : MonoBehaviour, GL_ITower
     {
-        [field:SerializeField] public float AttackDamage { get; private set; }
-        [field:SerializeField] public float AttackRadius { get; private set;  }
-        [field:SerializeField] public float AttackCooldown { get; private set; }
+        public float AttackDamage { get; private set; }
+        public float AttackRadius { get; private set;  }
+        public float AttackCooldown { get; private set; }
+        public AttackType AttackType { get; private set; }
         public GL_EnemyDetector EnemyDetector { get; private set; }
         private float _currentAttackCooldown;
 
@@ -36,10 +38,12 @@ namespace Towers
             {
                 return;
             }
-            
-            AttackDamage = gameEventTowerInfo.TowerInfo.AttackDamage;
-            AttackRadius = gameEventTowerInfo.TowerInfo.AttackRadius;
-            AttackCooldown = gameEventTowerInfo.TowerInfo.AttackCooldown;
+
+            GL_TowerInfo towerInfo = gameEventTowerInfo.TowerInfo;
+            AttackDamage = towerInfo.AttackDamage;
+            AttackRadius = towerInfo.AttackRadius;
+            AttackCooldown = towerInfo.AttackCooldown;
+            AttackType = towerInfo.AttackType;
         }
 
 
@@ -59,15 +63,26 @@ namespace Towers
             _currentAttackCooldown = AttackCooldown;
 
             GL_BaseEnemy shootingEnemy = EnemyDetector.GetFirstEnemy();
-            if (!shootingEnemy)
+            if (!shootingEnemy) //if no enemy in range
             {
                 return;
             }
-            
-            Attack();
+
+            switch (AttackType)
+            {
+                case AttackType.Raycast:
+                    AttackRaycastType();
+                    break;
+                case AttackType.Zone:
+                    AttackZoneType();
+                    break;
+                case AttackType.Projectile:
+                    AttackProjectileType();
+                    break;
+            }
         }
 
-        public void Attack()
+        public void AttackRaycastType()
         {
             GL_BaseEnemy shootingEnemy = EnemyDetector.GetFirstEnemy();
             GameEventDamage damageEvent = new GameEventDamage
@@ -77,6 +92,28 @@ namespace Towers
                 Sender = gameObject,
             };
             GameEventEnum.TakeDamage.Invoke(damageEvent);
+        }
+        
+        public void AttackZoneType()
+        {
+            var enemiesId = new int[EnemyDetector.EnemiesInRange.Count];
+            for (int i = 0; i < EnemyDetector.EnemiesInRange.Count; i++)
+            {
+                enemiesId[i] = EnemyDetector.EnemiesInRange[i].gameObject.GetGameID();
+            }
+            
+            GameEventDamage damageEvent = new GameEventDamage
+            {
+                Ids = enemiesId,
+                Damage = AttackDamage,
+                Sender = gameObject,
+            };
+            GameEventEnum.TakeDamage.Invoke(damageEvent);
+        }
+
+        public void AttackProjectileType()
+        {
+            
         }
     }
 }
