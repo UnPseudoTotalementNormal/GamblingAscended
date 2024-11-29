@@ -3,11 +3,13 @@ using UnityEngine.Serialization;
 
 namespace Towers
 {
-    [CreateAssetMenu(fileName = "TowerObject", menuName = "TowerObject")]
+    [CreateAssetMenu(fileName = "TowerInfo", menuName = "TowerInfo")]
     public class GL_TowerInfo : ScriptableObject
     {
         public float AttackDamage;
-        [FormerlySerializedAs("AttackRange")] public float AttackRadius;
+        public float AttackRadius;
         public float AttackCooldown;
+
+        public GameObject TowerModel;
     }
 }

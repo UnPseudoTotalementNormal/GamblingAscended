@@ -14,6 +14,8 @@ namespace Interactables.ObjectHolding_Placing
         public override void OnPlaced(GameObject spawnedObject)
         {
             base.OnPlaced(spawnedObject);
+            var towerModel = Instantiate(TowerInfo.TowerModel, spawnedObject.transform);
+            towerModel.transform.localPosition = new Vector3(0, 0, 0);
             GameEventEnum.SetTowerInfo.Invoke(new GameEventTowerInfo { Ids = new[] { spawnedObject.GetGameID() }, TowerInfo = TowerInfo });
         }
     }

@@ -77,27 +77,17 @@ public class GL_ObjectHolder : MonoBehaviour
 
     private void DrawPreview(GameObject previewedObject)
     {
-        bool spawnedObject = false;
+        Bounds localObjectBounds;
         if (!_drawObject)
         {
-            spawnedObject = true;
-            _drawObject = Instantiate(previewedObject);
-            var components = _drawObject.GetComponentsInChildren<Component>();
-            foreach (var component in components)
-            {
-                if (component is Renderer or Collider or Transform or MeshFilter)
-                {
-                    continue;
-                }
-                Destroy(component);
-            }
+            InitPreview(previewedObject);
         }
 
         _canPlaceObject = true;
 
         _drawObject.transform.eulerAngles = _placeRotation;
         _drawObject.transform.position = Vector3.zero;
-        Bounds localObjectBounds = _drawObject.GetCollidersBounds();
+        localObjectBounds = _drawObject.GetCollidersBounds();
         if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hitInfo, _dropMaxDistance,
                 ~((int)LayerMaskEnum.Character | (int)LayerMaskEnum.Item | (int)LayerMaskEnum.Path |
                   (int)LayerMaskEnum.IgnoreRaycast)))
@@ -140,32 +130,36 @@ public class GL_ObjectHolder : MonoBehaviour
         {
             ChangePlacingMaterialColor(hitInfo.collider);
         }
-        
-        
-        if (!spawnedObject)
-        {
-            return;
-        }
-        
-        SetPlacingMaterials(_drawObject);
+    }
 
-        var colliders = _drawObject.GetComponentsInChildren<Collider>();
-        foreach (Collider collider in colliders)
+    private void InitPreview(GameObject previewedObject)
+    {
+        Bounds localObjectBounds;
+        _drawObject = Instantiate(previewedObject);
+        _drawObject.transform.eulerAngles = _placeRotation;
+        _drawObject.transform.position = Vector3.zero;
+        var components = _drawObject.GetComponentsInChildren<Component>();
+        foreach (var component in components)
         {
-            collider.enabled = false;
+            if (component is Renderer or Collider or Transform or MeshFilter)
+            {
+                continue;
+            }
+            Destroy(component);
         }
-        
-        _drawObjectObstacle = _drawObject.AddComponent<NavMeshObstacle>();
-        _drawObjectObstacle.shape = NavMeshObstacleShape.Box;
-        _drawObjectObstacle.carving = true;
-        _drawObjectObstacle.carveOnlyStationary = false;
-        _drawObjectObstacle.center = localObjectBounds.center;
-        _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
-
+            
         GL_IPlaceable placeableObject = _currentHoldable.GetPlaceable();
         if (placeableObject is GL_TowerPlaceable towerPlaceable)
         {
             GL_TowerInfo towerInfo = towerPlaceable.TowerInfo;
+            
+            //model preview
+            var drawObjectModelPreview = Instantiate(towerInfo.TowerModel, _drawObject.transform);
+            drawObjectModelPreview.transform.localPosition = new Vector3(0, 0, 0);
+                
+            localObjectBounds = _drawObject.GetCollidersBounds();
+                
+            //range preview
             _drawObjectRangePreview = new GameObject("RangePreview");
             _drawObjectRangePreview.transform.SetParent(_drawObject.transform);
             _drawObjectRangePreview.AddComponent<MeshFilter>().mesh = _previewMesh;
@@ -173,7 +167,23 @@ public class GL_ObjectHolder : MonoBehaviour
             _drawObjectRangePreview.transform.localPosition = new Vector3(0, -localObjectBounds.extents.y + localObjectBounds.center.y);
             _drawObjectRangePreview.transform.localScale = new Vector3(towerInfo.AttackRadius * 2, 0.5f, towerInfo.AttackRadius * 2);
         }
+            
+        localObjectBounds = _drawObject.GetCollidersBounds();
+            
+        _drawObjectObstacle = _drawObject.AddComponent<NavMeshObstacle>();
+        _drawObjectObstacle.shape = NavMeshObstacleShape.Box;
+        _drawObjectObstacle.carving = true;
+        _drawObjectObstacle.carveOnlyStationary = false;
+        _drawObjectObstacle.center = localObjectBounds.center;
+        _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
         
+        var colliders = _drawObject.GetComponentsInChildren<Collider>();
+        foreach (Collider collider in colliders)
+        {
+            collider.enabled = false;
+        }
+        
+        SetPlacingMaterials(_drawObject);
         
         _drawObject.SetActive(true);
     }
