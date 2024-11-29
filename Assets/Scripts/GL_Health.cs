@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using Character.Enemy;
 using Enums;
 using GameEvents;
 using GameEvents.Enum;
@@ -10,6 +11,8 @@ public class GL_Health : MonoBehaviour
 {
     public float CurrentHealth;
     public float MaxHealth;
+
+    public DamageType DamageTypeImmunity = DamageType.None;
     
     private void Awake()
     {
@@ -31,7 +34,7 @@ public class GL_Health : MonoBehaviour
 
     public void TakeDamage(GL_DamageInfo damageInfo)
     {
-        var damageResult = GL_DamageProcessor.GetFinalDamageAmount(damageInfo, DamageType.None);
+        var damageResult = GL_DamageProcessor.GetFinalDamageAmount(damageInfo, DamageTypeImmunity);
         float damageAmount = damageResult.Amount;
         
         CurrentHealth -= damageAmount;
@@ -56,7 +59,10 @@ public class GL_Health : MonoBehaviour
             return;
         }
 
-        MaxHealth = gameEventEnemyInfo.EnemyInfo.Health;
+        GL_EnemyInfo enemyInfo = gameEventEnemyInfo.EnemyInfo;
+        MaxHealth = enemyInfo.Health;
+        DamageTypeImmunity = enemyInfo.DamageTypeImmunity;
+        
         CurrentHealth = MaxHealth;
     }
 }

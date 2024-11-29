@@ -14,6 +14,11 @@ namespace BattleField.DamageFeedback
         [SerializeField] private float _duration;
 
         [SerializeField] private float _textMoveSpeed = 1;
+
+        [SerializeField] private float _minTextSize = 1;
+        [SerializeField] private float _maxTextSize = 6;
+        [SerializeField] private float _damageToMinTextSize = 1f;
+        [SerializeField] private float _damageToMaxTextSize = 20f;
         
         private void Awake()
         {
@@ -35,8 +40,10 @@ namespace BattleField.DamageFeedback
             newObject.transform.SetParent(_transform);
             newObject.transform.position = gameEventFloat.Sender.transform.position + _spawnOffset;
             var newText = newObject.GetComponent<TextMeshPro>();
-            newText.text = ((int)damageAmount).ToString();
-            newText.fontSize = 5;
+            newText.text = damageAmount % 1 == 0 ? ((int)damageAmount).ToString() : damageAmount.ToString("F");
+
+            newText.fontSize = Mathf.LerpUnclamped(_minTextSize, _maxTextSize, damageAmount / _damageToMaxTextSize);
+            
             newText.color = Color.red;
             newText.alignment = TextAlignmentOptions.Center;
 
