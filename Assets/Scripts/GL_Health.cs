@@ -30,7 +30,8 @@ public class GL_Health : MonoBehaviour
     public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
-        GameEventEnum.OnDamageTaken.Invoke(new GameEventFloat { Ids = new [] { gameObject.GetGameID() }, Value = damage });
+        GameEventEnum.OnDamageTaken.Invoke(new GameEventFloat
+            { Ids = new[] { gameObject.GetGameID() }, Value = damage, Sender = gameObject });
         
         if (CurrentHealth > 0)
         {
@@ -38,7 +39,8 @@ public class GL_Health : MonoBehaviour
         }
         
         CurrentHealth = 0;
-        GameEventEnum.OnDeath.Invoke(new GameEventInfo { Ids = new [] { gameObject.GetGameID() } });
+        GameEventEnum.OnDeath.Invoke(new GameEventInfo 
+            { Ids = new [] { gameObject.GetGameID() }, Sender = gameObject });
     }
     
     private void SetEnemyInfo(GameEventInfo eventInfo)
