@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using Enums;
 using GameEvents;
 using GameEvents.Enum;
+using NavmeshTools;
 using UnityEngine;
 
 public class GL_Health : MonoBehaviour
@@ -24,14 +26,18 @@ public class GL_Health : MonoBehaviour
             return;
         }
 
-        TakeDamage(damageInfo.Damage);
+        TakeDamage(new GL_DamageInfo { Amount = damageInfo.Damage, DamageType = damageInfo.DamageType });
     }
 
-    public void TakeDamage(float damage)
+    public void TakeDamage(GL_DamageInfo damageInfo)
     {
-        CurrentHealth -= damage;
+        var damageResult = GL_DamageProcessor.GetFinalDamageAmount(damageInfo, DamageType.None);
+        float damageAmount = damageResult.Amount;
+        
+        CurrentHealth -= damageAmount;
+        
         GameEventEnum.OnDamageTaken.Invoke(new GameEventFloat
-            { Ids = new[] { gameObject.GetGameID() }, Value = damage, Sender = gameObject });
+            { Ids = new[] { gameObject.GetGameID() }, Value = damageAmount, Sender = gameObject });
         
         if (CurrentHealth > 0)
         {

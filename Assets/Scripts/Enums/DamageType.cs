@@ -5,5 +5,6 @@ namespace Enums
         Distance,
         Physical,
         Special,
+        None,
     }
 }
