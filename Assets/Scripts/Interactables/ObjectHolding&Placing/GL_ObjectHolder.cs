@@ -18,6 +18,8 @@ public class GL_ObjectHolder : MonoBehaviour
 {
     private GL_InteracterRaycaster _interacterRaycaster;
     private GL_IHoldable _currentHoldable;
+    private Transform _currentHoldableTransform;
+    private Bounds _currentHoldableBounds;
     
     [SerializeField] private GameEvent<GameEventInfo> _tryPickupEvent;
     [SerializeField] private GameEvent<GameEventInfo> _interactInputEvent;
@@ -72,6 +74,17 @@ public class GL_ObjectHolder : MonoBehaviour
         if (_currentHoldable != null && _currentHoldable.IsPlaceable())
         {
             DrawPreview(_currentHoldable.GetPlaceable().PlaceableObject);
+        }
+
+        if (_currentHoldable != null) //holdable movement
+        {
+            _currentHoldableTransform.forward = Vector3.Lerp(_currentHoldableTransform.forward, transform.forward, Time.deltaTime * 8f);
+            Vector3 holdableTargetPos = transform.position +
+                                                           transform.forward * 
+                                                           (_currentHoldableBounds.extents.z * 2) +
+                                                           transform.forward * 0.25f;
+            holdableTargetPos += -_currentHoldableBounds.extents.y * 1.50f * transform.up;
+            _currentHoldableTransform.position = holdableTargetPos;
         }
     }
 
@@ -267,7 +280,9 @@ public class GL_ObjectHolder : MonoBehaviour
         }
         
         _currentHoldable = holdable;
+        _currentHoldableTransform = _currentHoldable.GetGameObject().transform;
         _currentHoldable.OnPickup();
+        _currentHoldableBounds = _currentHoldable.GetGameObject().GetCollidersBounds();
         
         _interacterRaycaster.DisableComponent();
     }

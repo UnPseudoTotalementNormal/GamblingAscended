@@ -37,16 +37,31 @@ namespace Interactables.ObjectHolding_Placing.Bases
 
         public void OnPickup()
         {
-            gameObject.SetActive(false);
+            if (TryGetComponent(out Rigidbody body))
+            {
+                body.constraints = RigidbodyConstraints.FreezeAll;
+            }
+            
+            if (TryGetComponent(out Collider collider))
+            {
+                collider.enabled = false;
+            }
+            //gameObject.SetActive(false);
         }
 
         public void OnDropped()
         {
-            gameObject.SetActive(true);
+            //gameObject.SetActive(true);
             if (TryGetComponent(out Rigidbody body))
             {
+                body.constraints = RigidbodyConstraints.None;
                 body.linearVelocity = Vector3.zero;
                 body.angularVelocity = Vector3.zero;
+            }
+            
+            if (TryGetComponent(out Collider collider))
+            {
+                collider.enabled = true;
             }
         }
     }
