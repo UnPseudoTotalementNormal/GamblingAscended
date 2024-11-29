@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Character.Enemy;
+using Enums;
 using Towers;
 using UnityEngine;
 
@@ -72,7 +73,7 @@ namespace GameEvents
     public class GameEventDamage : GameEventInfo
     {
         public float Damage;
-        public int DamageType;
+        public DamageType DamageType;
     }
 
     public class GameEventPathTraced : GameEventInfo

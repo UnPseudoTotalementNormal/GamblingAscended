@@ -8,6 +8,7 @@ namespace Towers.Interface
         public float AttackRadius { get; }
         public float AttackCooldown { get; }
         public AttackType AttackType { get; }
+        public DamageType DamageType { get; }
         
         public GL_EnemyDetector EnemyDetector { get; }
 

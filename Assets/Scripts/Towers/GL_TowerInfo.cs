@@ -10,6 +10,7 @@ namespace Towers
         public float AttackRadius;
         public float AttackCooldown;
         public AttackType AttackType = AttackType.Raycast;
+        public DamageType DamageType = DamageType.Distance;
 
         public GameObject TowerModel;
     }

@@ -15,4 +15,6 @@ MonoBehaviour:
   AttackDamage: 5
   AttackRadius: 5
   AttackCooldown: 1
+  AttackType: 1
+  DamageType: 0
   TowerModel: {fileID: 3217213439889401675, guid: 2f875e2d2e3f66f489ce68acde87db4f, type: 3}

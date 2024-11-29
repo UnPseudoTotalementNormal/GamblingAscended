@@ -14,6 +14,7 @@ namespace Towers
         public float AttackRadius { get; private set;  }
         public float AttackCooldown { get; private set; }
         public AttackType AttackType { get; private set; }
+        public DamageType DamageType { get; private set; }
         public GL_EnemyDetector EnemyDetector { get; private set; }
         private float _currentAttackCooldown;
 
@@ -44,6 +45,7 @@ namespace Towers
             AttackRadius = towerInfo.AttackRadius;
             AttackCooldown = towerInfo.AttackCooldown;
             AttackType = towerInfo.AttackType;
+            DamageType = towerInfo.DamageType;
         }
 
 
@@ -89,6 +91,7 @@ namespace Towers
             {
                 Ids = new[] { shootingEnemy.gameObject.GetGameID() },
                 Damage = AttackDamage,
+                DamageType = this.DamageType,
                 Sender = gameObject,
             };
             GameEventEnum.TakeDamage.Invoke(damageEvent);
@@ -106,6 +109,7 @@ namespace Towers
             {
                 Ids = enemiesId,
                 Damage = AttackDamage,
+                DamageType = this.DamageType,
                 Sender = gameObject,
             };
             GameEventEnum.TakeDamage.Invoke(damageEvent);
