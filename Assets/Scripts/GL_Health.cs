@@ -39,8 +39,8 @@ public class GL_Health : MonoBehaviour
         
         CurrentHealth -= damageAmount;
         
-        GameEventEnum.OnDamageTaken.Invoke(new GameEventFloat
-            { Ids = new[] { gameObject.GetGameID() }, Value = damageAmount, Sender = gameObject });
+        GameEventEnum.OnDamageTaken.Invoke(new GameEventDamage
+            { Ids = new[] { gameObject.GetGameID() }, Damage = damageAmount, DamageType = damageInfo.DamageType, Sender = gameObject });
         
         if (CurrentHealth > 0)
         {

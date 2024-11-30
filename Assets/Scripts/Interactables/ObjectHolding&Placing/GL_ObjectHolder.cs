@@ -294,11 +294,6 @@ public class GL_ObjectHolder : MonoBehaviour
             return;
         }
         
-        var droppedObject = _currentHoldable.GetGameObject();
-        Bounds objectBounds = droppedObject.GetCollidersBounds();
-        droppedObject.transform.position = transform.position;
-        droppedObject.transform.eulerAngles = new Vector3(0, transform.eulerAngles.y);
-        
         _currentHoldable.OnDropped();
         Reset();
     }

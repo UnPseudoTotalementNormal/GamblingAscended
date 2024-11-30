@@ -1,4 +1,6 @@
+using AYellowpaper.SerializedCollections;
 using DG.Tweening;
+using Enums;
 using GameEvents;
 using GameEvents.Enum;
 using TMPro;
@@ -20,6 +22,14 @@ namespace BattleField.DamageFeedback
         [SerializeField] private float _damageToMinTextSize = 1f;
         [SerializeField] private float _damageToMaxTextSize = 20f;
         
+        [SerializeField] private SerializedDictionary<DamageType, Color> _damageTypeToColor = new()
+        {
+            { DamageType.None, Color.white },
+            { DamageType.Physical, Color.red },
+            { DamageType.Distance, Color.yellow },
+            { DamageType.Special, Color.green },
+        };
+        
         private void Awake()
         {
             _transform = GetComponent<Transform>();
@@ -28,23 +38,24 @@ namespace BattleField.DamageFeedback
 
         private void OnDamageTaken(GameEventInfo eventInfo)
         {
-            if (!eventInfo.TryTo(out GameEventFloat gameEventFloat))
+            if (!eventInfo.TryTo(out GameEventDamage gameEventDamage))
             {
                 return;
             }
             
-            float damageAmount = gameEventFloat.Value;
+            float damageAmount = gameEventDamage.Damage;
 
             GameObject newObject = new GameObject("damageText", 
                 typeof(TextMeshPro), typeof(GL_Billboard), typeof(GL_DamageText));
             newObject.transform.SetParent(_transform);
-            newObject.transform.position = gameEventFloat.Sender.transform.position + _spawnOffset;
+            newObject.transform.position = gameEventDamage.Sender.transform.position + _spawnOffset;
             var newText = newObject.GetComponent<TextMeshPro>();
             newText.text = damageAmount % 1 == 0 ? ((int)damageAmount).ToString() : damageAmount.ToString("F");
 
             newText.fontSize = Mathf.LerpUnclamped(_minTextSize, _maxTextSize, damageAmount / _damageToMaxTextSize);
             
-            newText.color = Color.red;
+            newText.color = _damageTypeToColor[gameEventDamage.DamageType];
+            
             newText.alignment = TextAlignmentOptions.Center;
 
             newObject.GetComponent<GL_DamageText>().MoveSpeed = _textMoveSpeed;
