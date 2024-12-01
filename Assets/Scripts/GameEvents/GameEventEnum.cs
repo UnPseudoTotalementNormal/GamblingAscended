@@ -45,6 +45,8 @@ TakeDamage = 1340303201,
 TryInsertMoney = 1043368654,
 TryPickup = 1695392603,
 TrySleep = 999174416,
+TurnOff = 1965971041,
+TurnOn = 1688487537,
             }
         }
         

@@ -225,8 +225,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: db9da52fd447f7640bd71cda0f5310ba
+    m_Address: Assets/GameEvents/TurnOn.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: df10f83fbbe72af499f26a451a03d0c8
     m_Address: Assets/GameEvents/DayNightCycle/OnNightEnded.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e50ce29a139dddf4ba436a42365810c9
+    m_Address: Assets/GameEvents/TurnOff.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
