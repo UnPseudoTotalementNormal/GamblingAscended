@@ -26,6 +26,7 @@ public static class GameEventEnumCreator
     }
 
 
+    [MenuItem("Tools/Refresh Game Event Enum")]
     private static void OnProjectChanged()
     {
         _ = RefreshGameEventEnum();

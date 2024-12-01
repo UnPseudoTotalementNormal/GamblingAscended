@@ -54,6 +54,22 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
         };
         
         _slotMachineTryPullLeverEvent.AddListener(OnPullLever);
+        GameEventEnum.TryCashoutMoney.AddListener(TryCashoutMoney);
+    }
+
+    private void TryCashoutMoney(GameEventInfo eventInfo)
+    {
+        if (!gameObject.HasGameID(eventInfo.Ids) || !eventInfo.TryTo(out GameEventGameObject gameEventGameObject))
+        {
+            return;
+        }
+
+        if (CurrentState == (int)SlotMachineState.Spinning)
+        {
+            return;
+        }
+        
+        GameEventEnum.CashoutMoney.Invoke(gameEventGameObject);
     }
 
     private void OnPullLever(GameEventInfo eventInfo)

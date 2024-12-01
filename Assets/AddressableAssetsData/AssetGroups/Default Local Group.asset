@@ -261,6 +261,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cb8d8998bc110be4194cfd4738c34443
+    m_Address: Assets/GameEvents/Gambling/TryCashoutMoney.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: d8d49c66598ce9f47bcf6318c3e7ab2b
     m_Address: Assets/GameEvents/Trigger/OnTriggerUpdate.asset
     m_ReadOnly: 0

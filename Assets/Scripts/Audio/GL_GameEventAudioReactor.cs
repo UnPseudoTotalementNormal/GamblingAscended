@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Audio;
 using AYellowpaper.SerializedCollections;
 using GameEvents;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 public class GL_GameEventAudioReactor : MonoBehaviour
 {
-    [SerializeField] private SerializedDictionary<GameEventEnum, SerializableAudioInfo> _audioReactions = new();
+    [SerializeField] private SerializedDictionary<GameEventEnum, List<SerializableAudioInfo>> _audioReactions = new();
 
     private void Awake()
     {
@@ -15,7 +16,10 @@ public class GL_GameEventAudioReactor : MonoBehaviour
         {
             gameEventEnum.AddListener((eventInfo) =>
             {
-                ReactToEvent(eventInfo, _audioReactions[gameEventEnum]);
+                foreach (SerializableAudioInfo audio in _audioReactions[gameEventEnum])
+                {
+                    ReactToEvent(eventInfo, audio);
+                }
             });
         }
     }

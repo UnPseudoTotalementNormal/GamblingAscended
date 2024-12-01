@@ -161,9 +161,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _audioReactions:
     _serializedList:
+    - Key: 982266853
+      Value:
+      - Clip: {fileID: 0}
+        Volume: 1
+        Pitch: 1
+        PositionBehaviour: 1
+        AttachToTransform: {fileID: 475789545525856254}
+        Position: {x: 0, y: 0, z: 0}
+        MinDistance: 5
+        MaxDistance: 10
+        DurationBehaviour: 0
+        Duration: 0
+        FadeOutDuration: 0
+        ClipEnum: 1653551609
     - Key: 89447200
       Value:
-        Clip: {fileID: 0}
+      - Clip: {fileID: 0}
         Volume: 1
         Pitch: 1
         PositionBehaviour: 1
@@ -177,7 +191,7 @@ MonoBehaviour:
         ClipEnum: 1536560264
     - Key: 924176648
       Value:
-        Clip: {fileID: 0}
+      - Clip: {fileID: 0}
         Volume: 1
         Pitch: 1
         PositionBehaviour: 1
@@ -189,9 +203,21 @@ MonoBehaviour:
         Duration: 2
         FadeOutDuration: 0
         ClipEnum: 667733179
+      - Clip: {fileID: 0}
+        Volume: 1
+        Pitch: 1
+        PositionBehaviour: 1
+        AttachToTransform: {fileID: 475789545525856254}
+        Position: {x: 0, y: 0, z: 0}
+        MinDistance: 5
+        MaxDistance: 10
+        DurationBehaviour: 0
+        Duration: 0
+        FadeOutDuration: 0
+        ClipEnum: 374976775
     - Key: 334907994
       Value:
-        Clip: {fileID: 0}
+      - Clip: {fileID: 0}
         Volume: 1
         Pitch: 1
         PositionBehaviour: 1
@@ -777,7 +803,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <InteractPointerEnterEvent>k__BackingField: 913092858
   <InteractPointerExitEvent>k__BackingField: 753738431
-  <InteractionEvent>k__BackingField: 982266853
+  <InteractionEvent>k__BackingField: 1623046707
 --- !u!114 &3589512509363986006
 MonoBehaviour:
   m_ObjectHideFlags: 0
