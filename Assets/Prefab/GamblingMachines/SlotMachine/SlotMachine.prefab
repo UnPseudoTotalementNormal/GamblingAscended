@@ -185,7 +185,7 @@ MonoBehaviour:
         Position: {x: 0, y: 0, z: 0}
         MinDistance: 5
         MaxDistance: 10
-        DurationBehaviour: 0
+        DurationBehaviour: 2
         Duration: 2
         FadeOutDuration: 0
         ClipEnum: 667733179

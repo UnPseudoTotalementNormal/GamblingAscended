@@ -6,7 +6,7 @@ namespace Audio
     [Serializable]
     public class AudioInfo
     {
-        public AudioClip Clip;
+        [HideInInspector] public AudioClip Clip;
         public float Volume;
         public float Pitch = 1;
 

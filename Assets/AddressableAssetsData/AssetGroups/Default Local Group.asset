@@ -63,6 +63,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 385a31980484a5a448ae10ad5cc0329d
+    m_Address: Assets/Art/Audio/SFX/SlotMachineLever2.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 3c7c4e181661abb45ae89516f5dbfec4
     m_Address: Assets/GameEvents/Input/InteractInputStarted.asset
     m_ReadOnly: 0
