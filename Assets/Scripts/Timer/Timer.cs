@@ -32,6 +32,7 @@ namespace Timer
         private void StartTimer(float duration)
         {
             _timerHost = new GameObject("Timer (duration: " + duration + ")").AddComponent<TimerHost>();
+            _timerHost.hideFlags = HideFlags.HideInHierarchy;
             _timerHost.StartTimer(duration, OnTimerEnd);
         }
         

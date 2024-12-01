@@ -15,7 +15,7 @@ MonoBehaviour:
   m_DefaultGroup: ae3f6a963e004ad4b9ffdbd59196b85e
   m_currentHash:
     serializedVersion: 2
-    Hash: 51e235b7b35b3bdb9c7f78917ecca645
+    Hash: f82844ceec6396aa3ab18a0b69465ded
   m_OptimizeCatalogSize: 0
   m_BuildRemoteCatalog: 0
   m_CatalogRequestsTimeout: 0
@@ -100,6 +100,7 @@ MonoBehaviour:
     m_LabelNames:
     - default
     - GameEvent
+    - Audio
   m_SchemaTemplates: []
   m_GroupTemplateObjects:
   - {fileID: 11400000, guid: e74578df3f9503c409ae6db9024775c5, type: 2}

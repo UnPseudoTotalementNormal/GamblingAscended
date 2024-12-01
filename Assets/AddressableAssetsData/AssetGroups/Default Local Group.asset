@@ -39,6 +39,18 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 289aeaebfa9e88f4597fafa67d2f196e
+    m_Address: Assets/Art/Audio/SFX/SlotMachineRolling.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2fde44c993e159f4c882358167d2db7e
+    m_Address: Assets/Art/Audio/SFX/SlotMachineRollStop.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 30231e0b0b2ec4f4aabedd7a6b6fb656
     m_Address: Assets/GameEvents/Interactable/InteractPointerExit.asset
     m_ReadOnly: 0
@@ -129,6 +141,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7b205efbae8000441a97a3694459fa50
+    m_Address: Assets/Art/Audio/Music/CasinoMusic.mp3
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ea9ec5cf67f6f14bb2e32d7fa83a38a
     m_Address: Assets/GameEvents/Trigger/OnTriggerExit.asset
     m_ReadOnly: 0
@@ -170,6 +188,18 @@ MonoBehaviour:
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 98ce61f0076ec0b45b90cdcdb1971ef4
+    m_Address: Assets/Art/Audio/SFX/EnterCoin1.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 9be6bab947418544c8993978bf8e76cd
+    m_Address: Assets/Art/Audio/SFX/SlotMachineWinning.wav
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - Audio
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9cb8b9531f3ce3a46b500f83a038a4f9
     m_Address: Assets/GameEvents/Battlefield/BaseDestroyed.asset
