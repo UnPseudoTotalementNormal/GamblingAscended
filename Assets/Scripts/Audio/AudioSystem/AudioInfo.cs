@@ -1,12 +1,14 @@
+using System;
 using UnityEngine;
 
 namespace Audio
 {
+    [Serializable]
     public class AudioInfo
     {
         public AudioClip Clip;
         public float Volume;
-        public float Pitch;
+        public float Pitch = 1;
 
         public AudioPositionBehaviour PositionBehaviour = AudioPositionBehaviour.No3D;
         public Transform AttachToTransform;
@@ -18,6 +20,12 @@ namespace Audio
         public AudioDurationBehaviour DurationBehaviour = AudioDurationBehaviour.Once;
         public float Duration;
         public float FadeOutDuration;
+    }
+    
+    [Serializable]
+    public class SerializableAudioInfo : AudioInfo
+    {
+        public AudioClipEnum ClipEnum;
     }
 
     public enum AudioPositionBehaviour

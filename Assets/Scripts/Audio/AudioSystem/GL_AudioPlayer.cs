@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Audio
 {
-    public static class AudioPlayer
+    public static class GL_AudioPlayer
     {
         public static AudioSource PlayAudio(AudioInfo audioInfo)
         {
@@ -16,6 +16,7 @@ namespace Audio
             newSource.pitch = audioInfo.Pitch;
             newSource.maxDistance = audioInfo.MaxDistance;
             newSource.minDistance = audioInfo.MinDistance;
+            newSource.dopplerLevel = 0;
             
             SetPositionBehaviour(audioInfo, newSource, newSourceObject);
 
@@ -59,9 +60,11 @@ namespace Audio
                 case AudioPositionBehaviour.AttachToTransform:
                     newSource.transform.SetParent(audioInfo.AttachToTransform);
                     newSource.transform.localPosition = Vector3.zero;
+                    newSource.spatialBlend = 1;
                     break;
                 case AudioPositionBehaviour.UsePosition:
                     newSourceObject.transform.position = audioInfo.Position;
+                    newSource.spatialBlend = 1;
                     break;
             }
         }

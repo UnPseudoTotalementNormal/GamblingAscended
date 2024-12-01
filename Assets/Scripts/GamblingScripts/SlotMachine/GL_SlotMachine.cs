@@ -4,6 +4,7 @@ using System.Linq;
 using Breezorio.Ghosts;
 using GamblingScripts.SlotMachine;
 using GameEvents;
+using GameEvents.Enum;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -118,6 +119,7 @@ public class GL_SlotMachine : GL_BaseGamblingMachine
     
     private void OnFinishSpinningARow()
     {
+        GameEventEnum.SM_OnRowStop.Invoke(new GameEventInfo { Ids = new [] { gameObject.GetGameID() }});
         _slotWheels.First(imagesRow => imagesRow.IsRolling).StopRolling();
         
         bool hasARowLeft = _slotWheels.Any(imagesRow => imagesRow.IsRolling);

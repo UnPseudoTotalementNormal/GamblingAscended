@@ -10,7 +10,7 @@ namespace Audio
             {
                 Clip = null,
                 Volume = 1,
-                Pitch = Random.Range(-pitchRange, pitchRange),
+                Pitch = 1 + Random.Range(-pitchRange, pitchRange),
                 PositionBehaviour = AudioPositionBehaviour.No3D,
                 AttachToTransform = null,
                 Position = default,
@@ -26,7 +26,7 @@ namespace Audio
             {
                 Clip = null,
                 Volume = 1,
-                Pitch = Random.Range(-pitchRange, pitchRange),
+                Pitch = 1 + Random.Range(-pitchRange, pitchRange),
                 PositionBehaviour = AudioPositionBehaviour.AttachToTransform,
                 AttachToTransform = attachedTransform,
                 Position = default,
@@ -42,7 +42,7 @@ namespace Audio
             {
                 Clip = null,
                 Volume = 1,
-                Pitch = Random.Range(-pitchRange, pitchRange),
+                Pitch = 1 + Random.Range(-pitchRange, pitchRange),
                 PositionBehaviour = AudioPositionBehaviour.UsePosition,
                 AttachToTransform = null,
                 Position = position,

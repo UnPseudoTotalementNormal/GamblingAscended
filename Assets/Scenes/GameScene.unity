@@ -1515,7 +1515,7 @@ AudioSource:
   m_audioClip: {fileID: 8300000, guid: 7b205efbae8000441a97a3694459fa50, type: 3}
   m_Resource: {fileID: 8300000, guid: 7b205efbae8000441a97a3694459fa50, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.35
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -14986,6 +14986,8 @@ MonoBehaviour:
       Value: {fileID: 11400000, guid: 694ae6a81faf52644b73168e7feeed0d, type: 2}
     - Key: 334907994
       Value: {fileID: 11400000, guid: 7774df23b5d1c324392d7839ed964b28, type: 2}
+    - Key: 89447200
+      Value: {fileID: 11400000, guid: 7db74656b09b5424488a3038c3f7fac2, type: 2}
     - Key: 642879447
       Value: {fileID: 11400000, guid: 7ea9ec5cf67f6f14bb2e32d7fa83a38a, type: 2}
     - Key: 638142893

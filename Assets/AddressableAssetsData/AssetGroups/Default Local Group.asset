@@ -147,6 +147,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Audio
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7db74656b09b5424488a3038c3f7fac2
+    m_Address: Assets/GameEvents/Gambling/SlotMachine/SM_OnRowStop.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ea9ec5cf67f6f14bb2e32d7fa83a38a
     m_Address: Assets/GameEvents/Trigger/OnTriggerExit.asset
     m_ReadOnly: 0

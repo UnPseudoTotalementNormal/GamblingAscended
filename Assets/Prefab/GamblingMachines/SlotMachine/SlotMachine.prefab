@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: 7804426620815330522}
   - component: {fileID: 5541857199566429918}
   - component: {fileID: 5434089761442425971}
+  - component: {fileID: 121186151738476509}
   m_Layer: 0
   m_Name: SlotMachine
   m_TagString: Untagged
@@ -146,6 +147,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _fullSkullEvent: {fileID: 11400000, guid: 3c94cd95e67fc1444ab7220cb8a098c0, type: 2}
+--- !u!114 &121186151738476509
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2435754350430669768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 611d6e3c201c6fd48a483248050b6866, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audioReactions:
+    _serializedList:
+    - Key: 89447200
+      Value:
+        Clip: {fileID: 0}
+        Volume: 1
+        Pitch: 1
+        PositionBehaviour: 1
+        AttachToTransform: {fileID: 475789545525856254}
+        Position: {x: 0, y: 0, z: 0}
+        MinDistance: 5
+        MaxDistance: 10
+        DurationBehaviour: 0
+        Duration: 0
+        FadeOutDuration: 0
+        ClipEnum: 1536560264
+    - Key: 924176648
+      Value:
+        Clip: {fileID: 0}
+        Volume: 1
+        Pitch: 1
+        PositionBehaviour: 1
+        AttachToTransform: {fileID: 475789545525856254}
+        Position: {x: 0, y: 0, z: 0}
+        MinDistance: 5
+        MaxDistance: 10
+        DurationBehaviour: 0
+        Duration: 2
+        FadeOutDuration: 0
+        ClipEnum: 667733179
+    - Key: 334907994
+      Value:
+        Clip: {fileID: 0}
+        Volume: 1
+        Pitch: 1
+        PositionBehaviour: 1
+        AttachToTransform: {fileID: 475789545525856254}
+        Position: {x: 0, y: 0, z: 0}
+        MinDistance: 5
+        MaxDistance: 10
+        DurationBehaviour: 0
+        Duration: 0
+        FadeOutDuration: 0
+        ClipEnum: 1653551609
 --- !u!1 &3095714388439995846
 GameObject:
   m_ObjectHideFlags: 0
