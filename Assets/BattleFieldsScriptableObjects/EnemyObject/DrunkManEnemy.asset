@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61864111643a98dc49f615329e48c, type: 3}
   m_Name: DrunkManEnemy
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6077906806579385801, guid: 1f68e99aacf2bf6488524cd1486be8a2, type: 3}
+  Prefab: {fileID: 771942416778044672, guid: be706c961c26d044d91a06463f2cae9e, type: 3}
   Name: "Mec bourr\xE9"
   Damage: 1
   Health: 3

@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e48955851d434597cde3bccacd7dc3, type: 3}
   m_Name: TowerDrunkManInfo
   m_EditorClassIdentifier: 
+  TowerName: "Homme bourr\xE9"
   AttackDamage: 1
   AttackRadius: 6
   AttackCooldown: 1
   AttackType: 1
   DamageType: 0
   Cost: 12
-  TowerModel: {fileID: 3217213439889401675, guid: 2f875e2d2e3f66f489ce68acde87db4f, type: 3}
+  TowerModel: {fileID: 1801420465461892926, guid: e3fbdfa291c26f9488bbc4b804614a4c, type: 3}

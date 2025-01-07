@@ -3,16 +3,22 @@ using System.Collections.Generic;
 using Extensions;
 using GameEvents;
 using GameEvents.Enum;
+using Interactables.ObjectHolding_Placing;
 using TMPro;
 using Towers;
 using UnityEngine;
 
 public class GL_TowerShopSystem : MonoBehaviour
 {
+    [SerializeField] private GL_TowerPlaceable _towerBoxPrefab;
+    
     [SerializeField] private List<GL_TowerInfo> _buyableTowers = new();
     private GL_TowerInfo _selectedTower;
     
+    [SerializeField] private float _shippingZoneSize = 3;
+    
     [SerializeField] private Transform _towerDisplayParent;
+    [SerializeField] private Transform _towerBoxSpawnPoint;
 
     [Header("Texts")] 
     [SerializeField] private TextMeshPro _towerCostText;
@@ -20,6 +26,7 @@ public class GL_TowerShopSystem : MonoBehaviour
     [SerializeField] private TextMeshPro _towerDamageTypeText;
     [SerializeField] private TextMeshPro _towerRangeText;
     [SerializeField] private TextMeshPro _towerTargetTypeText;
+    [SerializeField] private TextMeshPro _towerNameText;
     
     [SerializeField] private string _costBaseText = "Prix: ";
     [SerializeField] private string _dpsBaseText = "DPS: ";
@@ -52,6 +59,32 @@ public class GL_TowerShopSystem : MonoBehaviour
         }
         
         coinHolder.RemoveMoney(_selectedTower.Cost);
+
+        
+        //try to add amount to an existing tower box
+        Collider[] shipZoneOverlap = Physics.OverlapBox(
+            _towerBoxSpawnPoint.position,
+            Vector3.one * _shippingZoneSize / 2, 
+            Quaternion.identity);
+        foreach (Collider colliderOverlap in shipZoneOverlap)
+        {
+            if (!colliderOverlap.transform.TryGetComponentInParents<GL_TowerPlaceable>(out GL_TowerPlaceable towerBoxInZone))
+            {
+                continue;
+            }
+            
+            if (towerBoxInZone.TowerInfo != _selectedTower)
+            {
+                continue;
+            }
+            
+            towerBoxInZone.Amount += 1;
+            return;
+        }
+        
+        //create a new tower box
+        GL_TowerPlaceable newTower = Instantiate(_towerBoxPrefab, _towerBoxSpawnPoint.position, Quaternion.identity);
+        newTower.TowerInfo = _selectedTower;
     }
 
     private void TryPreviousObj(GameEventInfo eventInfo)
@@ -109,5 +142,6 @@ public class GL_TowerShopSystem : MonoBehaviour
         _towerDamageTypeText.text = _damageTypeBaseText + showTower.DamageType;
         _towerRangeText.text = _rangeBaseText + showTower.AttackRadius;
         _towerTargetTypeText.text = _targetTypeBaseText + showTower.AttackType;
+        _towerNameText.text = showTower.TowerName;
     }
 }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Extensions;
 using GameEvents;
 using UnityEngine;
 using UnityEngine.Rendering;
@@ -64,6 +65,8 @@ namespace Character.Enemy
             }
             
             CheckNextWaypoint();
+            
+            //transform.forward = (CurrentWaypoint - transform.position).ToFlatVector3().normalized;
         }
 
         private void FixedUpdate()

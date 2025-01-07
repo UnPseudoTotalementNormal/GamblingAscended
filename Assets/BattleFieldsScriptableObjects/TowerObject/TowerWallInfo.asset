@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e48955851d434597cde3bccacd7dc3, type: 3}
+  m_Name: TowerWallInfo
+  m_EditorClassIdentifier: 
+  TowerName: "Barri\xE8re"
+  AttackDamage: 0
+  AttackRadius: 0
+  AttackCooldown: 0
+  AttackType: 1
+  DamageType: 3
+  Cost: 1
+  TowerModel: {fileID: 7307778890353784847, guid: e140beec523ca8b449f961c68c5f76db, type: 3}

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61864111643a98dc49f615329e48c, type: 3}
   m_Name: SdfEnemy
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6077906806579385801, guid: 1f68e99aacf2bf6488524cd1486be8a2, type: 3}
+  Prefab: {fileID: 3156980754814272191, guid: a793acb1d30ae1543bb7473b1cf37006, type: 3}
   Name: Sdf
   Damage: 1
   Health: 5

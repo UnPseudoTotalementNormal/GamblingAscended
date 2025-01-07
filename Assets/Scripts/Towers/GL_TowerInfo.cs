@@ -6,6 +6,7 @@ namespace Towers
     [CreateAssetMenu(fileName = "TowerInfo", menuName = "TowerInfo")]
     public class GL_TowerInfo : ScriptableObject
     {
+        public string TowerName;
         public float AttackDamage;
         public float AttackRadius;
         public float AttackCooldown;

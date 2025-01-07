@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65e48955851d434597cde3bccacd7dc3, type: 3}
   m_Name: TowerSdfInfo
   m_EditorClassIdentifier: 
+  TowerName: SDF
   AttackDamage: 0.2
   AttackRadius: 3
   AttackCooldown: 0.3
