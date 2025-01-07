@@ -11,6 +11,7 @@ namespace Towers
         public float AttackCooldown;
         public AttackType AttackType = AttackType.Raycast;
         public DamageType DamageType = DamageType.Distance;
+        public int Cost;
 
         public GameObject TowerModel;
     }

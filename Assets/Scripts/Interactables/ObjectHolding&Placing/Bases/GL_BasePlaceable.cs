@@ -2,6 +2,7 @@ using System;
 using Enums;
 using Extensions;
 using GameEvents;
+using GameEvents.Enum;
 using UnityEngine;
 
 namespace Interactables.ObjectHolding_Placing.Bases
@@ -13,10 +14,16 @@ namespace Interactables.ObjectHolding_Placing.Bases
         [field:SerializeField] public GameObject PlaceableObject { get; private set; }
         [field: SerializeField] public bool DestroyItemOnPlaced { get; private set; } = true;
         [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
+        public int Amount = 1;
         
         public virtual void OnPlaced(GameObject spawnedObject)
         {
-            
+            Amount -= 1;
+            if (Amount <= 0)
+            {
+                GameEventEnum.InteractInputStarted.Invoke(new GameEventInfo());
+                Destroy(gameObject);
+            }
         }
 
         public void Place(Vector3 position, Vector3 rotation)
