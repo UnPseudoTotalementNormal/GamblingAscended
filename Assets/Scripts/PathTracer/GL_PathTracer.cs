@@ -58,7 +58,7 @@ public class GL_PathTracer : MonoBehaviour
 
     private void TracePath()
     {
-        GetComponent<NavMeshSurface>().BuildNavMesh();
+        //GetComponent<NavMeshSurface>().BuildNavMesh();
         NavMeshPath path = new();
         if (!GL_NavmeshUtils.TryGetPathTo(_startTransform.position, _endTransform.position, ref path))
         {

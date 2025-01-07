@@ -26,7 +26,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
             }
         }
 
-        public void Place(Vector3 position, Vector3 rotation)
+        public GameObject Place(Vector3 position, Vector3 rotation)
         {
             var newObject = Instantiate(PlaceableObject, position, Quaternion.Euler(rotation));
 
@@ -37,6 +37,7 @@ namespace Interactables.ObjectHolding_Placing.Bases
             };
             OnPlaced(newObject);
             _objectPlacedEvent?.Invoke(eventInfo);
+            return newObject;
         }
 
         public bool CanBePlacedAt(Vector3 position)

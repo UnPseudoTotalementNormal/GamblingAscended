@@ -258,7 +258,19 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObjectObstacle.enabled = false;
         
         var currentPlaceable = _currentHoldable.GetPlaceable();
-        currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
+        GameObject newPlacedObject = currentPlaceable.Place(_drawObject.transform.position, _placeRotation);
+
+        {
+            var newObstacle = newPlacedObject.AddComponent<NavMeshObstacle>();
+            newObstacle.shape = _drawObjectObstacle.shape;
+            newObstacle.carving = _drawObjectObstacle.carving;
+            newObstacle.carveOnlyStationary = _drawObjectObstacle.carveOnlyStationary;
+            newObstacle.carvingMoveThreshold = _drawObjectObstacle.carvingMoveThreshold;
+            newObstacle.carvingTimeToStationary = _drawObjectObstacle.carvingTimeToStationary;
+            newObstacle.center = _drawObjectObstacle.center;
+            newObstacle.size = _drawObjectObstacle.size;
+        }
+        
         if (currentPlaceable.DestroyItemOnPlaced)
         {
             Destroy(_currentHoldable.GetGameObject());
