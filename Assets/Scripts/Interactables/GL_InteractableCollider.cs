@@ -7,6 +7,9 @@ namespace Interactables
 {
     public class GL_InteractableCollider : MonoBehaviour, GL_IInteract, GL_IInteractable
     {
+        public Action OnInteractAction;
+        public Action OnPointerEnterAction;
+        public Action OnPointerExitAction;
         [field:SerializeField] public GameEventEnum InteractPointerEnterEvent { get; private set; } = GameEventEnum.InteractPointerEnter;
 
         [field: SerializeField] public GameEventEnum InteractPointerExitEvent { get; private set; } = GameEventEnum.InteractPointerExit;
@@ -23,6 +26,7 @@ namespace Interactables
                 Sender = gameObject,
             };
             InteractPointerEnterEvent.Invoke(eventInfo);
+            OnPointerEnterAction?.Invoke();
         }
 
         public void OnExit()
@@ -34,6 +38,7 @@ namespace Interactables
                     Ids = new[] { -1 },
                 };
                 InteractPointerExitEvent.Invoke(nullEventInfo);
+                OnPointerExitAction?.Invoke();
                 return;
             }
             var eventInfo = new GameEventGameObject
@@ -43,6 +48,7 @@ namespace Interactables
                 Sender = gameObject,
             };
             InteractPointerExitEvent.Invoke(eventInfo);
+            OnPointerExitAction?.Invoke();
         }
 
         public void OnInteract(GameObject sender)
@@ -54,6 +60,7 @@ namespace Interactables
                 Value = sender,
             };
             InteractionEvent.Invoke(eventInfo);
+            OnInteractAction?.Invoke();
         }
     }
 }

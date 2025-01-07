@@ -231,6 +231,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a4d618f233522944e833d00275e6883e
+    m_Address: Assets/GameEvents/Shop/TryBuyObj.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a97bcd043c540fc4282c21fd11ddefd1
     m_Address: Assets/GameEvents/DayNightCycle/SkipNight.asset
     m_ReadOnly: 0
@@ -249,6 +255,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b5a7039570849fc4989f9d192243d478
+    m_Address: Assets/GameEvents/Shop/PreviousObj.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b5ade679ffdf6114da5f7b4e37490bd6
     m_Address: Assets/GameEvents/Battlefield/OnPathTraced.asset
     m_ReadOnly: 0
@@ -257,6 +269,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: ba8a662a625a9ce488a13a6e44e56281
     m_Address: Assets/GameEvents/Interactable/InteractPointerEnter.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: bd47d0f09a83e0c4994941fbda399e84
+    m_Address: Assets/GameEvents/Shop/NextObj.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

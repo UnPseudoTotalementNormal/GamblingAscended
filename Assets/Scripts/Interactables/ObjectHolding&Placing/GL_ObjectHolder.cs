@@ -187,6 +187,8 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObjectObstacle.shape = NavMeshObstacleShape.Box;
         _drawObjectObstacle.carving = true;
         _drawObjectObstacle.carveOnlyStationary = false;
+        _drawObjectObstacle.carvingMoveThreshold = 0;
+        _drawObjectObstacle.carvingTimeToStationary = 0;
         _drawObjectObstacle.center = localObjectBounds.center;
         _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
         
