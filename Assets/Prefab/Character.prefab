@@ -481,7 +481,7 @@ MonoBehaviour:
   _canPlaceColor: {r: 0, g: 0.5686275, b: 0, a: 0.39215687}
   _cannotPlaceColor: {r: 0.5686275, g: 0, b: 0, a: 0.39215687}
   _placeRotation: {x: 0, y: 90, z: 0}
-  _rotationSpeed: 90
+  _rotationSpeed: 120
   _previewMesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!20 &7073471408122030742
 Camera:

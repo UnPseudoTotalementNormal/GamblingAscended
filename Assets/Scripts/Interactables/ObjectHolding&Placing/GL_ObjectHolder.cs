@@ -97,7 +97,6 @@ public class GL_ObjectHolder : MonoBehaviour
 
     private void RotatePlaceable()
     {
-        Debug.Log("cool");
         _placeRotation.y += _rotationSpeed * Time.deltaTime;
     }
     
