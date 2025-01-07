@@ -33,6 +33,8 @@ public class GL_ObjectHolder : MonoBehaviour
     [SerializeField] private Color _cannotPlaceColor;
 
     [SerializeField] private Vector3 _placeRotation;
+    [SerializeField] private float _rotationSpeed = 45;
+    private bool _isRotating;
     
     private GameObject _drawObject;
     private NavMeshObstacle _drawObjectObstacle;
@@ -44,8 +46,6 @@ public class GL_ObjectHolder : MonoBehaviour
     private const float OBJECT_SKIN_WIDTH = 0.01f;
 
     private bool _canTracePath;
-    
-
 
     private void Awake()
     {
@@ -53,8 +53,10 @@ public class GL_ObjectHolder : MonoBehaviour
         _tryPickupEvent?.AddListener(OnTryPickup);
         _interactInputEvent?.AddListener(TryDrop);
         _tryPlaceInputEvent?.AddListener(TryPlace);
-        GameEventEnum.OnDayEnded.AddListener((eventInfo) => { _isNightTime = true; });
-        GameEventEnum.OnNightEnded.AddListener((eventInfo) => { _isNightTime = false; });
+        GameEventEnum.RotateInputStarted.AddListener((info => { if (_currentHoldable != null) _isRotating = true; }));
+        GameEventEnum.RotateInputCanceled.AddListener((info => { _isRotating = false; }));
+        GameEventEnum.OnDayEnded.AddListener((info) => { _isNightTime = true; });
+        GameEventEnum.OnNightEnded.AddListener((info) => { _isNightTime = false; });
         GameEventEnum.AnswerCanPathTrace.AddListener(OnCanPathTraceAnswer);
         GameEventEnum.AnswerCanPathTrace.AddListener(OnAnswerCanPathTrace);
     }
@@ -86,8 +88,19 @@ public class GL_ObjectHolder : MonoBehaviour
             holdableTargetPos += -_currentHoldableBounds.extents.y * 1.50f * transform.up;
             _currentHoldableTransform.position = holdableTargetPos;
         }
+
+        if (_isRotating)
+        {
+            RotatePlaceable();
+        }
     }
 
+    private void RotatePlaceable()
+    {
+        Debug.Log("cool");
+        _placeRotation.y += _rotationSpeed * Time.deltaTime;
+    }
+    
     private void DrawPreview(GameObject previewedObject)
     {
         Bounds localObjectBounds;
@@ -125,7 +138,8 @@ public class GL_ObjectHolder : MonoBehaviour
             ignoreLayer |= (int)LayerMaskEnum.Path;
         }
         Collider[] overlapColliders = Physics.OverlapBox(worldObjectBounds.center,
-            localObjectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH, Quaternion.identity,
+            worldObjectBounds.extents - Vector3.one * OBJECT_SKIN_WIDTH,
+            _drawObject.transform.rotation,
             ~ignoreLayer);
 
         if (overlapColliders.Length > 0)

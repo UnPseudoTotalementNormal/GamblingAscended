@@ -11,6 +11,7 @@ public class InputManager : MonoBehaviour
     [SerializeField] private GameEvent<GameEventInfo> _mouseMoveInputEvent;
     [SerializeField] private InputContexts<GameEventInfo> _interactInputEvent;
     [SerializeField] private InputContexts<GameEventInfo> _placeInputEvent;
+    [SerializeField] private InputContexts<GameEventInfo> _rotateInputEvent;
 
     [SerializeField] private GameObject _playerPrefab;
 
@@ -70,13 +71,13 @@ public class InputManager : MonoBehaviour
         if (context.performed) _placeInputEvent.EventPerformed?.Invoke(gameEventInfo);
         if (context.canceled) _placeInputEvent.EventCancel?.Invoke(gameEventInfo);
     }
-
-    [Serializable]
-    public struct InputContexts
+    
+    public void OnRotate(InputAction.CallbackContext context)
     {
-        public GameEvent EventStarted;
-        public GameEvent EventPerformed;
-        public GameEvent EventCancel;
+        var gameEventInfo = new GameEventInfo();
+        if (context.started) _rotateInputEvent.EventStarted?.Invoke(gameEventInfo);
+        if (context.performed) _rotateInputEvent.EventPerformed?.Invoke(gameEventInfo);
+        if (context.canceled) _rotateInputEvent.EventCancel?.Invoke(gameEventInfo);
     }
     
     [Serializable]

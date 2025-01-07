@@ -39,6 +39,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 194dea84eccc9f5479096dbbbdc29812
+    m_Address: Assets/GameEvents/Input/RotateInputCanceled.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 289aeaebfa9e88f4597fafa67d2f196e
     m_Address: Assets/Art/Audio/SFX/SlotMachineRolling.wav
     m_ReadOnly: 0
@@ -137,6 +143,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 694ae6a81faf52644b73168e7feeed0d
     m_Address: Assets/GameEvents/Player/LinkHUDWithPlayer.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6d7e026e0c14ed24abf306843ab10790
+    m_Address: Assets/GameEvents/Input/RotateInputStarted.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent
