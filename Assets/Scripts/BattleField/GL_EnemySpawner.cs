@@ -30,7 +30,7 @@ public class GL_EnemySpawner : MonoBehaviour
 
     private void SpawnEnemy(GL_EnemyInfo enemy)
     {
-        GameObject newEnemy = Instantiate(enemy.Prefab, _pathTracer.Waypoints[0], Quaternion.identity);
+        GameObject newEnemy = Instantiate(enemy.Prefab, _pathTracer.Waypoints[0] + Vector3.up, Quaternion.identity);
         
         GameEventEnum.SetEnemyInfo.Invoke(new GameEventEnemyInfo
         {

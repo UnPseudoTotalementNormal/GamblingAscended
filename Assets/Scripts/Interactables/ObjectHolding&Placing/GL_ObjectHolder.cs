@@ -76,6 +76,10 @@ public class GL_ObjectHolder : MonoBehaviour
         if (_currentHoldable != null && _currentHoldable.IsPlaceable())
         {
             DrawPreview(_currentHoldable.GetPlaceable().PlaceableObject);
+            if (_isNightTime)
+            {
+                GameEventEnum.DrawPathPreview.Invoke(new GameEventInfo());
+            }
         }
 
         if (_currentHoldable != null) //holdable movement
@@ -327,6 +331,7 @@ public class GL_ObjectHolder : MonoBehaviour
 
     private void Reset()
     {
+        GameEventEnum.HidePathPreview.Invoke(new GameEventInfo());
         Timer.Timer.NewTimer(0, () => { _interacterRaycaster.EnableComponent(); });
         _currentHoldable = null;
         Destroy(_drawObject);

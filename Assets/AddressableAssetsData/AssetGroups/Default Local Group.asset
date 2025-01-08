@@ -99,6 +99,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - GameEvent
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 44c936178e7c7274383acd3b541142f4
+    m_Address: Assets/GameEvents/Battlefield/HidePathPreview.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 46de748d32ef4304bbb4be27d8857dcc
     m_Address: Assets/GameEvents/Battlefield/TakeDamage.asset
     m_ReadOnly: 0
@@ -197,6 +203,12 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88e94871fdd3f04418f7b66551232f1f
     m_Address: Assets/GameEvents/Wave/OnWaveStarted.asset
+    m_ReadOnly: 0
+    m_SerializedLabels:
+    - GameEvent
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 89e56490ca4d50745a9a542d8cb97074
+    m_Address: Assets/GameEvents/Battlefield/DrawPathPreview.asset
     m_ReadOnly: 0
     m_SerializedLabels:
     - GameEvent

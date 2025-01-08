@@ -17,6 +17,7 @@ public class GL_PathTracer : MonoBehaviour
     [SerializeField] private Transform _endTransform;
 
     [SerializeField] private SpriteShape _spriteShape;
+    [SerializeField] private SpriteShape _previewSpriteShape;
     [SerializeField] private Material _spriteMaterial;
 
     [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
@@ -29,12 +30,43 @@ public class GL_PathTracer : MonoBehaviour
 
     private GameObject _pathVisual;
     private GameObject _pathCollider;
+
+    private GameObject _pathPreviewVisual;
     
     private void Awake()
     {
         TracePath();
         _objectPlacedEvent?.AddListener(RetracePath);
         GameEventEnum.AskCanPathTrace.AddListener(AnswerCanPathTrace);
+        GameEventEnum.DrawPathPreview.AddListener(DrawPathPreview);
+        GameEventEnum.HidePathPreview.AddListener(HidePathPreview);
+    }
+    
+    private void DrawPathPreview(GameEventInfo obj)
+    {
+        NavMeshPath path = new();
+        if (!GL_NavmeshUtils.TryGetPathTo(_startTransform.position, _endTransform.position, ref path))
+        {
+            Debug.LogWarning("No path found");
+            HidePathPreview(new GameEventInfo());
+            return;
+        }
+        
+        SetPathVisuals(path, ref _pathPreviewVisual);
+        var spriteShapeController = _pathPreviewVisual.GetComponent<SpriteShapeController>();
+        spriteShapeController.spriteShape = _previewSpriteShape;
+        
+        _pathVisual.SetActive(false);
+    }
+    
+    private void HidePathPreview(GameEventInfo obj)
+    {
+        if (_pathPreviewVisual)
+        {
+            Destroy(_pathPreviewVisual);
+        }
+        
+        _pathVisual.SetActive(true);
     }
 
     private void AnswerCanPathTrace(GameEventInfo eventInfo)
@@ -75,7 +107,7 @@ public class GL_PathTracer : MonoBehaviour
         
         SetWaypoints(path);
         SetPathColliders(path);
-        SetPathVisuals(path);
+        SetPathVisuals(path, ref _pathVisual);
 
         var eventInfo = new GameEventPathTraced()
         {
@@ -117,19 +149,19 @@ public class GL_PathTracer : MonoBehaviour
         }
     }
 
-    private void SetPathVisuals(NavMeshPath path)
+    private void SetPathVisuals(NavMeshPath path, ref GameObject pathObject)
     {
-        if (_pathVisual)
+        if (pathObject)
         {
-            Destroy(_pathVisual);
+            Destroy(pathObject);
         }
         
-        _pathVisual = new GameObject("PathVisuals");
-        Transform pathVisualTransform = _pathVisual.transform;
+        pathObject = new GameObject("PathVisuals");
+        Transform pathVisualTransform = pathObject.transform;
         pathVisualTransform.SetParent(transform);
         pathVisualTransform.Rotate(Vector3.right * 90);
         
-        var newSpriteShapeController = _pathVisual.AddComponent<SpriteShapeController>();
+        var newSpriteShapeController = pathObject.AddComponent<SpriteShapeController>();
         newSpriteShapeController.spriteShape = _spriteShape;
         newSpriteShapeController.splineDetail = 16;
         
