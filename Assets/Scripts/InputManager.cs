@@ -1,6 +1,7 @@
 using System;
 using GameEvents;
 using Possess;
+using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -13,7 +14,9 @@ public class InputManager : MonoBehaviour
     [SerializeField] private InputContexts<GameEventInfo> _placeInputEvent;
     [SerializeField] private InputContexts<GameEventInfo> _rotateInputEvent;
 
+    [Header("Player")]
     [SerializeField] private GameObject _playerPrefab;
+    [SerializeField] private Transform _playerSpawnPoint;
 
     private void Awake()
     {
@@ -22,7 +25,7 @@ public class InputManager : MonoBehaviour
 
     private void SpawnPlayer()
     {
-        GameObject newPlayer = Instantiate(_playerPrefab);
+        GameObject newPlayer = Instantiate(_playerPrefab, _playerSpawnPoint.position, Quaternion.identity);
         newPlayer.Possess();
     }
 
