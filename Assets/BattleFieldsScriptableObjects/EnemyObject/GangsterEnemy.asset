@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61864111643a98dc49f615329e48c, type: 3}
   m_Name: GangsterEnemy
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6077906806579385801, guid: 26bd61acef4050446ad1bbe511ef5c83, type: 3}
+  Prefab: {fileID: 8726710069236955309, guid: 26bd61acef4050446ad1bbe511ef5c83, type: 3}
   Name: Gangster
-  Damage: 1
-  Health: 5
-  MoveSpeed: 2
-  MoneyOnDeath: 1
-  DamageTypeImmunity: 2
+  Damage: 10
+  Health: 18
+  MoveSpeed: 1
+  MoneyOnDeath: 10
+  DamageTypeImmunity: 1

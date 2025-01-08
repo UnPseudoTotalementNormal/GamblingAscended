@@ -8,6 +8,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 426761863818076788, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      propertyPath: m_Name
+      value: Collider
+      objectReference: {fileID: 0}
     - target: {fileID: 527901569264912872, guid: 7848b104205414749b5365574ab22e23, type: 3}
       propertyPath: _maxSpeed
       value: 5
@@ -89,6 +93,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 8346499829317345361}
   m_SourcePrefab: {fileID: 100100000, guid: 7848b104205414749b5365574ab22e23, type: 3}
+--- !u!4 &4986716852909876853 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 930085824569920400, guid: 7848b104205414749b5365574ab22e23, type: 3}
+  m_PrefabInstance: {fileID: 5322186788640943589}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &6077906806579385801 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2127146696485877804, guid: 7848b104205414749b5365574ab22e23, type: 3}
@@ -106,7 +115,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 483e25ed907240369c2a40714c6f7dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Damage>k__BackingField: 5
 --- !u!114 &-2859713339808130345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -119,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9759180809264e4fad9122011bc66aec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _model: {fileID: 4986716852909876853}
   CurrentWaypointDistance: 0
   CurrentWaypoint: {x: 0, y: 0, z: 0}
   CurrentDistance: 0
@@ -137,6 +146,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CurrentHealth: 0
   MaxHealth: 1
+  DamageTypeImmunity: 3
 --- !u!114 &8346499829317345361
 MonoBehaviour:
   m_ObjectHideFlags: 0

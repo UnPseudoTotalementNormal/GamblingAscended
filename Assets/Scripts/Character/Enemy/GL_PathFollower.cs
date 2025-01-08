@@ -13,6 +13,8 @@ namespace Character.Enemy
     {
         private GL_CharacterMovement _characterMovement;
         private Rigidbody _rigidbody;
+
+        [SerializeField] private Transform _model;
         
         private int _currentWaypointIndex;
         public float CurrentWaypointDistance;
@@ -66,7 +68,7 @@ namespace Character.Enemy
             
             CheckNextWaypoint();
             
-            //transform.forward = (CurrentWaypoint - transform.position).ToFlatVector3().normalized;
+            _model.forward = Vector3.Lerp(_model.forward, (CurrentWaypoint - transform.position).ToFlatVector3().normalized, Time.deltaTime * 5f);
         }
 
         private void FixedUpdate()

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61864111643a98dc49f615329e48c, type: 3}
   m_Name: FakeRichEnemy
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6077906806579385801, guid: ca2084ded424f3a4681aa603db77c156, type: 3}
+  Prefab: {fileID: 2180275867429126981, guid: 0a08cff600f88e94aa13ce678bae69c0, type: 3}
   Name: Faux riche
-  Damage: 1
-  Health: 5
-  MoveSpeed: 2
-  MoneyOnDeath: 1
-  DamageTypeImmunity: 2
+  Damage: 5
+  Health: 10
+  MoveSpeed: 3
+  MoneyOnDeath: 5
+  DamageTypeImmunity: 3

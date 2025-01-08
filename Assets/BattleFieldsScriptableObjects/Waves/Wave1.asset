@@ -16,7 +16,7 @@ MonoBehaviour:
   - Infos:
       Enemy: {fileID: 11400000, guid: cad465fb9441ba143a512739935a054d, type: 2}
       Count: 3
-      Interval: 0.5
+      Interval: 2
       StartTime: 0
     SpawnedCount: 0
     NextSpawnAtTime: 0

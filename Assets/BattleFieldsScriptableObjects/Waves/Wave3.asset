@@ -15,22 +15,15 @@ MonoBehaviour:
   SpawnInfo:
   - Infos:
       Enemy: {fileID: 11400000, guid: 5802111ea54cbda45b1d2c55fdd51280, type: 2}
-      Count: 6
+      Count: 2
       Interval: 0.3
       StartTime: 0
-    SpawnedCount: 0
-    NextSpawnAtTime: 0
-  - Infos:
-      Enemy: {fileID: 11400000, guid: 5802111ea54cbda45b1d2c55fdd51280, type: 2}
-      Count: 6
-      Interval: 0.3
-      StartTime: 2
     SpawnedCount: 0
     NextSpawnAtTime: 0
   - Infos:
       Enemy: {fileID: 11400000, guid: cad465fb9441ba143a512739935a054d, type: 2}
       Count: 3
       Interval: 0.15
-      StartTime: 1
+      StartTime: 5
     SpawnedCount: 0
     NextSpawnAtTime: 0

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3d61864111643a98dc49f615329e48c, type: 3}
   m_Name: ChildEnemy
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 6077906806579385801, guid: 0854acb9cf72db74c81708e80b0db5b0, type: 3}
+  Prefab: {fileID: 5751351282945916106, guid: 0854acb9cf72db74c81708e80b0db5b0, type: 3}
   Name: Enfant
   Damage: 1
   Health: 5
-  MoveSpeed: 2
-  MoneyOnDeath: 1
-  DamageTypeImmunity: 2
+  MoveSpeed: 5
+  MoneyOnDeath: 6
+  DamageTypeImmunity: 0
