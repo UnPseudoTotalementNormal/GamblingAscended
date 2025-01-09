@@ -1,12 +1,16 @@
+using System.Collections.Generic;
 using DG.Tweening;
 using GameEvents;
 using GameEvents.Enum;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GL_TimeManager : MonoBehaviour
 {
-    [SerializeField] private Light _directionalLight;
+    [SerializeField] private Light _dayDirectionalLight;
+    [SerializeField] private Light _nightDirectionalLight;
     [SerializeField] private GL_LightingPreset _lightingPreset;
+    private Dictionary<Light, float> _lightIntensity = new();
     
     [SerializeField, Range(0f, 24f)] private float _timeOfDay;
 
@@ -25,6 +29,8 @@ public class GL_TimeManager : MonoBehaviour
     
     private void Awake()
     {
+        _lightIntensity.Add(_dayDirectionalLight, _dayDirectionalLight.intensity);
+        _lightIntensity.Add(_nightDirectionalLight, _nightDirectionalLight.intensity);
         GameEventEnum.OnWaveStarted.AddListener(TimeSetDay);
         GameEventEnum.OnWaveEnded.AddListener(TimeSetNight);
         GameEventEnum.TrySleep.AddListener(TrySleep);
@@ -43,16 +49,24 @@ public class GL_TimeManager : MonoBehaviour
 
     private void TimeSetNight(GameEventInfo eventInfo)
     {
+        var duration = 3;
+        _dayDirectionalLight.DOIntensity(0, duration);
+        _nightDirectionalLight.DOIntensity(_lightIntensity[_nightDirectionalLight], duration);
+        
         CurrentStateOfDay = StateOfDay.Night;
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, 5)
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, NIGHT_TIME, duration)
             .SetEase(Ease.Linear);
         GameEventEnum.OnDayEnded.Invoke(new GameEventInfo());
     }
 
     private void TimeSetDay(GameEventInfo eventInfo)
     {
+        var duration = 3;
+        _nightDirectionalLight.DOIntensity(0, duration);
+        _dayDirectionalLight.DOIntensity(_lightIntensity[_dayDirectionalLight], duration);
+        
         CurrentStateOfDay = StateOfDay.Day;
-        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, 5)
+        DOTween.To(() => _timeOfDay, x => _timeOfDay = x, DAY_TIME, duration)
             .SetEase(Ease.Linear);
         GameEventEnum.OnNightEnded.Invoke(new GameEventInfo());
     }
@@ -75,10 +89,10 @@ public class GL_TimeManager : MonoBehaviour
         RenderSettings.ambientLight = _lightingPreset.AmbiantColor.Evaluate(timePercent);
         RenderSettings.fogColor = _lightingPreset.FogColor.Evaluate(timePercent);
 
-        if (_directionalLight)
+        if (_dayDirectionalLight)
         {
-            _directionalLight.color = _lightingPreset.DirectionalColor.Evaluate(timePercent);
-            _directionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
+            _dayDirectionalLight.color = _lightingPreset.DirectionalColor.Evaluate(timePercent);
+            _dayDirectionalLight.transform.localRotation = Quaternion.Euler(new Vector3((timePercent * 360f) - 90f, 170f, 0));
         }
     }
 

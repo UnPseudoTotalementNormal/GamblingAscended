@@ -47,7 +47,7 @@ public class GL_PathTracer : MonoBehaviour
         NavMeshPath path = new();
         if (!GL_NavmeshUtils.TryGetPathTo(_startTransform.position, _endTransform.position, ref path))
         {
-            Debug.LogWarning("No path found");
+            //Debug.LogWarning("No path preview found");
             HidePathPreview(new GameEventInfo());
             return;
         }
@@ -156,6 +156,26 @@ public class GL_PathTracer : MonoBehaviour
             Destroy(pathObject);
         }
         
+        List<Vector3> corners = new();
+        Vector3 previousCorner = Vector3.zero;
+        for (var i = 0; i < path.corners.Length; i++)
+        {
+            Vector3 currentCorner = path.corners[i];
+            if (i == 0)
+            {
+                previousCorner = currentCorner;
+                corners.Add(currentCorner);
+                continue;
+            }
+
+            float distance = Vector3.Distance(previousCorner, currentCorner);
+            if (distance <= 1f)
+            {
+                continue;
+            }
+            corners.Add(currentCorner);
+        }
+
         pathObject = new GameObject("PathVisuals");
         Transform pathVisualTransform = pathObject.transform;
         pathVisualTransform.SetParent(transform);
@@ -176,9 +196,9 @@ public class GL_PathTracer : MonoBehaviour
         Spline spriteSpline = newSpriteShapeController.spline;
         spriteSpline.isOpenEnded = true;
         
-        for (int i = 0; i < path.corners.Length ; i++)
+        for (int i = 0; i < corners.Count ; i++)
         {
-            Vector3 cornerPos = path.corners[i];
+            Vector3 cornerPos = corners[i];
             Quaternion rotation = Quaternion.Euler(-90, 0, 0);
             Vector3 rotatedVector = rotation * cornerPos;
             

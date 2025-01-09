@@ -205,9 +205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _moveInputEvent: {fileID: 11400000, guid: 5fc2b61e90e26244183cd70d9c6e7c68, type: 2}
   _maxSpeed: 12
-  _acceleration: 25
-  _maxAccelForce: 25
-  _frictionForce: {x: 4, y: 0, z: 4}
+  _acceleration: 35
+  _maxAccelForce: 35
+  _frictionForce: {x: 5, y: 0, z: 5}
 --- !u!114 &1473599177583552309
 MonoBehaviour:
   m_ObjectHideFlags: 0

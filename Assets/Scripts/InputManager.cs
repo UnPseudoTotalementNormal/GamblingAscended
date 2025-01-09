@@ -20,6 +20,7 @@ public class InputManager : MonoBehaviour
 
     private void Awake()
     {
+        Cursor.lockState = CursorLockMode.Locked;
         SpawnPlayer();
     }
 

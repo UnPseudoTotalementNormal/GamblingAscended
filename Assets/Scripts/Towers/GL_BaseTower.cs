@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Character.Enemy;
 using Enums;
+using Extensions;
 using GameEvents;
 using GameEvents.Enum;
 using Towers.Interface;
@@ -93,16 +96,21 @@ namespace Towers
                 Damage = AttackDamage,
                 DamageType = this.DamageType,
                 Sender = gameObject,
+                Target = new List<GameObject>{shootingEnemy.gameObject},
             };
             GameEventEnum.TakeDamage.Invoke(damageEvent);
+            
+            LookAt(shootingEnemy.gameObject);
         }
         
         public void AttackZoneType()
         {
             var enemiesId = new int[EnemyDetector.EnemiesInRange.Count];
+            List<GameObject> enemiesObject = new();
             for (int i = 0; i < EnemyDetector.EnemiesInRange.Count; i++)
             {
                 enemiesId[i] = EnemyDetector.EnemiesInRange[i].gameObject.GetGameID();
+                enemiesObject.Add(EnemyDetector.EnemiesInRange[i].gameObject);
             }
             
             GameEventDamage damageEvent = new GameEventDamage
@@ -111,8 +119,16 @@ namespace Towers
                 Damage = AttackDamage,
                 DamageType = this.DamageType,
                 Sender = gameObject,
+                Target = enemiesObject,
             };
             GameEventEnum.TakeDamage.Invoke(damageEvent);
+        }
+
+        private void LookAt(GameObject lookAtGameObject)
+        {
+            Vector3 direction = (lookAtGameObject.transform.position - transform.position).normalized;
+            direction = direction.ToFlatVector3();
+            transform.forward = direction;
         }
 
         public void AttackProjectileType()

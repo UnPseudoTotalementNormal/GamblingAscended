@@ -74,6 +74,7 @@ namespace GameEvents
     {
         public float Damage;
         public DamageType DamageType;
+        public List<GameObject> Target;
     }
 
     public class GameEventPathTraced : GameEventInfo

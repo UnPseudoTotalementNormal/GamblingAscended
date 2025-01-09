@@ -24,6 +24,18 @@ PrefabInstance:
       propertyPath: _maxAccelForce
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 527901569264912872, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      propertyPath: _frictionForce.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 527901569264912872, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      propertyPath: _frictionForce.z
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 851711108262642995, guid: 7848b104205414749b5365574ab22e23, type: 3}
+      propertyPath: m_ExcludeLayers.m_Bits
+      value: 1920
+      objectReference: {fileID: 0}
     - target: {fileID: 2127146696485877804, guid: 7848b104205414749b5365574ab22e23, type: 3}
       propertyPath: m_Name
       value: Enemy
