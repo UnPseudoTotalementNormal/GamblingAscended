@@ -17,5 +17,5 @@ MonoBehaviour:
   Damage: 1
   Health: 3
   MoveSpeed: 2.5
-  MoneyOnDeath: 2
+  MoneyOnDeath: 4
   DamageTypeImmunity: 3
