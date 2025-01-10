@@ -27,3 +27,10 @@ MonoBehaviour:
       StartTime: 3
     SpawnedCount: 0
     NextSpawnAtTime: 0
+  - Infos:
+      Enemy: {fileID: 11400000, guid: cad465fb9441ba143a512739935a054d, type: 2}
+      Count: 2
+      Interval: 0.8
+      StartTime: 0
+    SpawnedCount: 0
+    NextSpawnAtTime: 0

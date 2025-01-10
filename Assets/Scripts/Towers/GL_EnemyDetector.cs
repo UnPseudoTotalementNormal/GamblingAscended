@@ -27,7 +27,8 @@ namespace Towers
             var enemies = _enemiesInRange.ToList();
             foreach (GL_BaseEnemy enemy in _enemiesInRange)
             {
-                if (enemy.GetComponent<GL_Health>().IsInvincible)
+                var glHealth = enemy.GetComponent<GL_Health>();
+                if (glHealth.IsInvincible || glHealth.IsDead)
                 {
                     enemies.Remove(enemy);
                 }

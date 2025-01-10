@@ -30,6 +30,8 @@ namespace BattleField.DamageFeedback
             { DamageType.Special, Color.green },
         };
         
+        [SerializeField] private TMP_FontAsset _fontAsset;
+        
         private void Awake()
         {
             _transform = GetComponent<Transform>();
@@ -53,6 +55,7 @@ namespace BattleField.DamageFeedback
             newText.text = damageAmount % 1 == 0 ? ((int)damageAmount).ToString() : damageAmount.ToString("F");
 
             newText.fontSize = Mathf.LerpUnclamped(_minTextSize, _maxTextSize, damageAmount / _damageToMaxTextSize);
+            newText.font = _fontAsset;
             
             newText.color = _damageTypeToColor[gameEventDamage.DamageType];
             

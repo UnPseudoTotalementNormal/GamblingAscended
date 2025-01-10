@@ -16,6 +16,8 @@ public class GL_Health : MonoBehaviour
     public bool IsDead = false;
 
     public DamageType DamageTypeImmunity = DamageType.Aucun;
+
+    public Action<GL_Health> OnDamaged;
     
     private void Awake()
     {
@@ -49,6 +51,7 @@ public class GL_Health : MonoBehaviour
         
         GameEventEnum.OnDamageTaken.Invoke(new GameEventDamage
             { Ids = new[] { gameObject.GetGameID() }, Damage = damageAmount, DamageType = damageInfo.DamageType, Sender = gameObject });
+        OnDamaged?.Invoke(this);
         
         if (CurrentHealth > 0)
         {

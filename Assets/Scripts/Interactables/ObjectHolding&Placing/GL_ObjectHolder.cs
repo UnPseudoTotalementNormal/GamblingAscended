@@ -207,7 +207,7 @@ public class GL_ObjectHolder : MonoBehaviour
         _drawObjectObstacle.carvingMoveThreshold = 0;
         _drawObjectObstacle.carvingTimeToStationary = 0;
         _drawObjectObstacle.center = localObjectBounds.center;
-        _drawObjectObstacle.size = localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH;
+        _drawObjectObstacle.size = (localObjectBounds.extents * 2 + Vector3.one * OBJECT_SKIN_WIDTH);
         
         var colliders = _drawObject.GetComponentsInChildren<Collider>();
         foreach (Collider collider in colliders)

@@ -15,6 +15,7 @@ namespace Character.Enemy
         private Rigidbody _rigidbody;
 
         [SerializeField] private Transform _model;
+        public Transform Model => _model;
         
         private int _currentWaypointIndex;
         public float CurrentWaypointDistance;

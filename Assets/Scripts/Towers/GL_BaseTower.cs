@@ -128,7 +128,7 @@ namespace Towers
         {
             Vector3 direction = (lookAtGameObject.transform.position - transform.position).normalized;
             direction = direction.ToFlatVector3();
-            transform.forward = direction;
+            transform.GetChild(0).forward = direction;
         }
 
         public void AttackProjectileType()
