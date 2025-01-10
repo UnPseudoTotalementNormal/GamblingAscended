@@ -2,9 +2,9 @@ namespace Enums
 {
     public enum DamageType
     {
-        Distance,
-        Physical,
-        Special,
-        None,
+        Distance = 0,
+        Physique = 1,
+        Special = 2,
+        Aucun = 3,
     }
 }

@@ -12,6 +12,6 @@ namespace Character.Enemy
         public float Health;
         public float MoveSpeed;
         public float MoneyOnDeath;
-        public DamageType DamageTypeImmunity = DamageType.None;
+        public DamageType DamageTypeImmunity = DamageType.Aucun;
     }
 }

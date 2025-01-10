@@ -11,8 +11,11 @@ public class GL_Health : MonoBehaviour
 {
     public float CurrentHealth;
     public float MaxHealth;
+    public bool IsInvincible = false;
 
-    public DamageType DamageTypeImmunity = DamageType.None;
+    public bool IsDead = false;
+
+    public DamageType DamageTypeImmunity = DamageType.Aucun;
     
     private void Awake()
     {
@@ -34,6 +37,11 @@ public class GL_Health : MonoBehaviour
 
     public void TakeDamage(GL_DamageInfo damageInfo)
     {
+        if (IsInvincible || IsDead)
+        {
+            return;
+        }
+        
         var damageResult = GL_DamageProcessor.GetFinalDamageAmount(damageInfo, DamageTypeImmunity);
         float damageAmount = damageResult.Amount;
         
@@ -48,6 +56,7 @@ public class GL_Health : MonoBehaviour
         }
         
         CurrentHealth = 0;
+        IsDead = true;
         GameEventEnum.OnDeath.Invoke(new GameEventInfo 
             { Ids = new [] { gameObject.GetGameID() }, Sender = gameObject });
     }

@@ -3,6 +3,7 @@ using Enums;
 using Extensions;
 using GameEvents;
 using GameEvents.Enum;
+using TMPro;
 using UnityEngine;
 
 namespace Interactables.ObjectHolding_Placing.Bases
@@ -14,7 +15,28 @@ namespace Interactables.ObjectHolding_Placing.Bases
         [field:SerializeField] public GameObject PlaceableObject { get; private set; }
         [field: SerializeField] public bool DestroyItemOnPlaced { get; private set; } = true;
         [SerializeField] private GameEvent<GameEventInfo> _objectPlacedEvent;
-        public int Amount = 1;
+        private int _amount = 1;
+        public int Amount
+        {
+            get { return _amount;}
+            set
+            {
+                _amount = value;
+                RefreshAmountText();
+            }
+        }
+
+        [SerializeField] private TextMeshPro _amountText;
+
+        protected virtual void Start()
+        {
+            RefreshAmountText();
+        }
+
+        private void RefreshAmountText()
+        {
+            _amountText.text = Amount.ToString();
+        }
         
         public virtual void OnPlaced(GameObject spawnedObject)
         {

@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65e48955851d434597cde3bccacd7dc3, type: 3}
+  m_Name: TowerJanitorInfo
+  m_EditorClassIdentifier: 
+  TowerName: Personnel d'entretien
+  AttackDamage: 1.5
+  AttackRadius: 2
+  AttackCooldown: 0.5
+  AttackType: 1
+  DamageType: 1
+  Cost: 18
+  TowerModel: {fileID: 1801420465461892926, guid: dc0336e6be97c284199267e1d6235e4a, type: 3}

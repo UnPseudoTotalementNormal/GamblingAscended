@@ -18,5 +18,5 @@ MonoBehaviour:
   AttackCooldown: 0.1
   AttackType: 1
   DamageType: 0
-  Cost: 13
+  Cost: 20
   TowerModel: {fileID: 1801420465461892926, guid: 8ed45f91261e64249be03fe4ee770385, type: 3}

@@ -14,7 +14,7 @@ public static class GL_DamageProcessor
                 
                 
                 //immunity calculs
-                if (immuneToType == DamageType.None)
+                if (immuneToType == DamageType.Aucun)
                 {
                         return damageResult;
                 }

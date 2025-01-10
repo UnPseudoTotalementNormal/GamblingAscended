@@ -24,8 +24,8 @@ namespace BattleField.DamageFeedback
         
         [SerializeField] private SerializedDictionary<DamageType, Color> _damageTypeToColor = new()
         {
-            { DamageType.None, Color.white },
-            { DamageType.Physical, Color.red },
+            { DamageType.Aucun, Color.white },
+            { DamageType.Physique, Color.red },
             { DamageType.Distance, Color.yellow },
             { DamageType.Special, Color.green },
         };

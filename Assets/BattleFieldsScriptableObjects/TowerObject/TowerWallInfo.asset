@@ -16,7 +16,7 @@ MonoBehaviour:
   AttackDamage: 0
   AttackRadius: 0
   AttackCooldown: 0
-  AttackType: 1
+  AttackType: 4
   DamageType: 3
   Cost: 1
   TowerModel: {fileID: 7307778890353784847, guid: e140beec523ca8b449f961c68c5f76db, type: 3}

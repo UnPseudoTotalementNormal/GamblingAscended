@@ -13,12 +13,26 @@ namespace Towers
 {
     public class GL_EnemyDetector : MonoBehaviour
     {
-        public List<GL_BaseEnemy> EnemiesInRange { get; private set; } = new();
+        private List<GL_BaseEnemy> _enemiesInRange { get; set; } = new();
         private float DetectionRange;
         private void Awake()
         {
             GameEventEnum.OnTriggerEnter.AddListener(CheckEnemyInRange);
             GameEventEnum.OnTriggerExit.AddListener(CheckEnemyOutOfRange);
+        }
+
+        public List<GL_BaseEnemy> GetEnemiesInRange()
+        {
+            CleanDestroyedEnemies();
+            var enemies = _enemiesInRange.ToList();
+            foreach (GL_BaseEnemy enemy in _enemiesInRange)
+            {
+                if (enemy.GetComponent<GL_Health>().IsInvincible)
+                {
+                    enemies.Remove(enemy);
+                }
+            }
+            return enemies;
         }
 
         public void Init(float range)
@@ -50,12 +64,12 @@ namespace Towers
             }
 
             if (!triggerHandler.TriggerValue.gameObject.TryGetComponentInParents(out GL_BaseEnemy triggerEnemy) ||
-                EnemiesInRange.Contains(triggerEnemy))
+                _enemiesInRange.Contains(triggerEnemy))
             {
                 return;
             }
             
-            EnemiesInRange.Add(triggerEnemy);
+            _enemiesInRange.Add(triggerEnemy);
         }
 
         private void CheckEnemyOutOfRange(GameEventInfo eventInfo)
@@ -66,29 +80,27 @@ namespace Towers
             }
             
             if (!triggerHandler.TriggerValue.gameObject.TryGetComponentInParents(out GL_BaseEnemy triggerEnemy) ||
-                !EnemiesInRange.Contains(triggerEnemy))
+                !_enemiesInRange.Contains(triggerEnemy))
             {
                 return;
             }
             
-            EnemiesInRange.Remove(triggerEnemy);
+            _enemiesInRange.Remove(triggerEnemy);
         }
 
         public GL_BaseEnemy GetFirstEnemy()
         {
-            CleanDestroyedEnemies();
-            return EnemiesInRange.OrderByDescending(e => e.PathFollower.CurrentDistance).FirstOrDefault();
+            return GetEnemiesInRange().OrderByDescending(e => e.PathFollower.CurrentDistance).FirstOrDefault();
         }
         
         public GL_BaseEnemy GetLastEnemy()
         {
-            CleanDestroyedEnemies();
-            return EnemiesInRange.OrderBy(e => e.PathFollower.CurrentDistance).FirstOrDefault();
+            return GetEnemiesInRange().OrderBy(e => e.PathFollower.CurrentDistance).FirstOrDefault();
         }
 
         private void CleanDestroyedEnemies()
         {
-            EnemiesInRange.Where(enemy => !enemy).ToList().ForEach(e => EnemiesInRange.Remove(e));
+            _enemiesInRange.Where(enemy => !enemy).ToList().ForEach(e => _enemiesInRange.Remove(e));
         }
     }
 }

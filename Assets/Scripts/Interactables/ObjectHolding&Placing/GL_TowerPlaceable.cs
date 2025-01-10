@@ -1,6 +1,7 @@
 using GameEvents;
 using GameEvents.Enum;
 using Interactables.ObjectHolding_Placing.Bases;
+using TMPro;
 using Towers;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -10,7 +11,15 @@ namespace Interactables.ObjectHolding_Placing
     public class GL_TowerPlaceable : GL_BasePlaceable
     {
         public GL_TowerInfo TowerInfo;
-        
+
+        [SerializeField] private TextMeshPro _towerNameText;
+
+        protected override void Start()
+        {
+            base.Start();
+            _towerNameText.text = TowerInfo.TowerName;
+        }
+
         public override void OnPlaced(GameObject spawnedObject)
         {
             base.OnPlaced(spawnedObject);

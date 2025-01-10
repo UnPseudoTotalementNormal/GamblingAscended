@@ -60,7 +60,7 @@ namespace Towers
 
         private void TryAttack()
         {
-            if (_currentAttackCooldown >= 0 || EnemyDetector.EnemiesInRange.Count <= 0)
+            if (_currentAttackCooldown >= 0 || EnemyDetector.GetEnemiesInRange().Count <= 0)
             {
                 return;
             }
@@ -105,12 +105,12 @@ namespace Towers
         
         public void AttackZoneType()
         {
-            var enemiesId = new int[EnemyDetector.EnemiesInRange.Count];
+            var enemiesId = new int[EnemyDetector.GetEnemiesInRange().Count];
             List<GameObject> enemiesObject = new();
-            for (int i = 0; i < EnemyDetector.EnemiesInRange.Count; i++)
+            for (int i = 0; i < EnemyDetector.GetEnemiesInRange().Count; i++)
             {
-                enemiesId[i] = EnemyDetector.EnemiesInRange[i].gameObject.GetGameID();
-                enemiesObject.Add(EnemyDetector.EnemiesInRange[i].gameObject);
+                enemiesId[i] = EnemyDetector.GetEnemiesInRange()[i].gameObject.GetGameID();
+                enemiesObject.Add(EnemyDetector.GetEnemiesInRange()[i].gameObject);
             }
             
             GameEventDamage damageEvent = new GameEventDamage
