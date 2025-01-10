@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using Character.Enemy;
 using Extensions;
 using GameEvents;
+using GameEvents.Enum;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace BattleField
 {
@@ -14,15 +16,23 @@ namespace BattleField
 
         private void Awake()
         {
-            _onDeathEvent.AddListener(OnDeath);
+            GameEventEnum.OnDeath.AddListener(OnDeath);
         }
 
         private void OnDeath(GameEventInfo eventInfo)
         {
-            Debug.Log("u lose");
-            Debug.Break();
+            if (gameObject.HasGameID(eventInfo.Ids))
+            {
+                _onDeathEvent?.Invoke(eventInfo);
+                Invoke(nameof(LoadMenu), 1f);
+            }
         }
 
+        private void LoadMenu()
+        {
+            SceneManager.LoadScene(0);
+        }
+        
         private void OnTriggerEnter(Collider other)
         {
             if (!other.gameObject.TryGetComponentInParents(out GL_BaseEnemy enemy))
